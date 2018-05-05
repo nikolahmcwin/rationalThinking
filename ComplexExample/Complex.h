@@ -16,7 +16,8 @@ namespace cosc326 {
 		Complex(double real);
 		Complex(double real, double imag);
 		// Just takes a string, std::string
-		// The & means a reference, like a pointer but can't do the pointer shit. No add or minus to move around Array
+		// The & means a reference, like a pointer but can't do the pointer shit. 
+		// No add or minus to move around Array
 		// Typically use a & when pass in cos it then can not store the whole thing but still read the value
 		// Use const so you can't change it and get lost
 		Complex(const std::string& str); // eg: "-3.1+4.3i"
@@ -24,13 +25,16 @@ namespace cosc326 {
 		Complex(const Complex& comp);
 
 
-		// A destructor to clean up anything done e.g. memory allocating. We won't really do much though.
+		// A destructor to clean up anything done e.g. memory allocating. 
+		// We won't really do much though.
 		// This will be called as soon as the object is out of way. ASAP.
 		~Complex();
 
 
-		// operator overloading. Allow you to define what happens when you see these particular operators.
-		// Can only overload existing operators in C++. Because they are part of core language infrastructure
+		// operator overloading. Allow you to define what happens when you 
+		// see these particular operators.
+		// Can only overload existing operators in C++. 
+		// Because they are part of core language infrastructure
 
 		// The '=' operator.
 		// Takes an operator on this side, again it will be constant

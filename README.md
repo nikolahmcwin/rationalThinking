@@ -18,5 +18,5 @@ While we are not expecting elaborate optimisations or convoluted algorithms, we
 do expect your implementation to be reasonably efficient.
 
 
-* COSC326 Etude 11, pair.
+* COSC326 Etude 9, pair.
 * @author Nikolah Pearce and Finn Luxton

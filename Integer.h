@@ -38,12 +38,9 @@ namespace e9 {
         Integer& operator>(const Integer& integ);
         Integer& operator>=(const Integer& integ);
 
-        
-
         // Afunction,gcd(a,b),thatreturnsthegreatestcommondivisoroftwoIntegers
 
     }
-
 
     // The equal-either-way binary arithmetic operators: +, -, *
     Integer& operator+(const Integer& integ);

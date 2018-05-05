@@ -53,11 +53,13 @@ namespace cosc326 {
 	}
 
 	Complex& Complex::operator=(const Complex& comp) {
+		// Check you aren't yourself cos if a=a just return, you're done
 		if (this != &comp) {
 			// Not self-assignment
 			real_ = comp.real_;
 			imag_ = comp.imag_;
 		}
+		// Return the actual object not the reference?????
 		return *this;
 	}
 
@@ -85,6 +87,7 @@ namespace cosc326 {
 		return imag_;
 	}
 
+// Copy constructor, make a c1 not a reference to. 
 	Complex operator+(const Complex& c1, const Complex& c2) {
 		Complex sum(c1);
 		sum += c2;
@@ -97,6 +100,8 @@ namespace cosc326 {
 		return product;
 	}
 
+// Streaming operators. Return a copy of the string passed in
+// input string not const cos we are writing to it
 	std::ostream& operator<<(std::ostream& ostr, const Complex& comp) {
 		if (comp.getImagPart() < 0) {
 			ostr << comp.getRealPart() << comp.getImagPart() << 'i';

@@ -1,0 +1,11 @@
+namespace e7 {
+
+    /* Public first, then Protected, then Private */
+    class Integer {
+    public:
+
+        Integer();
+        Integer(std::string);
+        
+    
+}

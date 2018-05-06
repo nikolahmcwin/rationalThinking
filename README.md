@@ -22,5 +22,7 @@ do expect your implementation to be reasonably efficient.
 * @author Nikolah Pearce and Finn Luxton
 
 
-Compile using: g++ *.cpp  - o main
-Main.cpp is available for testing purposes.
+Compile using: 
+* g++ *.cpp  - o main or
+* g++ Integer.cpp Main.cpp -o testIntegerOnly 
+* Main.cpp is available for testing purposes.

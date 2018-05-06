@@ -21,6 +21,8 @@ namespace cosc326 {
 
     //Constructor that takes a std::String of digits (possibility starts with a + or -)
     Integer::Integer(const std::string& str) : num_(0) {
+        //real_ = = std::atof(str.c_str());
+
         // is it positive or negative?
 
         // Do we have any '/' e.g. fractions
@@ -70,9 +72,24 @@ namespace cosc326 {
     //Comparison operators >=
 
     //Streaming insertion operator <<
+	std::ostream& operator<<(std::ostream& ostr, const Integer& integ) {
+		ostr << integ.getNum();
+		return ostr;
+	}
 
-    //Streaming extraction operator >>
+     //Streaming extraction operator >>
+	std::istream& operator>>(std::istream& istr, Integer& integ) {
+		std::string value;
+		istr >> value;
+		integ = Integer(value);
+		return istr;
+	}
+   
 
     //gdc(a, b) which returns greatest common divisor of a and b
 
+    int Integer::getNum() const {
+		return num_;
+	}
 }
+

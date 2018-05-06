@@ -7,19 +7,31 @@
  * @author Finn Luxton and Nikolah Pearce
  */
 
-namespace e9 {
+namespace cosc326 {
 
     //Default constructor 
 	Integer::Integer() : num_(0) {
         
-        }
+    }
 
     //Copy constructor that duplicates the provided Integer
-    Integer:Integer()
+    Integer::Integer(const Integer& integ) : num_(integ.num_) {
+
+    }
 
     //Constructor that takes a std::String of digits (possibility starts with a + or -)
+    Integer::Integer(const std::string& str) : num_(0) {
+        // is it positive or negative?
+
+        // Do we have any '/' e.g. fractions
+
+        // Do we have a '.' e.g. floating point
+    }
 
     //Destructor
+    Integer::~Integer() {
+
+    }
 
     //Unary Operator +
 

@@ -1,11 +1,18 @@
+#pragma once
+
 #include <iostream>
 #include <string>
 
+/**
+ * Integer.h for E9 COSC326
+ * @author Finn Luxton and Nikolah Pearce
+ */
+
 namespace e9 {
 
-    Class Integer {
+    class Integer {
 
-    public: 
+    public:
         // Constructors
         Integer();
         Integer(const Integer& integ)
@@ -39,21 +46,18 @@ namespace e9 {
         Integer& operator>(const Integer& integ);
         Integer& operator>=(const Integer& integ);
 
-        
-
         // Afunction,gcd(a,b),thatreturnsthegreatestcommondivisoroftwoIntegers
+        
+        int getNum() const;
 
     private:
         int num_;
-
     }
 
-
     // The equal-either-way binary arithmetic operators: +, -, *
-    Integer& operator+(const Integer& integ);
-    Integer& operator-(const Integer& integ);
-    Integer& operator*(const Integer& integ);
-
+    Integer operator+(const Integer& i1, const Integer& i2);
+    Integer operator-(const Integer& i1, const Integer& i2);
+    Integer operator*(const Integer& i1, const Integer& i2);
 
     // The streaming insertion and extraction operators: << and >>
     std::ostream& operator<<(std::ostream& ostr, const Integer& integ);

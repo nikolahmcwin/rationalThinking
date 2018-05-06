@@ -46,7 +46,7 @@ namespace e9 {
         Rational& operator>=(const Rational& rat);
 
 
-    }
+    };
 
     // The equal-either-way binary arithmetic operators: +, -, *
     Rational operator+(const Rational& rat1, const Rational& rat2);

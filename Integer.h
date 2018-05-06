@@ -5,6 +5,7 @@ namespace e9 {
 
     Class Integer {
 
+    public: 
         // Constructors
         Integer();
         Integer(const Integer& integ)
@@ -41,6 +42,9 @@ namespace e9 {
         
 
         // Afunction,gcd(a,b),thatreturnsthegreatestcommondivisoroftwoIntegers
+
+    private:
+        int num_;
 
     }
 

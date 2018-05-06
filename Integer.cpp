@@ -7,7 +7,7 @@
  * @author Finn Luxton and Nikolah Pearce
  */
 
-namespace e9 {
+namespace cosc326 {
 
     //Default constructor 
 	Integer::Integer() : num_(0) {
@@ -15,7 +15,6 @@ namespace e9 {
         }
 
     //Copy constructor that duplicates the provided Integer
-    Integer:Integer()
 
     //Constructor that takes a std::String of digits (possibility starts with a + or -)
 

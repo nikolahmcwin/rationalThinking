@@ -21,7 +21,7 @@ namespace cosc326 {
 
     //Constructor that takes a std::String of digits (possibility starts with a + or -)
     Integer::Integer(const std::string& str) : num_(0) {
-        //real_ = = std::atof(str.c_str());
+        real_ = std::atof(str.c_str());
 
         // is it positive or negative?
 

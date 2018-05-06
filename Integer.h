@@ -15,7 +15,11 @@ namespace cosc326 {
     public:
         // Constructors
         Integer();
+<<<<<<< HEAD
         Integer(const Integer& integ);
+=======
+        /*Integer(const Integer& integ);
+>>>>>>> db464a824c75410ee6b917b8b60fa8b99fd6f335
         Integer(const std::string& str);
 
         // Destructor
@@ -49,9 +53,10 @@ namespace cosc326 {
         // Afunction,gcd(a,b),thatreturnsthegreatestcommondivisoroftwoIntegers
         */
         int getNum() const;
-
+        */
     private:
         int num_;
+<<<<<<< HEAD
         
     };
 /*
@@ -60,8 +65,17 @@ namespace cosc326 {
     Integer operator-(const Integer& i1, const Integer& i2);
     Integer operator*(const Integer& i1, const Integer& i2);
 */
+=======
+    };
+
+    // The equal-either-way binary arithmetic operators: +, -, *
+    //Integer operator+(const Integer& i1, const Integer& i2);
+    //Integer operator-(const Integer& i1, const Integer& i2);
+    //Integer operator*(const Integer& i1, const Integer& i2);
+
+>>>>>>> db464a824c75410ee6b917b8b60fa8b99fd6f335
     // The streaming insertion and extraction operators: << and >>
-    std::ostream& operator<<(std::ostream& ostr, const Integer& integ);
-	std::istream& operator>>(std::istream& istr, Integer& integ);
+    //std::ostream& operator<<(std::ostream& ostr, const Integer& integ);
+	//std::istream& operator>>(std::istream& istr, Integer& integ);
 
 }

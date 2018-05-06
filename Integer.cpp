@@ -10,24 +10,17 @@
 namespace cosc326 {
 
     // Default constructor 
-	Integer::Integer() : num_(0) {
-        
-    }
+    Integer::Integer() : num_(0) {}
+	//Integer::Integer() : digits_(0), num_(0), positive_(false)  {}
 
     // Copy constructor that duplicates the provided Integer
-    Integer::Integer(const Integer& integ) : num_(integ.num_) {
+    Integer::Integer(const Integer& integ) : num_(integ.num_) {}
 
-    }
 
     // Constructor that takes a std::String of digits (possibility starts with a + or -)
     Integer::Integer(const std::string& str) : num_(0) {
-        real_ = std::atof(str.c_str());
-
+        //num_ = std::atof(str.c_str());
         // is it positive or negative?
-
-        // Do we have any '/' e.g. fractions
-
-        // Do we have a '.' e.g. floating point
     }
 
     // Destructor
@@ -73,7 +66,11 @@ namespace cosc326 {
 
     // Streaming insertion operator <<
 	std::ostream& operator<<(std::ostream& ostr, const Integer& integ) {
-		ostr << integ.getNum();
+        //ostr << integ.getNum();
+        std::string numString;
+        //for (std::vector<int>::const_iterator i = num_.begin(); i != num_.end(); ++i)
+        //    numString += std::to_string(*i);
+        ostr << numString;
 		return ostr;
 	}
 
@@ -98,8 +95,20 @@ namespace cosc326 {
     }*/
 
 
-    int Integer::getNum() const {
+   /* int Integer::getNum() const {
 		return num_;
-	}
+    }*/
+    
+    int Integer::getDigits() const {
+        return digits_;
+    }
+
+    std::vector<int> Integer::getNum() const {
+        return *num_
+    }
+
+    bool Integer::isPositive() const {
+        return positive_;
+    }
 }
 

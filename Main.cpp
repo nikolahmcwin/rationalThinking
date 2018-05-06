@@ -15,8 +15,8 @@ int main() {
     Integer i1;
     std::cout << "i1 is: " << i1 << std::endl; 
     
-    Integer i2("202");
-    std::cout << "i2 is: " << i2 << std::endl; 
+    //Integer i2("202");
+    //std::cout << "i2 is: " << i2 << std::endl; 
 	/*Integer i2("123456789");
 
     // Prove it was input correctly

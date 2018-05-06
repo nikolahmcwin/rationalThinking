@@ -15,11 +15,7 @@ namespace cosc326 {
     public:
         // Constructors
         Integer();
-<<<<<<< HEAD
         Integer(const Integer& integ);
-=======
-        /*Integer(const Integer& integ);
->>>>>>> db464a824c75410ee6b917b8b60fa8b99fd6f335
         Integer(const std::string& str);
 
         // Destructor

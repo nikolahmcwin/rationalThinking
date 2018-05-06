@@ -1,7 +1,11 @@
 #pragma once
 
+#ifndef INTEGER_H
+#define INTEGER_H
+
 #include <iostream>
 #include <string>
+#include <vector>
 
 /**
  * Integer.h for E9 COSC326
@@ -15,8 +19,11 @@ namespace cosc326 {
     public:
         // Constructors
         Integer();
-        Integer(const Integer& integ);
-        Integer(const std::string& str);
+        //Integer(const Integer& integ);
+        //Integer(const std::string& str);
+
+        Integer(const Integer&);
+        Integer(const std::string&);
 
         // Destructor
         ~Integer();
@@ -53,7 +60,7 @@ namespace cosc326 {
         */
 
         int getDigits() const;
-        std::vector<int> getNum() const;
+        std::vector<int> getNum();
         bool isPositive() const;
 
         //int getNum() const;
@@ -61,10 +68,10 @@ namespace cosc326 {
         //int num_;
 
         //Working with vectors we'd need...
-        int digits_;
-        std::vector<int> *num_;
-        int carry_;
-        bool positive_;    
+        int digits;
+        std::vector<int> num;
+        int carry;
+        bool positive;    
     };
 /*
     // The equal-either-way binary arithmetic operators: +, -, *
@@ -77,3 +84,5 @@ namespace cosc326 {
 	std::istream& operator>>(std::istream& istr, Integer& integ);
 
 }
+
+#endif

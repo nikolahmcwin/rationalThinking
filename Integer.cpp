@@ -1,5 +1,4 @@
-#include <iostream>
-#include <string>
+
 #include "Integer.h"
 
 /**
@@ -10,15 +9,19 @@
 namespace cosc326 {
 
     // Default constructor 
-    Integer::Integer() : num_(0) {}
+    Integer::Integer() {
+        num.push_back(0);
+    }
 	//Integer::Integer() : digits_(0), num_(0), positive_(false)  {}
 
     // Copy constructor that duplicates the provided Integer
-    Integer::Integer(const Integer& integ) : num_(integ.num_) {}
+    Integer::Integer(const Integer& integ) {
+        //num_(integ.num_);
+    }
 
 
     // Constructor that takes a std::String of digits (possibility starts with a + or -)
-    Integer::Integer(const std::string& str) : num_(0) {
+    Integer::Integer(const std::string& str) {
         //num_ = std::atof(str.c_str());
         // is it positive or negative?
     }
@@ -68,17 +71,18 @@ namespace cosc326 {
 	std::ostream& operator<<(std::ostream& ostr, const Integer& integ) {
         //ostr << integ.getNum();
         std::string numString;
-        //for (std::vector<int>::const_iterator i = num_.begin(); i != num_.end(); ++i)
-        //    numString += std::to_string(*i);
+        unsigned int size = num.size();
+        for (unsigned int i = 0; i < size; ++i)
+            numString += std::to_string(num[i]);
         ostr << numString;
 		return ostr;
 	}
 
     // Streaming extraction operator >>
 	std::istream& operator>>(std::istream& istr, Integer& integ) {
-		std::string value;
-		istr >> value;
-		integ = Integer(value);
+		std::string strValue;
+		istr >> strValue;
+		integ = Integer(strValue);
 		return istr;
 	}
    
@@ -100,15 +104,16 @@ namespace cosc326 {
     }*/
     
     int Integer::getDigits() const {
-        return digits_;
+        return digits;
     }
 
-    std::vector<int> Integer::getNum() const {
-        return *num_
+    std::vector<int> Integer::getNum() {
+        return num;
     }
 
     bool Integer::isPositive() const {
-        return positive_;
+        return positive;
     }
+    
 }
 

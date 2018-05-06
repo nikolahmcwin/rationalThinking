@@ -1,9 +1,16 @@
+#pragma once
+
 #include <iostream>
 #include <string>
 
+/**
+ * Rational.h for E9 COSC326
+ * @author Finn Luxton and Nikolah Pearce
+ */
+
 namespace e9 {
 
-    Class Rational {
+    class Rational {
 
         // Constructors
         Rational();
@@ -42,9 +49,9 @@ namespace e9 {
     }
 
     // The equal-either-way binary arithmetic operators: +, -, *
-    Rational& operator+(const Rational& rat);
-    Rational& operator-(const Rational& rat);
-    Rational& operator*(const Rational& rat);
+    Rational operator+(const Rational& rat1, const Rational& rat2);
+    Rational operator-(const Rational& rat1, const Rational& rat2);
+    Rational operator*(const Rational& rat1, const Rational& rat2);
 
 
     // The streaming insertion and extraction operators: << and >>

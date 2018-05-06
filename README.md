@@ -20,3 +20,7 @@ do expect your implementation to be reasonably efficient.
 
 * COSC326 Etude 9, pair.
 * @author Nikolah Pearce and Finn Luxton
+
+
+Compile using: g++ *.cpp  - o main
+Main.cpp is available for testing purposes.

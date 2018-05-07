@@ -59,16 +59,14 @@ namespace cosc326 {
         int gcd(unsigned int a, unsigned int b) const;
         */
 
-        int getDigits() const;
-        std::vector<int> getNum();
+        unsigned int getSize() const;
+        const std::vector<int>& getNum() const;
         bool isPositive() const;
 
-        //int getNum() const;
     private:
         //int num_;
-
-        //Working with vectors we'd need...
-        int digits;
+        unsigned int size;
+        // store the vector backwards;
         std::vector<int> num;
         int carry;
         bool positive;    
@@ -82,6 +80,7 @@ namespace cosc326 {
     // The streaming insertion and extraction operators: << and >>
     std::ostream& operator<<(std::ostream& ostr, const Integer& integ);
 	std::istream& operator>>(std::istream& istr, Integer& integ);
+    
 
 }
 

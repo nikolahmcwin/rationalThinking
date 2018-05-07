@@ -11,12 +11,16 @@ namespace cosc326 {
     // Default constructor 
     Integer::Integer() {
         num.push_back(0);
+        carry = 0;
+        size = num.size();
     }
-	//Integer::Integer() : digits_(0), num_(0), positive_(false)  {}
 
     // Copy constructor that duplicates the provided Integer
     Integer::Integer(const Integer& integ) {
-        //num_(integ.num_);
+        num = integ.num;
+        size = num.size();
+        carry = integ.carry;
+        positive = integ.positive; 
     }
 
 
@@ -71,10 +75,13 @@ namespace cosc326 {
 	std::ostream& operator<<(std::ostream& ostr, const Integer& integ) {
         //ostr << integ.getNum();
         std::string numString;
-        unsigned int size = num.size();
-        for (unsigned int i = 0; i < size; ++i)
-            numString += std::to_string(num[i]);
+        std::vector<int> n = integ.getNum();
+
+        for (unsigned int i = 0; i < integ.getSize(); ++i)
+            numString += std::to_string(n[i]);
+
         ostr << numString;
+        //ostr << "This is a test case" <<  "+ 12345";
 		return ostr;
 	}
 
@@ -85,7 +92,6 @@ namespace cosc326 {
 		integ = Integer(strValue);
 		return istr;
 	}
-   
 
     // gdc(a, b) which returns greatest common divisor of a and b
     /*unsigned int gdc (unsigned int a, unsigned int b){
@@ -97,23 +103,18 @@ namespace cosc326 {
         }
         return a;
     }*/
-
-
-   /* int Integer::getNum() const {
-		return num_;
-    }*/
     
-    int Integer::getDigits() const {
-        return digits;
+    unsigned int Integer::getSize() const {
+        return size;
     }
 
-    std::vector<int> Integer::getNum() {
+    const std::vector<int>& Integer::getNum() const {
         return num;
     }
 
     bool Integer::isPositive() const {
         return positive;
     }
-    
+
 }
 

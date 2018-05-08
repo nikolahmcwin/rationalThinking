@@ -11,6 +11,7 @@ namespace cosc326 {
     // Default constructor 
     Integer::Integer() {
         num.push_back(0);
+        positive = true;
         carry = 0;
         size = num.size();
     }
@@ -31,17 +32,14 @@ namespace cosc326 {
 
         // Find and ignore any trailing 
         if (str.find('-') != std::string::npos) {
-            std::cout << "String is negative baby!" << std::endl;
             i = 1;
             positive = false;
         } else if (str.find('+') != std::string::npos) {
-            std::cout << "String is positive baby!" << std::endl;
             i = 1;
             positive = true;
         } else {
             i = 0;
             positive = true;
-            std::cout << "nothing.."<< std::endl;
         }
 
         len = str.length();
@@ -55,19 +53,6 @@ namespace cosc326 {
 
         carry = 0;
         size = num.size();
-        //std::cout << "Size = the str length" << std::endl;
-
-        /*
-        check for leading negative, remove
-        or check for leading positive, remove
-        while there are still numbers in the str
-            take first number, add to front of vector
-        set size
-        
-        // Add each value to the front of the 
-        
-
-        */
     }
 
     // Destructor
@@ -75,9 +60,31 @@ namespace cosc326 {
 
     }
 
-    // Unary Operator +
+    // Assignment operator =
+    Integer& Integer::operator=(const Integer& integ) {
+        if (this != &integ) {
+            size = integ.size;
+            num = integ.num;
+            carry = integ.carry;
+            positive = integ.positive;     
+		}
+		return *this;
+    }
 
+    // Unary Operator +
+    Integer& Integer::operator+() {
+        return *this;
+    }
+        
     // Unary Operator -
+    Integer& Integer::operator-() {
+        if (positive) {
+            positive = false;
+        } else if (!positive) {
+            positive = true;
+        }
+        return *this;
+    }
 
     // Binary arithmetic operator +
 

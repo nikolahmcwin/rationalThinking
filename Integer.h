@@ -16,6 +16,12 @@ namespace cosc326 {
 
     class Integer {
 
+    private:
+        unsigned int size;
+        std::vector<int> num;
+        int carry;
+        bool positive;   
+
     public:
         // Constructors
         Integer();
@@ -27,14 +33,14 @@ namespace cosc326 {
 
         // Destructor
         ~Integer();
-/*
+
         // Assignment operator =
-        Integer& operator=(const Integer& integ);
+        Integer& operator=(const Integer&);
 
         // The unary operators: + and -
-        Integer& operator+(const Integer& integ);
-        Integer& operator-(const Integer& integ);
-
+        Integer& operator+();
+        Integer& operator-();
+/*
         // The inequal binary arithmetic operators /, and %
         Integer& operator/(const Integer& integ);
         Integer& operator%(const Integer& integ);
@@ -62,14 +68,7 @@ namespace cosc326 {
         unsigned int getSize() const;
         const std::vector<int>& getNum() const;
         bool isPositive() const;
-
-    private:
-        //int num_;
-        unsigned int size;
-        // store the vector backwards;
-        std::vector<int> num;
-        int carry;
-        bool positive;    
+ 
     };
 /*
     // The equal-either-way binary arithmetic operators: +, -, *

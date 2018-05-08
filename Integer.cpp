@@ -106,17 +106,61 @@ namespace cosc326 {
 
     // Compound assignment operator %=
 
-    // Comparison operators ==
+    // Comparison operator ==
+    bool Integer::operator==(const Integer& integ) {
+        bool check = true;
+        if ((positive == integ.positive) && (size == integ.size)) {
+            for (unsigned int i = 0; i < size; i++) {
+                if (num[i] != integ.num[i]) {
+                    check = false;
+                    break;
+                }
+            }
+        } else {
+            check = false;
+        }
+        return check;
+    }
+       
+    // Comparison operator !=
+    bool Integer::operator!=(const Integer& integ) {
+        Integer copy(integ);
+        bool check = (this == &copy);
+        std::cout << "Check is: " << check;
+        return !check;
+    }
 
-    // Comparison operators !=
+    // Comparison operator <
+    bool Integer::operator<(const Integer& integ) {
+        bool check;
 
-    // Comparison operators <
+        size_t smallerLength;
+        if (integ.size < size) {
+            smallerLength = integ.size;
+        } else {
+            smallerLength = size;
+        }
 
-    // Comparison operators <=
+        return check;
+    }
 
-    // Comparison operators >
+    // Comparison operator <=
+    bool Integer::operator<=(const Integer& integ) {
+        bool check;
+        return check;
+    }
 
-    // Comparison operators >=
+    // Comparison operator >
+    bool Integer::operator>(const Integer& integ) {
+        bool check;
+        return check;
+    }
+
+    // Comparison operator >=
+    bool Integer::operator>=(const Integer& integ) {
+        bool check;
+        return check;
+    }
 
     // Streaming insertion operator <<
 	std::ostream& operator<<(std::ostream& ostr, const Integer& integ) {

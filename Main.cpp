@@ -13,7 +13,7 @@ using namespace cosc326;
 int main() {
 
     // Test default constructor
-    Integer i1;
+    Integer i1("123");
     std::cout << "i1 is: " << i1 << std::endl; 
     
     // Test the integer constructor
@@ -25,7 +25,7 @@ int main() {
     std::cout << "i2 is: " << i2 << std::endl; 
     Integer i3("+123456789");
     std::cout << "i3 is: " << i3 << std::endl;
-
+/*
     // Test the assignment operator =
     i1 = i2;
     std::cout << "i1 now = i2. i1: " << i1 << std::endl;
@@ -40,7 +40,20 @@ int main() {
     std::cout << "negated i2: " << i2  << std::endl;
     -i3;
     std::cout << "negated i3: " << i3 << std::endl;
-  
+    */
+    // Test the comparison operator ==
+    bool t1 = (i1 == copyi1);
+    std::cout << i1 << " == " << copyi1 << " gives: " << t1 << std::endl;
+
+    bool t2 = (i2 == i3);
+    std::cout << i2 << " == " << i3 << " gives: " << t2 << std::endl;  
+
+    // Test the comparison operator !=
+    bool t3 = (i1 != copyi1);
+    std::cout << i1 << " != " << copyi1 << " gives: " << t3 << std::endl;
+
+    bool t4 = (i2 != i3);
+    std::cout << i2 << " != " << i3 << " gives: " << t4 << std::endl; 
 
     /*
     // Prove it was input correctly

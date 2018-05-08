@@ -51,17 +51,17 @@ namespace cosc326 {
         Integer& operator*=(const Integer& integ);
         Integer& operator/=(const Integer& integ);
         Integer& operator%=(const Integer& integ);
-
+/*/
         // The comparison operators: ==, !=,<,<=,>, and >=
-        Integer& operator==(const Integer& integ);
-        Integer& operator!=(const Integer& integ);
-        Integer& operator<(const Integer& integ);
-        Integer& operator<=(const Integer& integ);
-        Integer& operator>(const Integer& integ);
-        Integer& operator>=(const Integer& integ);
+        bool operator==(const Integer& integ);
+        bool operator!=(const Integer& integ);
+        bool operator<(const Integer& integ);
+        bool operator<=(const Integer& integ);
+        bool operator>(const Integer& integ);
+        bool operator>=(const Integer& integ);
 
         // Afunction,gcd(a,b),thatreturnsthegreatestcommondivisoroftwoIntegers
-        
+        /*
         int gcd(unsigned int a, unsigned int b) const;
         */
 

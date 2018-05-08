@@ -26,8 +26,28 @@ namespace cosc326 {
 
     // Constructor that takes a std::String of digits (possibility starts with a + or -)
     Integer::Integer(const std::string& str) {
-        //num_ = std::atof(str.c_str());
-        // is it positive or negative?
+
+        if (str.find('-') != std::string::npos) {
+            std::cout << "String is negative baby!" << std::endl;
+        } else if (str.find('+') != std::string::npos) {
+            std::cout << "String is positive baby!" << std::endl;
+        } else {
+            std::cout << "nothing.."<< std::endl;
+        }
+
+        /*
+        check for leading negative, remove
+        or check for leading positive, remove
+        while there are still numbers in the str
+            take first number, add to front of vector
+        set size
+        
+        // Add each value to the front of the 
+        num.insert(num.begin(), val);
+        carry = 0;
+        size = num.size();
+
+        */
     }
 
     // Destructor

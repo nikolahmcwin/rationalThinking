@@ -26,14 +26,36 @@ namespace cosc326 {
 
     // Constructor that takes a std::String of digits (possibility starts with a + or -)
     Integer::Integer(const std::string& str) {
+        std::string tempStr;
+        int temp, i, len;
 
+        // Find and ignore any trailing 
         if (str.find('-') != std::string::npos) {
             std::cout << "String is negative baby!" << std::endl;
+            i = 1;
+            positive = false;
         } else if (str.find('+') != std::string::npos) {
             std::cout << "String is positive baby!" << std::endl;
+            i = 1;
+            positive = true;
         } else {
+            i = 0;
+            positive = true;
             std::cout << "nothing.."<< std::endl;
         }
+
+        len = str.length();
+        while (i < len) {
+            tempStr = str.substr(i, 1);
+            temp = std::atoi(tempStr.c_str());
+            num.insert(num.begin(), temp);
+            
+            i++;
+        }
+
+        carry = 0;
+        size = num.size();
+        //std::cout << "Size = the str length" << std::endl;
 
         /*
         check for leading negative, remove
@@ -43,9 +65,7 @@ namespace cosc326 {
         set size
         
         // Add each value to the front of the 
-        num.insert(num.begin(), val);
-        carry = 0;
-        size = num.size();
+        
 
         */
     }
@@ -93,15 +113,17 @@ namespace cosc326 {
 
     // Streaming insertion operator <<
 	std::ostream& operator<<(std::ostream& ostr, const Integer& integ) {
-        //ostr << integ.getNum();
         std::string numString;
         std::vector<int> n = integ.getNum();
-
+        if (!(integ.isPositive())) {
+            numString += '-';
+        } else {
+            numString += '+';
+        }
         for (unsigned int i = 0; i < integ.getSize(); ++i)
             numString += std::to_string(n[i]);
 
         ostr << numString;
-        //ostr << "This is a test case" <<  "+ 12345";
 		return ostr;
 	}
 

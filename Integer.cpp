@@ -30,7 +30,7 @@ namespace cosc326 {
         std::string tempStr;
         int temp, i, len;
 
-        // Find and ignore any trailing 
+        // Find and ignore any trailing -'s or +'s
         if (str.find('-') != std::string::npos) {
             i = 1;
             positive = false;
@@ -93,6 +93,13 @@ namespace cosc326 {
     // Binary arithmetic operator *
 
     // Binary arithmetic operator /
+    //Integer& operator/(const Integer& integ) {
+
+        /*
+        if he wants to divide 1614814601 / 1390
+        a suprising number of library subtract and keep going. But super inefficient for big intS
+        something about a range of 0-9 to search (efficiently)
+        */
 
     // Binary arithmetic operator %
 
@@ -124,42 +131,80 @@ namespace cosc326 {
        
     // Comparison operator !=
     bool Integer::operator!=(const Integer& integ) {
-        Integer copy(integ);
-        bool check = (this == &copy);
-        std::cout << "Check is: " << check;
-        return !check;
+        return !(*this == integ);
     }
 
     // Comparison operator <
     bool Integer::operator<(const Integer& integ) {
+        // aka this < integ
         bool check;
+        int thisSize = (num.size();
+        int integSize = integ.getNum().size();
 
-        size_t smallerLength;
-        if (integ.size < size) {
-            smallerLength = integ.size;
+        if ((positive) {
+            if (integ.isPositive()) {
+                // Both pos
+                if (thisSize < integSize) {
+                    return true;
+                } else if (thisSize > integSize) {
+                    return false;
+                }
+            } else {
+                // integ is neg. 
+                return false;
+            }
         } else {
-            smallerLength = size;
+            if (integ.isPositive()) {
+                // Integ is pos
+                return true;
+            } else {
+                // Both neg 
+                if (thisSize > integSize) {
+                    return true;
+                } else if (thisSize < integSize) {
+                    return false;
+                }
+            }
         }
 
-        return check;
+        // Otherwise numbers are the same size/length. loops through!
+        std::vector<int> gt = integ.getNum();
+        for (unsigned int i = num.size() - 1; i < 0; i--) {
+            // work with largest digit first for efficiency
+            if (num[i] < gt[i]) {
+                return true;
+            } else if (num[i] > gt[i]) {
+                return false;
+            }
+        }
     }
 
     // Comparison operator <=
     bool Integer::operator<=(const Integer& integ) {
-        bool check;
-        return check;
+        if ((*this == integ) || (*this < integ)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Comparison operator >
     bool Integer::operator>(const Integer& integ) {
-        bool check;
-        return check;
+        if ((*this == integ)) {
+            return false;
+        } else {
+            return !(*this < integ);
+        } 
     }
 
     // Comparison operator >=
     bool Integer::operator>=(const Integer& integ) {
-        bool check;
-        return check;
+        bool smaller = (*this < integ);
+         if ((*this == integ) || (!(*this < integ))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Streaming insertion operator <<

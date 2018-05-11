@@ -25,9 +25,6 @@ namespace cosc326 {
     public:
         // Constructors
         Integer();
-        //Integer(const Integer& integ);
-        //Integer(const std::string& str);
-
         Integer(const Integer&);
         Integer(const std::string&);
 
@@ -40,10 +37,10 @@ namespace cosc326 {
         // The unary operators: + and -
         Integer& operator+();
         Integer& operator-();
-/*
+
         // The inequal binary arithmetic operators /, and %
-        Integer& operator/(const Integer& integ);
-        Integer& operator%(const Integer& integ);
+       // Integer& operator/(const Integer&);
+   /*     Integer& operator%(const Integer& integ);
 
         // The compound assignment operators: +=, -=, *=, /=, and %=
         Integer& operator+=(const Integer& integ);

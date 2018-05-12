@@ -38,7 +38,7 @@ namespace cosc326 {
         Integer& operator+();
         Integer& operator-();
 
-        // The inequal binary arithmetic operators /, and %
+        // The inequal binary arithmetic operators -, /, and %
         Integer& operator-(const Integer&);
         Integer& operator/(const Integer&);
         Integer& operator%(const Integer& integ);
@@ -58,7 +58,7 @@ namespace cosc326 {
         bool operator>(const Integer& integ);
         bool operator>=(const Integer& integ);
 
-        // Afunction,gcd(a,b),thatreturnsthegreatestcommondivisoroftwoIntegers
+        // Returns greatest common divisor of two Integers
         /*
         int gcd(unsigned int a, unsigned int b) const;
         */
@@ -69,7 +69,7 @@ namespace cosc326 {
  
     };
 
-    // The equal-either-way binary arithmetic operators: +, -, *
+    // The equal-either-way binary arithmetic operators: + and *
     Integer operator+(const Integer& i1, const Integer& i2);
     Integer operator*(const Integer& i1, const Integer& i2);
 
@@ -77,7 +77,6 @@ namespace cosc326 {
     std::ostream& operator<<(std::ostream& ostr, const Integer& integ);
 	std::istream& operator>>(std::istream& istr, Integer& integ);
     
-
 }
 
 #endif

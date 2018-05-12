@@ -102,43 +102,75 @@ namespace cosc326 {
         return *this;
     }
 
-    // Binary arithmetic operator /
-    //Integer& operator/(const Integer& integ) {
-
-        /*
-        if he wants to divide 1614814601 / 1390
-        a suprising number of library subtract and keep going. But super inefficient for big intS
-        something about a range of 0-9 to search (efficiently)
-        */
-
-    
     // Binary arithmetic operator -
     Integer& Integer::operator-(const Integer& integ) {
-
+        this -= integ;
         return *this;
     }
 
     // Binary arithmetic operator /
     Integer& Integer::operator/(const Integer& integ) {
-
+        this /= integ;
         return *this;
     }
 
     // Binary arithmetic operator %
     Integer& Integer::operator%(const Integer& integ) {
-
-        return *this;
+        Integer remainder(this);
+        remainder %= integ;
+        return *remainder;
     }
 
     // Compound assignment operator +=
     Integer& Integer::operator+=(const Integer& integ) {
-        
+        if (positive) {
+            if (integ.isPositive()) {
+                // Both pos
+                // a + b
+                
+            } else {
+                // This pos but second number is neg 
+                // +a + -b = a - b
+                
+            }
+        } else {
+            if (integ.isPositive()) {
+                // This is neg but Integ is pos
+                // -a + +b = -a + b =  b - a
+                
+            } else {
+                // Both are neg 
+                // -a + -b = -a - b
+                
+            }
+        }
+
         return *this;
     }
     
     // Compound assignment operator -=
     Integer& Integer::operator-=(const Integer& integ) {
-        
+        if (positive) {
+            if (integ.isPositive()) {
+                // Both pos
+                // +a - +b = a - b
+                
+            } else {
+                // This pos but second number is neg 
+                // +a - -b = a + b
+                
+            }
+        } else {
+            if (integ.isPositive()) {
+                // This is neg but Integ is pos
+                // -a - +b = -a - b =  -a - b
+                
+            } else {
+                // Both are neg 
+                // -a - -b = -a + b = b - a
+                
+            }
+        }
         return *this;
     }
     
@@ -150,7 +182,11 @@ namespace cosc326 {
 
     // Compound assignment operator /=
     Integer& Integer::operator/=(const Integer& integ) {
-        
+        /*
+        if he wants to divide 1614814601 / 1390
+        a suprising number of library subtract and keep going. But super inefficient for big intS
+        something about a range of 0-9 to search (efficiently)
+        */
         return *this;
     }
     
@@ -270,7 +306,7 @@ namespace cosc326 {
         }
     }
 
-    // gdc(a, b) which returns greatest common divisor of a and b
+    // Returns greatest common divisor of a and b
     /*
     unsigned int gdc (unsigned int a, unsigned int b){
         unsigned int tmp;

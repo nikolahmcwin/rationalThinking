@@ -138,10 +138,10 @@ namespace cosc326 {
     bool Integer::operator<(const Integer& integ) {
         // aka this < integ
         bool check;
-        int thisSize = (num.size();
+        int thisSize = num.size();
         int integSize = integ.getNum().size();
 
-        if ((positive) {
+        if (positive) {
             if (integ.isPositive()) {
                 // Both pos
                 if (thisSize < integSize) {
@@ -169,7 +169,7 @@ namespace cosc326 {
 
         // Otherwise numbers are the same size/length. loops through!
         std::vector<int> gt = integ.getNum();
-        for (unsigned int i = num.size() - 1; i < 0; i--) {
+        for (unsigned int i = num.size() - 1; i != 0; i--) {
             // work with largest digit first for efficiency
             if (num[i] < gt[i]) {
                 return true;
@@ -177,6 +177,7 @@ namespace cosc326 {
                 return false;
             }
         }
+        return false;
     }
 
     // Comparison operator <=
@@ -216,7 +217,7 @@ namespace cosc326 {
         } else {
             numString += '+';
         }
-        for (unsigned int i = 0; i < integ.getSize(); ++i)
+        for (int i = (integ.getSize() - 1); i >= 0; i--)
             numString += std::to_string(n[i]);
 
         ostr << numString;

@@ -141,6 +141,9 @@ namespace cosc326 {
         int thisSize = num.size();
         int integSize = integ.getNum().size();
 
+        if (*this == integ) {
+            return false;
+        }
         if (positive) {
             if (integ.isPositive()) {
                 // Both pos
@@ -169,14 +172,26 @@ namespace cosc326 {
 
         // Otherwise numbers are the same size/length. loops through!
         std::vector<int> gt = integ.getNum();
-        for (unsigned int i = num.size() - 1; i != 0; i--) {
-            // work with largest digit first for efficiency
-            if (num[i] < gt[i]) {
-                return true;
-            } else if (num[i] > gt[i]) {
-                return false;
+        if (positive) {
+             for (int i = num.size() - 1; i >= 0; i--) {
+                // work with largest digit first for efficiency
+                if (num[i] < gt[i]) {
+                    return true;
+                } else if (num[i] > gt[i]) {
+                    return false;
+                }
+            }
+        } else {
+             for (int i = num.size() - 1; i >= 0; i--) {
+                // work with largest digit first for efficiency
+                if (num[i] > gt[i]) {
+                    return true;
+                } else if (num[i] < gt[i]) {
+                    return false;
+                }
             }
         }
+       
         return false;
     }
 

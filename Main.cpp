@@ -13,7 +13,7 @@ using namespace cosc326;
 int main() {
 
     // Test default constructor
-    Integer i1("123");
+    Integer i1("156");
     std::cout << "i1 is: " << i1 << std::endl; 
     
     // Test the integer constructor
@@ -21,11 +21,13 @@ int main() {
     //std::cout << "copyi1 is: " << i1 << std::endl; 
 
     // Test the string constuctor
-    Integer i2("124");
+    Integer i2("+155");
     std::cout << "i2 is: " << i2 << std::endl; 
-    
-    Integer i3("122");
+
+    Integer i3("-13");
     std::cout << "i3 is: " << i3 << std::endl;
+    Integer i4("-12");
+    std::cout << "i4 is: " << i3 << std::endl;
 /*
     // Test the assignment operator =
     i1 = i2;
@@ -56,20 +58,21 @@ int main() {
     bool t4 = (i2 != i3);
     std::cout << i2 << " != " << i3 << " gives: " << t4 << std::endl; 
 */
-    bool t1 = (i1 < i2);
-    std::cout << i1 << " < " << i2 << " gives: " << t1 << std::endl;
+    bool t1 = (i1 <= i2);
+    std::cout << i1 << " <= " << i2 << " gives: " << t1 << std::endl;
 
-    bool t2 = (i1 < i3);
-    std::cout << i1 << " < " << i3 << " gives: " << t2 << std::endl;  
-    /*
-    // Prove it was input correctly
-	std::cout << "This program demonstrates Integer numbers." << std::endl;
-    std::cout << "If i1 = " << i1 << " and i2 = " << i2 << " then:" << std::endl;
+    bool t2 = (i3 <= i4);
+    std::cout << i3 << " <= " << i4 << " gives: " << t2 << std::endl;  
     
+ 
     // Addition
 	Integer sum = i1 + i2;
     std::cout << "The sum i1 + i2 = " << sum << std::endl;
     
+    // Subtraction
+    Integer sum = i1 - i2;
+    std::cout << "The sum "<< i1 << " - " << i2 " = " << sum << std::endl;
+/*
     //Multiplication
 	std::cout << "The product i1 * i2 = " << i1 * i2 << std::endl;
 

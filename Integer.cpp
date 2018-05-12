@@ -60,6 +60,22 @@ namespace cosc326 {
 
     }
 
+
+    // Accessor for size
+    unsigned int Integer::getSize() const {
+        return size;
+    }
+
+    // Accessor for the vector num
+    const std::vector<int>& Integer::getNum() const {
+        return num;
+    }
+
+    // Accessor for positive
+    bool Integer::isPositive() const {
+        return positive;
+    }
+
     // Assignment operator =
     Integer& Integer::operator=(const Integer& integ) {
         if (this != &integ) {
@@ -86,12 +102,6 @@ namespace cosc326 {
         return *this;
     }
 
-    // Binary arithmetic operator +
-
-    // Binary arithmetic operator -
-
-    // Binary arithmetic operator *
-
     // Binary arithmetic operator /
     //Integer& operator/(const Integer& integ) {
 
@@ -101,17 +111,54 @@ namespace cosc326 {
         something about a range of 0-9 to search (efficiently)
         */
 
+    
+    // Binary arithmetic operator -
+    Integer& Integer::operator-(const Integer& integ) {
+
+        return *this;
+    }
+
+    // Binary arithmetic operator /
+    Integer& Integer::operator/(const Integer& integ) {
+
+        return *this;
+    }
+
     // Binary arithmetic operator %
+    Integer& Integer::operator%(const Integer& integ) {
+
+        return *this;
+    }
 
     // Compound assignment operator +=
-
+    Integer& Integer::operator+=(const Integer& integ) {
+        
+        return *this;
+    }
+    
     // Compound assignment operator -=
-
+    Integer& Integer::operator-=(const Integer& integ) {
+        
+        return *this;
+    }
+    
     // Compound assignment operator *=
+    Integer& Integer::operator*=(const Integer& integ) {
+        
+        return *this;
+    }
 
     // Compound assignment operator /=
-
+    Integer& Integer::operator/=(const Integer& integ) {
+        
+        return *this;
+    }
+    
     // Compound assignment operator %=
+    Integer& Integer::operator%=(const Integer& integ)  {
+        
+        return *this;
+    }
 
     // Comparison operator ==
     bool Integer::operator==(const Integer& integ) {
@@ -223,6 +270,37 @@ namespace cosc326 {
         }
     }
 
+    // gdc(a, b) which returns greatest common divisor of a and b
+    /*
+    unsigned int gdc (unsigned int a, unsigned int b){
+        unsigned int tmp;
+        while(b != 0) {
+            tmp = a;
+            a = b;
+            b = tmp % b;
+        }
+        return a;
+    }*/
+
+    /**
+     *  These operators below are NOT part of the class itself.
+     */
+
+    // Binary arithmetic operator +
+    Integer operator+(const Integer& i1, const Integer& i2) {
+        Integer sum(i1);
+        sum += i2;
+		return sum;
+    }
+
+    // Binary arithmetic operator *   
+    Integer operator*(const Integer& i1, const Integer& i2) {
+        Integer sum(i1);
+        sum *= i2;
+		return sum;
+    }
+
+
     // Streaming insertion operator <<
 	std::ostream& operator<<(std::ostream& ostr, const Integer& integ) {
         std::string numString;
@@ -246,29 +324,5 @@ namespace cosc326 {
 		integ = Integer(strValue);
 		return istr;
 	}
-
-    // gdc(a, b) which returns greatest common divisor of a and b
-    /*unsigned int gdc (unsigned int a, unsigned int b){
-        unsigned int tmp;
-        while(b != 0) {
-            tmp = a;
-            a = b;
-            b = tmp % b;
-        }
-        return a;
-    }*/
-    
-    unsigned int Integer::getSize() const {
-        return size;
-    }
-
-    const std::vector<int>& Integer::getNum() const {
-        return num;
-    }
-
-    bool Integer::isPositive() const {
-        return positive;
-    }
-
 }
 

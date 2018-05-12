@@ -39,8 +39,9 @@ namespace cosc326 {
         Integer& operator-();
 
         // The inequal binary arithmetic operators /, and %
-       // Integer& operator/(const Integer&);
-   /*     Integer& operator%(const Integer& integ);
+        Integer& operator-(const Integer&);
+        Integer& operator/(const Integer&);
+        Integer& operator%(const Integer& integ);
 
         // The compound assignment operators: +=, -=, *=, /=, and %=
         Integer& operator+=(const Integer& integ);
@@ -48,7 +49,7 @@ namespace cosc326 {
         Integer& operator*=(const Integer& integ);
         Integer& operator/=(const Integer& integ);
         Integer& operator%=(const Integer& integ);
-/*/
+
         // The comparison operators: ==, !=,<,<=,>, and >=
         bool operator==(const Integer& integ);
         bool operator!=(const Integer& integ);
@@ -67,12 +68,11 @@ namespace cosc326 {
         bool isPositive() const;
  
     };
-/*
+
     // The equal-either-way binary arithmetic operators: +, -, *
     Integer operator+(const Integer& i1, const Integer& i2);
-    Integer operator-(const Integer& i1, const Integer& i2);
     Integer operator*(const Integer& i1, const Integer& i2);
-*/
+
     // The streaming insertion and extraction operators: << and >>
     std::ostream& operator<<(std::ostream& ostr, const Integer& integ);
 	std::istream& operator>>(std::istream& istr, Integer& integ);

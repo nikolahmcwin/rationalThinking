@@ -66,12 +66,12 @@ int main() {
     
  
     // Addition
-	Integer sum = i1 + i2;
-    std::cout << "The sum i1 + i2 = " << sum << std::endl;
+	Integer s = i1 + i2;
+    std::cout << "The sum i1 + i2 = " << s << std::endl;
     
     // Subtraction
-    Integer sum = i1 - i2;
-    std::cout << "The sum "<< i1 << " - " << i2 " = " << sum << std::endl;
+    Integer s2 = i1 - i2;
+    std::cout << "The sum "<< i1 << " - " << i2 << " = " << s2 << std::endl;
 /*
     //Multiplication
 	std::cout << "The product i1 * i2 = " << i1 * i2 << std::endl;

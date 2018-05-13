@@ -7,11 +7,14 @@
  * @author Finn Luxton and Nikolah Pearce
  */
  
-namespace e9 {
+namespace cosc326 {
 
+    /*
+    Rational::Rational(){}
+    }
 
+    
 
-
-
+    */
 
 }

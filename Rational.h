@@ -8,13 +8,22 @@
  * @author Finn Luxton and Nikolah Pearce
  */
 
-namespace e9 {
+namespace cosc326 {
 
     class Rational {
 
         // Constructors
+        // Creates rational with value of 0
         Rational();
-        Rational(const Rational& rat)
+        // Creates rational that duplicates the provided rational
+        Rational(const Rational& rat);
+        // Takes in Integer with result r1 = a
+        Rational(const Integer&);
+        // Takes in Integers with result r2 = a/b
+        Rational(const Integer&, const Integer&);
+        // Takes in Integers with result r3 = a + b/c
+        Rational(const Integer&, const Integer&, const)
+        // Constructs with a string parameter
         Rational(const std::string& str);
 
         // Destructor
@@ -24,7 +33,8 @@ namespace e9 {
         Rational& operator=(const Rational& rat);
 
         // The unary operators: + and -
-            //WHAT?!
+        Rational& operator+();
+        Rational& operator-();
 
         // The inequal binary arithmetic operators /, and %
         Rational& operator/(const Rational& rat);
@@ -44,7 +54,6 @@ namespace e9 {
         Rational& operator<=(const Rational& rat);
         Rational& operator>(const Rational& rat);
         Rational& operator>=(const Rational& rat);
-
 
     };
 

@@ -12,7 +12,6 @@ namespace cosc326 {
     Integer::Integer() {
         num.push_back(0);
         positive = true;
-        carry = 0;
         size = num.size();
     }
 
@@ -20,7 +19,6 @@ namespace cosc326 {
     Integer::Integer(const Integer& integ) {
         num = integ.num;
         size = num.size();
-        carry = integ.carry;
         positive = integ.positive; 
     }
 
@@ -50,8 +48,6 @@ namespace cosc326 {
             
             i++;
         }
-
-        carry = 0;
         size = num.size();
     }
 
@@ -81,7 +77,6 @@ namespace cosc326 {
         if (this != &integ) {
             size = integ.size;
             num = integ.num;
-            carry = integ.carry;
             positive = integ.positive;     
 		}
 		return *this;
@@ -104,30 +99,87 @@ namespace cosc326 {
 
     // Binary arithmetic operator -
     Integer& Integer::operator-(const Integer& integ) {
-        this -= integ;
+        *this -= integ;
         return *this;
     }
 
     // Binary arithmetic operator /
     Integer& Integer::operator/(const Integer& integ) {
-        this /= integ;
+        *this /= integ;
         return *this;
     }
 
     // Binary arithmetic operator %
     Integer& Integer::operator%(const Integer& integ) {
-        Integer remainder(this);
-        remainder %= integ;
-        return *remainder;
+        *this %= integ;
+        return *this;
     }
 
     // Compound assignment operator +=
     Integer& Integer::operator+=(const Integer& integ) {
+        std::cout << "THIS IS A TEST IN += operator function" << std::endl;
+        int carry = 0;
+        int size1 = size;
+        int size2 = integ.getSize();
+        int smallerSize;
+
+        std::vector<int> num1 = num;
+        std::vector<int> num2 = integ.getNum();
+        std::vector<int> answer;
+
+        // Add in trailing 0's for either of the numbers it they are different sizes
+        if(size1 > size2) {
+            smallerSize = size2;
+            int i = smallerSize;
+            while (i < size1) {
+                num2.push_back(0);
+                i++;
+            }
+
+        } else if (size1 < size2) {
+            smallerSize = size1;
+            int i = smallerSize;
+            while (i < size2) {
+                num1.push_back(0);
+                i++;
+            }
+        }
+
+        // Test print 
+        std::string numString1 = "Num1: ";
+        for (int i = 0; i < num1.size(); i++) {
+            numString1 += std::to_string(num1[i]);
+        }
+        std::cout << numString1 << std::endl;
+
+        std::string numString2 = "Num2: ";
+        for (int i = 0; i < num2.size(); i++) {
+            numString2 += std::to_string(num2[i]);
+        }
+        std::cout << numString2 << std::endl;
+        
         if (positive) {
             if (integ.isPositive()) {
                 // Both pos
                 // a + b
-                
+                int i = 0;
+                while (i < num1.size()) {
+                    int sum = num1[i] + num2[i] + carry;
+                    if (sum > 9) {
+                        sum = sum % 10;
+                        // Now set the new carry for next time
+                        carry = 1;
+                    } else {
+                        carry = 0;
+                    }
+                    answer.push_back(sum);
+                    i++;
+                    if ((i == num1.size()) && (carry == 1)) {
+                        answer.push_back(carry);
+                    }
+                }
+                num = answer;
+                return *this;
             } else {
                 // This pos but second number is neg 
                 // +a + -b = a - b
@@ -184,7 +236,8 @@ namespace cosc326 {
     Integer& Integer::operator/=(const Integer& integ) {
         /*
         if he wants to divide 1614814601 / 1390
-        a suprising number of library subtract and keep going. But super inefficient for big intS
+        a suprising number of library subtract and keep going.
+             But super inefficient for big intS
         something about a range of 0-9 to search (efficiently)
         */
         return *this;
@@ -344,7 +397,7 @@ namespace cosc326 {
         if (!(integ.isPositive())) {
             numString += '-';
         } else {
-            numString += '+';
+            //numString += '+';
         }
         for (int i = (integ.getSize() - 1); i >= 0; i--)
             numString += std::to_string(n[i]);

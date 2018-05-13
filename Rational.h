@@ -26,7 +26,7 @@ namespace cosc326 {
         // Takes in Integers with result r2 = a/b
         Rational(const Integer&, const Integer&);
         // Takes in Integers with result r3 = a + b/c
-        Rational(const Integer&, const Integer&, const)
+        Rational(const Integer&, const Integer&, const Integer&);
         // Constructs with a string parameter
         Rational(const std::string& str);
 

@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "Integer.h"
-//#include "Rational.h"
+#include "Rational.h"
 
 using namespace cosc326; 
 

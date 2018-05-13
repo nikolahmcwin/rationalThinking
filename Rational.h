@@ -12,6 +12,11 @@ namespace cosc326 {
 
     class Rational {
 
+    private:
+        
+        bool positive;
+
+    public: 
         // Constructors
         // Creates rational with value of 0
         Rational();

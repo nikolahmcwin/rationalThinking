@@ -360,7 +360,6 @@ namespace cosc326 {
     }
 
     // Returns greatest common divisor of a and b
-    /*
     unsigned int gdc (unsigned int a, unsigned int b){
         unsigned int tmp;
         while(b != 0) {
@@ -369,7 +368,7 @@ namespace cosc326 {
             b = tmp % b;
         }
         return a;
-    }*/
+    }
 
     /**
      *  These operators below are NOT part of the class itself.

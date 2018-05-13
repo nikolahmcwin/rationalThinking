@@ -28,6 +28,7 @@ int main() {
     std::cout << "i3 is: " << i3 << std::endl;
     Integer i4("-12");
     std::cout << "i4 is: " << i3 << std::endl;
+    
 /*
     // Test the assignment operator =
     i1 = i2;

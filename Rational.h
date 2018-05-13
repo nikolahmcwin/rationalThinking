@@ -52,12 +52,12 @@ namespace cosc326 {
         Rational& operator%=(const Rational& rat);
 
         // The comparison operators: ==, !=,<,<=,>, and >=
-        Rational& operator==(const Rational& rat);
-        Rational& operator!=(const Rational& rat);
-        Rational& operator<(const Rational& rat);
-        Rational& operator<=(const Rational& rat);
-        Rational& operator>(const Rational& rat);
-        Rational& operator>=(const Rational& rat);
+        bool operator==(const Rational& rat);
+        bool operator!=(const Rational& rat);
+        bool operator<(const Rational& rat);
+        bool operator<=(const Rational& rat);
+        bool operator>(const Rational& rat);
+        bool operator>=(const Rational& rat);
 
     };
 

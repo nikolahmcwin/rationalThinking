@@ -53,17 +53,17 @@ namespace cosc326 {
     }
 
 
-    Rational& Rational::operator==(const Rational& rat){       
+    bool Rational::operator==(const Rational& rat){       
     }
-    Rational& Rational::operator!=(const Rational& rat){     
+    bool Rational::operator!=(const Rational& rat){     
     }
-    Rational& Rational::operator<(const Rational& rat){ 
+    bool Rational::operator<(const Rational& rat){ 
     }
-    Rational& Rational::operator<=(const Rational& rat){  
+    bool Rational::operator<=(const Rational& rat){  
     }
-    Rational& Rational::operator>(const Rational& rat){
+    bool Rational::operator>(const Rational& rat){
     }
-    Rational& Rational::operator>=(const Rational& rat){
+    bool Rational::operator>=(const Rational& rat){
     }
 
 }

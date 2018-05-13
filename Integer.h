@@ -19,7 +19,6 @@ namespace cosc326 {
     private:
         unsigned int size;
         std::vector<int> num;
-        int carry;
         bool positive;   
 
     public:

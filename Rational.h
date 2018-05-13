@@ -13,7 +13,6 @@ namespace cosc326 {
     class Rational {
 
     private:
-        
         bool positive;
 
     public: 
@@ -31,7 +30,7 @@ namespace cosc326 {
         // Constructs with a string parameter
         Rational(const std::string& str);
 
-        // Destructor
+        // Deconstructor
         ~Rational();
 
         // Assignment operator =

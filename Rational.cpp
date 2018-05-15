@@ -28,7 +28,7 @@ namespace cosc326 {
     Rational::~Rational() {
     }
 
-    Rational& Rational::operator=(const Rational& rat){
+   /* Rational& Rational::operator=(const Rational& rat){
     }
 
     Rational& Rational::operator+(){
@@ -64,6 +64,6 @@ namespace cosc326 {
     bool Rational::operator>(const Rational& rat){
     }
     bool Rational::operator>=(const Rational& rat){
-    }
+    }*/
 
 }

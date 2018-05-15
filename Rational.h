@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include "Integer.h"
 
 /**
  * Rational.h for E9 COSC326

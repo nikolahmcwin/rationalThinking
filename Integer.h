@@ -64,7 +64,7 @@ namespace cosc326 {
     };
 
     // Returns greatest common divisor of two Integers
-    int gcd(unsigned int, unsigned int);
+    Integer gcd(const Integer&, const Integer&);
 
     // The equal-either-way binary arithmetic operators: + and *
     Integer operator+(const Integer& i1, const Integer& i2);

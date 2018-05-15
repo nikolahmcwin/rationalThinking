@@ -20,7 +20,7 @@ int main() {
     //std::cout << "copyi1 is: " << i1 << std::endl; 
 
     // Test the string constuctor
-    Integer i2("+65");
+    Integer i2("+804");
     std::cout << "i2 is: " << i2 << std::endl; 
 
     Integer i3("-13");

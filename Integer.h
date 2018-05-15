@@ -34,7 +34,10 @@ namespace cosc326 {
         unsigned int getSize() const;
         const std::vector<int>& getNum() const;
         bool isPositive() const;
-        
+
+        // Reverses the sign of the Integer
+        Integer& changeSign();
+
         // Assignment operator =
         Integer& operator=(const Integer&);
 

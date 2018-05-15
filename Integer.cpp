@@ -71,6 +71,16 @@ namespace cosc326 {
         return positive;
     }
 
+    // Makes a copy of an integer and returns it with the sign reversed
+    Integer& Integer::changeSign() {
+        if (positive) {
+            positive = false;
+        } else {
+            positive = true;
+        }
+        return *this;
+    }
+
     // Assignment operator =
     Integer& Integer::operator=(const Integer& integ) {
         if (this != &integ) {
@@ -116,72 +126,67 @@ namespace cosc326 {
 
     // Compound assignment operator +=
     Integer& Integer::operator+=(const Integer& integ) {
-        std::cout << "THIS IS A TEST IN += operator function" << std::endl;
         int carry = 0;
         int size1 = size;
         int size2 = integ.getSize();
         int smallerSize;
 
-        std::vector<int> num1 = num;
-        std::vector<int> num2 = integ.getNum();
+        std::vector<int> smaller;
+        std::vector<int> larger;
         std::vector<int> answer;
 
-        // Add in trailing 0's for either of the numbers it they are different sizes
-        if(size1 > size2) {
-            smallerSize = size2;
-            int i = smallerSize;
-            while (i < size1) {
-                num2.push_back(0);
-                i++;
-            }
-
-        } else if (size1 < size2) {
-            smallerSize = size1;
-            int i = smallerSize;
-            while (i < size2) {
-                num1.push_back(0);
-                i++;
-            }
+         if (size1 > size2) {
+            smaller = integ.getNum();
+            larger = num;
+        } else {
+            smaller = num;
+            larger = integ.getNum();
         }
-
+        /*
         // Test print 
-        std::string numString1 = "Num1: ";
-        for (int i = 0; i < num1.size(); i++) {
-            numString1 += std::to_string(num1[i]);
+        std::string numString1 = "Num: ";
+        for (int i = 0; i < num.size(); i++) {
+            numString1 += std::to_string(num[i]);
         }
         std::cout << numString1 << std::endl;
 
-        std::string numString2 = "Num2: ";
-        for (int i = 0; i < num2.size(); i++) {
-            numString2 += std::to_string(num2[i]);
+        std::string numString2 = "integ num: ";
+        for (int i = 0; i < integ.getSize(); i++) {
+            numString2 += std::to_string(integ.getNum()[i]);
         }
         std::cout << numString2 << std::endl;
-        
+        */
         if (positive) {
             if (integ.isPositive()) {
                 // Both pos
                 // a + b
                 int i = 0;
-                while (i < num1.size()) {
-                    int sum = num1[i] + num2[i] + carry;
+                while (i < larger.size()) {
+                    int sum;
+                    if (i < smaller.size()) {
+                        sum = smaller[i] + larger[i] + carry;
+                    } else {
+                        sum = larger[i] + carry;
+                    }
                     if (sum > 9) {
                         sum = sum % 10;
-                        // Now set the new carry for next time
                         carry = 1;
                     } else {
                         carry = 0;
                     }
                     answer.push_back(sum);
                     i++;
-                    if ((i == num1.size()) && (carry == 1)) {
-                        answer.push_back(carry);
-                    }
+                } 
+                if ((i == larger.size()) && (carry == 1)) {
+                    answer.push_back(carry);
                 }
                 num = answer;
+                size = answer.size();
                 return *this;
             } else {
                 // This pos but second number is neg 
                 // +a + -b = a - b
+                
                 
             }
         } else {
@@ -201,11 +206,48 @@ namespace cosc326 {
     
     // Compound assignment operator -=
     Integer& Integer::operator-=(const Integer& integ) {
+
+        // JUST FIND WHICH NUMBER IS BIGGER, if its this answ = + else ans = -.
+        // Can easily then just go BIGGER - SMALLER hehheeheheheheh
+
+        int carry = 0;
+        int smallerSize;
+
+        std::vector<int> smaller;
+        std::vector<int> larger;
+        std::vector<int> answer;
+        bool answerIsPositive;
+
+         if (num.size() > integ.getSize()) {
+            smaller = integ.getNum();
+            larger = num;
+            if (isPositive()) {
+                answerIsPositive = true;
+            } else {
+                answerIsPositive = false;
+            }
+        } else if (num.size() < integ.getSize()){
+            smaller = num;
+            larger = integ.getNum();
+            answerIsPositive = true;
+        } else {
+
+        }
+
         if (positive) {
             if (integ.isPositive()) {
                 // Both pos
                 // +a - +b = a - b
-                
+                int i = 0;
+                while (i < smaller.size()) {
+                    /*int newDigit = num[i] - i2[i];
+                    if (newDigit < 0) {
+                        newDigit = 0;
+                        int tmp = 10 + num[i];
+                        newDigit = tmp - i2[i];
+                    }*/
+                }
+                    
             } else {
                 // This pos but second number is neg 
                 // +a - -b = a + b
@@ -220,10 +262,12 @@ namespace cosc326 {
                 // Both are neg 
                 // -a - -b = -a + b = b - a
                 
+                
             }
         }
         return *this;
     }
+    
     
     // Compound assignment operator *=
     Integer& Integer::operator*=(const Integer& integ) {
@@ -372,23 +416,6 @@ namespace cosc326 {
         }
         return a;
     }
-    /*int gcd(unsigned int a, unsigned int b){
-        unsigned int tmp;
-        while(b != 0) {
-            tmp = a;
-            a = b;
-            b = tmp % b;
-        }
-        return a;
-
-
-        function gcd(a, b)
-            while b ≠ 0
-            t := b; 
-            b := a mod b; 
-            a := t; 
-            return a;
-    }*/
 
     /**
      *  These operators below are NOT part of the class itself.

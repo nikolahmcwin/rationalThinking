@@ -35,7 +35,7 @@ namespace cosc326 {
 
         // Deconstructor
         ~Rational();
-
+/*
         // Assignment operator =
         Rational& operator=(const Rational& rat);
 
@@ -61,7 +61,7 @@ namespace cosc326 {
         bool operator<=(const Rational& rat);
         bool operator>(const Rational& rat);
         bool operator>=(const Rational& rat);
-
+*/
     };
 
     // The equal-either-way binary arithmetic operators: +, -, *

@@ -21,8 +21,11 @@ do expect your implementation to be reasonably efficient.
 * COSC326 Etude 9, pair.
 * @author Nikolah Pearce and Finn Luxton
 
+For Rational testing only:
+* Compile using: g++ Rational.cpp Integer.cpp RatMain.cpp -o RatMain
+* Run via ./RatMain
 
-Compile using: 
-* g++ *.cpp  - o main or
-* g++ Integer.cpp Main.cpp -o testIntegerOnly 
-* Main.cpp is available for testing purposes.
+For Integer testing only:
+* Compile using: g++ Integer.cpp IntMain.cpp -o IntMain
+* Run via ./IntMain
+

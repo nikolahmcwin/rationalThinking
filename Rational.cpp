@@ -116,10 +116,15 @@ namespace cosc326 {
     // The streaming insertion and extraction operators: << and >>
     std::ostream& operator<<(std::ostream& ostr, const Rational& rat) {
         std::string numString;
-        
-        numString +=  "test print";
-
-        ostr << numString;
+        // this is not yet correct. Just for our demonstrating purposes!!
+        if (!rat.getRatSign()) {
+            ostr << '-';
+        }
+        ostr << rat.getNumerator();
+        ostr << "/";
+        ostr << rat.getDenominator();
+        //numString +=  "test print";
+        //ostr << numString;
         return ostr;
     }
 	std::istream& operator>>(std::istream& istr, Rational& rat) {

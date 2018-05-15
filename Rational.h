@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef RATIONAL_H
+#define RATIONAL_H
+
 #include <iostream>
 #include <string>
 #include "Integer.h"
@@ -81,3 +84,5 @@ namespace cosc326 {
 	std::istream& operator>>(std::istream& istr, Rational& rat);
 
 }
+
+#endif

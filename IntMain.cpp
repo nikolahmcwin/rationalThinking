@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "Integer.h"
-#include "Rational.h"
 
 using namespace cosc326; 
 
@@ -28,14 +27,7 @@ int main() {
     std::cout << "i3 is: " << i3 << std::endl;
     Integer i4("-12");
     std::cout << "i4 is: " << i3 << std::endl;
- 
-    //Test the rational constructor
-    Integer i5("100");
-    std::cout << "i5 Integer is: " << i5 << std::endl;
-    
-    //Doesnt work yet? No idea why
-    Rational r1(i5);
-    std::cout << "r1 Rational is: " << r1 << std::endl;
+  
 /*
     // Test the assignment operator =
     i1 = i2;

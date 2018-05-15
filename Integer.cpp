@@ -56,7 +56,6 @@ namespace cosc326 {
 
     }
 
-
     // Accessor for size
     unsigned int Integer::getSize() const {
         return size;

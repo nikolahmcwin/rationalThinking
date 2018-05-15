@@ -360,7 +360,20 @@ namespace cosc326 {
     }
 
     // Returns greatest common divisor of a and b
-    int gcd(unsigned int a, unsigned int b){
+    Integer Integer::gcd(const Integer& i1, const Integer& i2) {
+        Integer a(i1);
+        Integer b(i2);
+        Integer zero;
+        Integer tmp;
+        while (b != zero) {
+            tmp = b;
+            // Will not yet work as the % doesn't work...
+            b = a % b;
+            a = tmp;
+        }
+        return a;
+    }
+    /*int gcd(unsigned int a, unsigned int b){
         unsigned int tmp;
         while(b != 0) {
             tmp = a;
@@ -368,7 +381,15 @@ namespace cosc326 {
             b = tmp % b;
         }
         return a;
-    }
+
+
+        function gcd(a, b)
+            while b ≠ 0
+            t := b; 
+            b := a mod b; 
+            a := t; 
+            return a;
+    }*/
 
     /**
      *  These operators below are NOT part of the class itself.

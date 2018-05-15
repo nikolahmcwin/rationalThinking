@@ -1,5 +1,4 @@
-#include <iostream>
-#include <string>
+
 #include "Rational.h"
 #include "Integer.h"
 /**
@@ -20,7 +19,8 @@ namespace cosc326 {
     // Takes in a single Integer input to create a Rational interpretation (a/1)
     Rational::Rational(const Integer& a){
         numerator = a;
-        denominator = Integer::Integer("1");
+        Integer::Integer tmp("1");
+        denominator = tmp;
         positive = a.isPositive();
     }
     

@@ -360,7 +360,7 @@ namespace cosc326 {
     }
 
     // Returns greatest common divisor of a and b
-    Integer Integer::gcd(const Integer& i1, const Integer& i2) {
+    Integer gcd(const Integer& i1, const Integer& i2) {
         Integer a(i1);
         Integer b(i2);
         Integer zero;

@@ -35,6 +35,7 @@ namespace cosc326 {
 
     
     Rational::Rational(const Integer& a, const Integer& b, const Integer& c){
+    
     }
 
     Rational::Rational(const std::string& str){

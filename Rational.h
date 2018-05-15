@@ -15,7 +15,9 @@ namespace cosc326 {
 
     private:
         bool positive;
-
+        Integer numerator;
+        Integer denominator;
+        // num and den
     public: 
         // Constructors
         // Creates rational with value of 0

@@ -57,14 +57,14 @@ namespace cosc326 {
         bool operator>(const Integer& integ);
         bool operator>=(const Integer& integ);
 
-        // Returns greatest common divisor of two Integers
-        unsigned int gcd(unsigned int a, unsigned int b) const;
-
         unsigned int getSize() const;
         const std::vector<int>& getNum() const;
         bool isPositive() const;
  
     };
+
+    // Returns greatest common divisor of two Integers
+    int gcd(unsigned int, unsigned int);
 
     // The equal-either-way binary arithmetic operators: + and *
     Integer operator+(const Integer& i1, const Integer& i2);

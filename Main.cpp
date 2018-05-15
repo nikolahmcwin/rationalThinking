@@ -28,7 +28,9 @@ int main() {
     std::cout << "i3 is: " << i3 << std::endl;
     Integer i4("-12");
     std::cout << "i4 is: " << i3 << std::endl;
-    
+ 
+    int test = gcd(5, 10);
+    std::cout << "gcd for 5 and 10 is " << test << std::endl;
 /*
     // Test the assignment operator =
     i1 = i2;

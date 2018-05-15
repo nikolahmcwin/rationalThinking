@@ -360,7 +360,7 @@ namespace cosc326 {
     }
 
     // Returns greatest common divisor of a and b
-    unsigned int gdc (unsigned int a, unsigned int b){
+    int gcd(unsigned int a, unsigned int b){
         unsigned int tmp;
         while(b != 0) {
             tmp = a;

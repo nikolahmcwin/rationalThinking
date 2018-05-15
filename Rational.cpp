@@ -14,8 +14,18 @@ namespace cosc326 {
     }
     Rational::Rational(const Rational& rat) {
     }
+    */
     Rational::Rational(const Integer& a){
+        numerator = a;
+        denominator = Integer::Integer("1");
+        if(a > 0){
+            positive = true;
+        }else{
+            positive = false;
+        }
     }
+
+    /*
     Rational::Rational(const Integer& a, const Integer& b){
     }
     Rational::Rational(const Integer& a, const Integer& b, const Integer& c){
@@ -28,7 +38,7 @@ namespace cosc326 {
     Rational::~Rational() {
     }
 
-   /* Rational& Rational::operator=(const Rational& rat){
+    /* Rational& Rational::operator=(const Rational& rat){
     }
 
     Rational& Rational::operator+(){

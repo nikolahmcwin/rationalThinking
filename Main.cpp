@@ -30,7 +30,15 @@ int main() {
     std::cout << "i4 is: " << i3 << std::endl;
  
     int test = gcd(5, 10);
-    std::cout << "gcd for 5 and 10 is " << test << std::endl;
+    std::cout << "gcd for 5 and 10 is " << test << std::endl << std::endl;
+
+    //Test the rational constructor
+    Integer i5("100");
+    std::cout << "i5 Integer is: " << i5 << std::endl;
+    
+    //Doesnt work yet? No idea why
+    Rational r1(i5);
+    std::cout << "r1 Rational is: " << r1 << std::endl;
 /*
     // Test the assignment operator =
     i1 = i2;

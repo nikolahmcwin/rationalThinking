@@ -29,7 +29,12 @@ namespace cosc326 {
 
         // Destructor
         ~Integer();
-
+        
+        // Accessors
+        unsigned int getSize() const;
+        const std::vector<int>& getNum() const;
+        bool isPositive() const;
+        
         // Assignment operator =
         Integer& operator=(const Integer&);
 
@@ -57,10 +62,6 @@ namespace cosc326 {
         bool operator>(const Integer& integ);
         bool operator>=(const Integer& integ);
 
-        unsigned int getSize() const;
-        const std::vector<int>& getNum() const;
-        bool isPositive() const;
- 
     };
 
     // Returns greatest common divisor of two Integers

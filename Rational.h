@@ -17,7 +17,7 @@ namespace cosc326 {
         bool positive;
         Integer numerator;
         Integer denominator;
-        // num and den
+        
     public: 
         // Constructors
         // Creates rational with value of 0
@@ -35,6 +35,12 @@ namespace cosc326 {
 
         // Deconstructor
         ~Rational();
+
+        // Getters
+        const Integer& getNumerator() const;
+        const Integer& getDenominator() const;
+        bool getRatSign() const;
+
 /*
         // Assignment operator =
         Rational& operator=(const Rational& rat);

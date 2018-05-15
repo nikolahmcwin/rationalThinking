@@ -10,7 +10,10 @@ namespace cosc326 {
 
     // Creates rational with value of 0
     Rational::Rational(){
-
+        Integer zero;
+        numerator = zero;
+        denominator = zero;
+        positive = true;
     }
 
     // Creates rational that duplicates the provided rational
@@ -20,10 +23,10 @@ namespace cosc326 {
     
     // Takes in a single Integer input to create a Rational interpretation (a/1)
     Rational::Rational(const Integer& a){
-        //numerator = a;
-        //Integer("1");
-        //denominator = tmp;
-        //positive = a.isPositive();
+        numerator = a;
+        Integer tmp("1");
+        denominator = tmp;
+        positive = a.isPositive();
     }
     
     // Takes in two Integers to create a Rationak interpretation (a/b)
@@ -45,6 +48,19 @@ namespace cosc326 {
 
     // Deconstructor
     Rational::~Rational() {
+    }
+
+    // Accessors
+    const Integer& Rational::getNumerator() const {
+        return numerator;
+    }
+
+    const Integer& Rational::getDenominator() const {
+        return denominator;
+    }
+
+    bool Rational::getRatSign() const {
+        return positive;
     }
 
     /* Rational& Rational::operator=(const Rational& rat){

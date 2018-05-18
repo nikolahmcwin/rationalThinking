@@ -71,14 +71,40 @@ namespace cosc326 {
         return positive;
     }
 
-    // Makes a copy of an integer and returns it with the sign reversed
-    Integer& Integer::changeSign() {
-        if (positive) {
-            positive = false;
+    // Mutator for everything
+    void Integer::setAllFields(unsigned int s, std::vector<int>& vec, bool pos) {
+        size = s;
+        num = vec;
+        positive = pos;
+    }
+
+     // Mutator for size
+    void Integer::setSize(unsigned int s) {
+        size = s;
+    }
+
+     // Mutator for num
+    void Integer::setNum(const std::vector<int>& vec) {
+        num = vec;
+    }
+
+     // Mutator for positive
+    void Integer::setPositive(bool pos) {
+        positive = pos;
+    }
+
+    // Method to check if an Integer is 0 e.g. num = [0];
+    bool Integer::isZero(const Integer& integ) {
+        std::vector<int> vec = integ.getNum();
+        if (vec.size() > 1) {
+            return false;
         } else {
-            positive = true;
+            if (vec[0] ==  0) {
+                return true;
+            } else {
+                return false;
+            }
         }
-        return *this;
     }
 
     // Assignment operator =
@@ -106,26 +132,18 @@ namespace cosc326 {
         return *this;
     }
 
-    // Binary arithmetic operator -
-    Integer& Integer::operator-(const Integer& integ) {
-        *this -= integ;
-        return *this;
-    }
-
-    // Binary arithmetic operator /
-    Integer& Integer::operator/(const Integer& integ) {
-        *this /= integ;
-        return *this;
-    }
-
-    // Binary arithmetic operator %
-    Integer& Integer::operator%(const Integer& integ) {
-        *this %= integ;
-        return *this;
-    }
-
     // Compound assignment operator +=
     Integer& Integer::operator+=(const Integer& integ) {
+
+        // Test if we are adding 0!
+        if (isZero(integ)) {
+            return *this;
+        } else if (isZero(*this)) {
+           std::vector<int> vec = integ.getNum();
+           setAllFields(integ.getSize(), vec, integ.isPositive());
+           return *this;
+        }
+
         int carry = 0;
         int size1 = size;
         int size2 = integ.getSize();
@@ -142,20 +160,7 @@ namespace cosc326 {
             smaller = num;
             larger = integ.getNum();
         }
-        /*
-        // Test print 
-        std::string numString1 = "Num: ";
-        for (int i = 0; i < num.size(); i++) {
-            numString1 += std::to_string(num[i]);
-        }
-        std::cout << numString1 << std::endl;
 
-        std::string numString2 = "integ num: ";
-        for (int i = 0; i < integ.getSize(); i++) {
-            numString2 += std::to_string(integ.getNum()[i]);
-        }
-        std::cout << numString2 << std::endl;
-        */
         if (positive) {
             if (integ.isPositive()) {
                 // Both pos
@@ -207,47 +212,78 @@ namespace cosc326 {
     // Compound assignment operator -=
     Integer& Integer::operator-=(const Integer& integ) {
 
-        // JUST FIND WHICH NUMBER IS BIGGER, if its this answ = + else ans = -.
-        // Can easily then just go BIGGER - SMALLER hehheeheheheheh
+        // Test if either numbers is 0!
+        if (isZero(integ)) {
+            return *this;
+        } else if (isZero(*this)) {
+           std::vector<int> vec = integ.getNum();
+           setAllFields(integ.getSize(), vec, !(integ.isPositive()));
+           return *this;
+        }
 
         int carry = 0;
-        int smallerSize;
-
         std::vector<int> smaller;
         std::vector<int> larger;
         std::vector<int> answer;
         bool answerIsPositive;
 
-         if (num.size() > integ.getSize()) {
+         if (num.size() >= integ.getSize()) {
             smaller = integ.getNum();
             larger = num;
-            if (isPositive()) {
-                answerIsPositive = true;
-            } else {
-                answerIsPositive = false;
-            }
-        } else if (num.size() < integ.getSize()){
+        } else {
             smaller = num;
             larger = integ.getNum();
-            answerIsPositive = true;
-        } else {
-
         }
 
+        // If a > b, a - b is positive
+        if (*this >= integ) {
+            answerIsPositive = true;
+        } else {
+            // If a < b, a - b is negative
+            answerIsPositive = false;
+        }
+
+        int i = 0;
         if (positive) {
             if (integ.isPositive()) {
                 // Both pos
                 // +a - +b = a - b
                 int i = 0;
                 while (i < smaller.size()) {
-                    /*int newDigit = num[i] - i2[i];
-                    if (newDigit < 0) {
-                        newDigit = 0;
-                        int tmp = 10 + num[i];
-                        newDigit = tmp - i2[i];
+                    int sum;
+                    sum = larger[i] - smaller[i];
+                    if (sum < 0) {
+                        // Take the carry out of the next digit
+                        carry = 1;
+                        if ((i+1) < larger.size()) {
+                            larger[i+1] = larger[i+1] - carry;
+                        }
+                        sum = 0;
+                        int tmp = 10 + larger[i];
+                        sum = tmp - smaller[i];
+                    } else {
+                        carry = 0;
+                    }                    
+                    /*
+                    for (int i = 0; i < answer.size(); i++) {
+                        std::cout << "answer" << i << " is" << answer[i] << std::endl;
                     }*/
+                    answer.push_back(sum);
+                    i++;
+                } 
+                // Keep going with the other vector
+                while (i < larger.size()) {
+                    answer.push_back(larger[i]);
+                    i++;
                 }
-                    
+                // Remove any extra 0's that were appened e.g. 1000 - 999 = 0001
+                for (int i = answer.size()-1; i >= 0; i--) {
+                    if (answer[i] != 0) {
+                        break;
+                    } else {
+                        answer.erase(answer.begin() + i);
+                    }
+                }     
             } else {
                 // This pos but second number is neg 
                 // +a - -b = a + b
@@ -265,6 +301,13 @@ namespace cosc326 {
                 
             }
         }
+        
+        num = answer;
+        size = answer.size();
+       /* for (int i = 0; i < answer.size(); i++) {
+            std::cout << "num" << i << " is" << num[i] << std::endl;
+        }*/
+        positive = answerIsPositive;
         return *this;
     }
     
@@ -428,6 +471,12 @@ namespace cosc326 {
 		return sum;
     }
 
+     Integer operator-(const Integer& i1, const Integer& i2) {
+        Integer sum(i1);
+        sum -= i2;
+		return sum;
+    }
+
     // Binary arithmetic operator *   
     Integer operator*(const Integer& i1, const Integer& i2) {
         Integer sum(i1);
@@ -435,6 +484,17 @@ namespace cosc326 {
 		return sum;
     }
 
+    Integer operator/(const Integer& i1, const Integer& i2) {
+        Integer sum(i1);
+        sum /= i2;
+		return sum;
+    }
+
+    Integer operator%(const Integer& i1, const Integer& i2) {
+        Integer sum(i1);
+        sum %= i2;
+		return sum;
+    }
 
     // Streaming insertion operator <<
 	std::ostream& operator<<(std::ostream& ostr, const Integer& integ) {

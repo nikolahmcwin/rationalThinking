@@ -35,8 +35,14 @@ namespace cosc326 {
         const std::vector<int>& getNum() const;
         bool isPositive() const;
 
-        // Reverses the sign of the Integer
-        Integer& changeSign();
+        // Mutators
+        void setAllFields(unsigned int s, std::vector<int>& vec, bool pos);
+        void setSize(unsigned int s);
+        void setNum(const std::vector<int>& vec);
+        void setPositive(bool pos);
+    
+        // Method to check if an Integer is 0 e.g. num = [0];
+        bool isZero(const Integer&);
 
         // Assignment operator =
         Integer& operator=(const Integer&);
@@ -44,11 +50,6 @@ namespace cosc326 {
         // The unary operators: + and -
         Integer& operator+();
         Integer& operator-();
-
-        // The inequal binary arithmetic operators -, /, and %
-        Integer& operator-(const Integer&);
-        Integer& operator/(const Integer&);
-        Integer& operator%(const Integer& integ);
 
         // The compound assignment operators: +=, -=, *=, /=, and %=
         Integer& operator+=(const Integer& integ);
@@ -70,9 +71,12 @@ namespace cosc326 {
     // Returns greatest common divisor of two Integers
     Integer gcd(const Integer&, const Integer&);
 
-    // The equal-either-way binary arithmetic operators: + and *
+    // The binary arithmetic operators: 
     Integer operator+(const Integer& i1, const Integer& i2);
+    Integer operator-(const Integer& i1, const Integer& i2);
     Integer operator*(const Integer& i1, const Integer& i2);
+    Integer operator/(const Integer& i1, const Integer& i2);
+    Integer operator%(const Integer& i1, const Integer& i2);
 
     // The streaming insertion and extraction operators: << and >>
     std::ostream& operator<<(std::ostream& ostr, const Integer& integ);

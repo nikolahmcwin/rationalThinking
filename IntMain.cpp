@@ -12,7 +12,7 @@ using namespace cosc326;
 int main() {
 
     // Test default constructor
-    Integer i1("197");
+    Integer i1("10");
     std::cout << "i1 is: " << i1 << std::endl; 
     
     // Test the integer constructor
@@ -20,12 +20,12 @@ int main() {
     //std::cout << "copyi1 is: " << i1 << std::endl; 
 
     // Test the string constuctor
-    Integer i2("+804");
+    Integer i2("0");
     std::cout << "i2 is: " << i2 << std::endl; 
 
-    Integer i3("-13");
+    Integer i3("0");
     std::cout << "i3 is: " << i3 << std::endl;
-    Integer i4("-12");
+    Integer i4("+3");
     std::cout << "i4 is: " << i3 << std::endl;
   
 /*
@@ -70,8 +70,10 @@ int main() {
     std::cout << "The sum of " << i1 << " + " << i2 << " = " << s << std::endl;
     
     // Subtraction
-    //Integer s2 = i1 - i2;
-    //std::cout << "The sum "<< i1 << " - " << i2 << " = " << s2 << std::endl;
+    std::cout << "i3 is " << i3 << " i4 is " << i4 << std::endl;
+
+    Integer s2 = (i3 - i4);
+    std::cout << "The sum of "<< i3 << " - " << i4 << " = " << s2 << std::endl;
 /*
     //Multiplication
 	std::cout << "The product i1 * i2 = " << i1 * i2 << std::endl;

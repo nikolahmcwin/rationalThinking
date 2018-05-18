@@ -185,27 +185,38 @@ namespace cosc326 {
                 if ((i == larger.size()) && (carry == 1)) {
                     answer.push_back(carry);
                 }
-                num = answer;
-                size = answer.size();
-                return *this;
+                setAllFields(answer.size(), answer, true);
             } else {
                 // This pos but second number is neg 
                 // +a + -b = a - b
-                
-                
+                Integer b(integ);
+                b.setPositive(true);
+                *this -= b;
             }
         } else {
             if (integ.isPositive()) {
                 // This is neg but Integ is pos
                 // -a + +b = -a + b =  b - a
-                
+                Integer a(*this);
+                a.setPositive(true);
+                Integer b(integ);
+                b -= a;
+                std::vector<int> vec = b.getNum();
+                setAllFields(b.getSize(), vec, b.isPositive());
             } else {
                 // Both are neg 
+                // - 10 - 10 = -20 or -(a + b) ---> NEGATIVE
                 // -a + -b = -a - b
-                
+                Integer a(*this);
+                a.setPositive(true);
+                Integer b(integ);
+                b.setPositive(true);
+                a += b;
+                a.setPositive(false);
+                std::vector<int> vec = a.getNum();
+                setAllFields(a.getSize(), vec, a.isPositive());
             }
         }
-
         return *this;
     }
     
@@ -264,10 +275,6 @@ namespace cosc326 {
                     } else {
                         carry = 0;
                     }                    
-                    /*
-                    for (int i = 0; i < answer.size(); i++) {
-                        std::cout << "answer" << i << " is" << answer[i] << std::endl;
-                    }*/
                     answer.push_back(sum);
                     i++;
                 } 
@@ -283,31 +290,49 @@ namespace cosc326 {
                     } else {
                         answer.erase(answer.begin() + i);
                     }
-                }     
+                } 
+                setAllFields(answer.size(), answer, answerIsPositive);   
             } else {
                 // This pos but second number is neg 
                 // +a - -b = a + b
-                
+                Integer b(integ);
+                b.setPositive(true);
+                *this += b;
             }
         } else {
             if (integ.isPositive()) {
                 // This is neg but Integ is pos
-                // -a - +b = -a - b =  -a - b
-                
+                // -a - +b = -a - b =  -a - b // -a - b = -(a+b)
+                Integer a(*this);
+                a.setPositive(true);
+                a += integ;
+                std::vector<int> vec = a.getNum();
+                setAllFields(a.getSize(), vec, false);
             } else {
                 // Both are neg 
-                // -a - -b = -a + b = b - a
-                
-                
+                // -a - -b = -a + b = b - +a
+                Integer a(*this);
+                a.setPositive(true);
+                Integer b(integ);
+                b.setPositive(true);
+                b -= a;
+                std::vector<int> vec = b.getNum();
+                setAllFields(b.getSize(), vec, b.isPositive());
+                /*
+
+
+
+
+                NOT YET WORKIGN  fml
+
+
+
+
+
+                */
+
             }
         }
-        
-        num = answer;
-        size = answer.size();
-       /* for (int i = 0; i < answer.size(); i++) {
-            std::cout << "num" << i << " is" << num[i] << std::endl;
-        }*/
-        positive = answerIsPositive;
         return *this;
     }
     

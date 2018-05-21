@@ -135,6 +135,9 @@ namespace cosc326 {
     // Compound assignment operator +=
     Integer& Integer::operator+=(const Integer& integ) {
 
+        std::cout << " i1 is: " << *this << std::endl;
+        std::cout << " i2 is: " << integ << std::endl;
+
         // Test if we are adding 0!
         if (isZero(integ)) {
             return *this;
@@ -200,7 +203,10 @@ namespace cosc326 {
                 Integer a(*this);
                 a.setPositive(true);
                 Integer b(integ);
+                std::cout << " += a is: " << a << std::endl;
+                std::cout << " += b is: " << b << std::endl;
                 b -= a;
+                std::cout << " += after setting b is: " << b << std::endl;
                 std::vector<int> vec = b.getNum();
                 setAllFields(b.getSize(), vec, b.isPositive());
             } else {
@@ -274,7 +280,7 @@ namespace cosc326 {
                         sum = tmp - smaller[i];
                     } else {
                         carry = 0;
-                    }                    
+                    }                  
                     answer.push_back(sum);
                     i++;
                 } 
@@ -285,7 +291,7 @@ namespace cosc326 {
                 }
                 // Remove any extra 0's that were appened e.g. 1000 - 999 = 0001
                 for (int i = answer.size()-1; i >= 0; i--) {
-                    if (answer[i] != 0) {
+                    if ((answer[i] != 0) || (i == 0)){
                         break;
                     } else {
                         answer.erase(answer.begin() + i);
@@ -310,25 +316,28 @@ namespace cosc326 {
                 setAllFields(a.getSize(), vec, false);
             } else {
                 // Both are neg 
-                // -a - -b = -a + b = b - +a
+                // -a - -b = -a + b = +b - +a
+                
                 Integer a(*this);
-                a.setPositive(true);
                 Integer b(integ);
                 b.setPositive(true);
+                std::cout << " a is: " << a << std::endl;
+                std::cout << " b is: " << b << std::endl;
+                a += b;
+
+                std::cout << " a is: " << a << std::endl;
+                std::vector<int> vec = a.getNum();
+                setAllFields(a.getSize(), vec, a.isPositive());
+                /*
+                Integer a(*this);
+                a.setPositive(true);
+
+                Integer b(integ);
+                b.setPositive(true);
+
                 b -= a;
                 std::vector<int> vec = b.getNum();
                 setAllFields(b.getSize(), vec, b.isPositive());
-                /*
-
-
-
-
-                NOT YET WORKIGN  fml
-
-
-
-
-
                 */
 
             }
@@ -360,134 +369,10 @@ namespace cosc326 {
         return *this;
     }
 
-    // Comparison operator ==
-    bool Integer::operator==(const Integer& integ) {
-        bool check = true;
-        if ((positive == integ.positive) && (size == integ.size)) {
-            for (unsigned int i = 0; i < size; i++) {
-                if (num[i] != integ.num[i]) {
-                    check = false;
-                    break;
-                }
-            }
-        } else {
-            check = false;
-        }
-        return check;
-    }
-       
-    // Comparison operator !=
-    bool Integer::operator!=(const Integer& integ) {
-        return !(*this == integ);
-    }
-
-    // Comparison operator <
-    bool Integer::operator<(const Integer& integ) {
-        // aka this < integ
-        bool check;
-        int thisSize = num.size();
-        int integSize = integ.getNum().size();
-
-        if (*this == integ) {
-            return false;
-        }
-        if (positive) {
-            if (integ.isPositive()) {
-                // Both pos
-                if (thisSize < integSize) {
-                    return true;
-                } else if (thisSize > integSize) {
-                    return false;
-                }
-            } else {
-                // integ is neg. 
-                return false;
-            }
-        } else {
-            if (integ.isPositive()) {
-                // Integ is pos
-                return true;
-            } else {
-                // Both neg 
-                if (thisSize > integSize) {
-                    return true;
-                } else if (thisSize < integSize) {
-                    return false;
-                }
-            }
-        }
-
-        // Otherwise numbers are the same size/length. loops through!
-        std::vector<int> gt = integ.getNum();
-        if (positive) {
-             for (int i = num.size() - 1; i >= 0; i--) {
-                // work with largest digit first for efficiency
-                if (num[i] < gt[i]) {
-                    return true;
-                } else if (num[i] > gt[i]) {
-                    return false;
-                }
-            }
-        } else {
-             for (int i = num.size() - 1; i >= 0; i--) {
-                // work with largest digit first for efficiency
-                if (num[i] > gt[i]) {
-                    return true;
-                } else if (num[i] < gt[i]) {
-                    return false;
-                }
-            }
-        }
-       
-        return false;
-    }
-
-    // Comparison operator <=
-    bool Integer::operator<=(const Integer& integ) {
-        if ((*this == integ) || (*this < integ)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // Comparison operator >
-    bool Integer::operator>(const Integer& integ) {
-        if ((*this == integ)) {
-            return false;
-        } else {
-            return !(*this < integ);
-        } 
-    }
-
-    // Comparison operator >=
-    bool Integer::operator>=(const Integer& integ) {
-        bool smaller = (*this < integ);
-         if ((*this == integ) || (!(*this < integ))) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // Returns greatest common divisor of a and b
-    Integer gcd(const Integer& i1, const Integer& i2) {
-        Integer a(i1);
-        Integer b(i2);
-        Integer zero;
-        Integer tmp;
-        while (b != zero) {
-            tmp = b;
-            // Will not yet work as the % doesn't work...
-            b = a % b;
-            a = tmp;
-        }
-        return a;
-    }
-
     /**
      *  These operators below are NOT part of the class itself.
      */
+
 
     // Binary arithmetic operator +
     Integer operator+(const Integer& i1, const Integer& i2) {
@@ -496,31 +381,138 @@ namespace cosc326 {
 		return sum;
     }
 
-     Integer operator-(const Integer& i1, const Integer& i2) {
+    // Binary arithmetic operator -
+    Integer operator-(const Integer& i1, const Integer& i2) {
         Integer sum(i1);
         sum -= i2;
 		return sum;
     }
-
-    // Binary arithmetic operator *   
+    
+    // Binary arithmetic operator *
     Integer operator*(const Integer& i1, const Integer& i2) {
         Integer sum(i1);
         sum *= i2;
 		return sum;
     }
 
+    // Binary arithmetic operator /
     Integer operator/(const Integer& i1, const Integer& i2) {
         Integer sum(i1);
         sum /= i2;
 		return sum;
     }
 
+    // Binary arithmetic operator %
     Integer operator%(const Integer& i1, const Integer& i2) {
         Integer sum(i1);
         sum %= i2;
 		return sum;
     }
+    
+    // The comparison operators 
+    bool operator<(const Integer& lhs, const Integer& rhs) {
+        bool check;
+        int lhsSize = lhs.getSize();
+        int rhsSize = rhs.getSize();
 
+        if (lhs == rhs) {
+            return false;
+        }
+
+        if (lhs.isPositive()) {
+            if (rhs.isPositive()) {
+                // Both pos
+                if (lhsSize < rhsSize) {
+                    return true;
+                } else if (lhsSize > rhsSize) {
+                    return false;
+                }
+            } else {
+                // rhs is neg. 
+                return false;
+            }
+        } else {
+            if (rhs.isPositive()) {
+                // rhs is pos
+                return true;
+            } else {
+                // Both neg 
+                if (lhsSize > rhsSize) {
+                    return true;
+                } else if (lhsSize < rhsSize) {
+                    return false;
+                }
+            }
+        }
+        // Otherwise numbers are the same size/length. loops through!
+        //std::vector<int> lhsV = rhs.getNum();
+        if (lhs.isPositive()) {
+             for (int i = lhs.getSize() - 1; i >= 0; i--) {
+                // work with largest digit first for efficiency
+                if (lhs.getNum()[i] < rhs.getNum()[i]) {
+                    return true;
+                } else if (lhs.getNum()[i] > rhs.getNum()[i]) {
+                    return false;
+                }
+            }
+        } else {
+             for (int i = lhs.getSize() - 1; i >= 0; i--) {
+                // work with largest digit first for efficiency
+                if (lhs.getNum()[i] > rhs.getNum()[i]) {
+                    return true;
+                } else if (lhs.getNum()[i] < rhs.getNum()[i]) {
+                    return false;
+                }
+            }
+        }
+       
+        return false;
+	}
+
+	bool operator>(const Integer& lhs, const Integer& rhs) {
+        if ((lhs == rhs)) {
+            return false;
+        } else {
+            return !(lhs < rhs);
+        } 
+	}
+
+	bool operator<=(const Integer& lhs, const Integer& rhs) {
+		if ((lhs == rhs) || (lhs < rhs)) {
+            return true;
+        } else {
+            return false;
+        }
+	}
+
+	bool operator>=(const Integer& lhs, const Integer& rhs) {
+		bool smaller = (lhs < rhs);
+        if ((lhs == rhs) || (!(lhs < rhs))) {
+            return true;
+        } else {
+            return false;
+        }
+	}
+
+	bool operator==(const Integer& lhs, const Integer& rhs) {
+		bool check = true;
+        if ((lhs.isPositive() == rhs.isPositive()) && (lhs.getSize() == rhs.getSize())) {
+            for (unsigned int i = 0; i < lhs.getSize(); i++) {
+                if (lhs.getNum()[i] != rhs.getNum()[i]) {
+                    check = false;
+                    break;
+                }
+            }
+        } else {
+            check = false;
+        }
+        return check;
+	}
+
+	bool operator!=(const Integer& lhs, const Integer& rhs) {
+		return !(lhs == rhs);
+	}
+    
     // Streaming insertion operator <<
 	std::ostream& operator<<(std::ostream& ostr, const Integer& integ) {
         std::string numString;
@@ -544,5 +536,19 @@ namespace cosc326 {
 		integ = Integer(strValue);
 		return istr;
 	}
+
+    // Returns greatest common divisor of a and b
+    Integer gcd(const Integer& i1, const Integer& i2) {
+        Integer a(i1);
+        Integer b(i2);
+        Integer zero;
+        Integer tmp;
+        while (b != zero) {
+            tmp = b;
+            b = a % b;
+            a = tmp;
+        }
+        return a;
+    }
 }
 

@@ -16,19 +16,20 @@ int main() {
     std::cout << "i1 is: " << i1 << std::endl; 
     
     // Test the integer constructor
-    //Integer copyi1(i1);
-    //std::cout << "copyi1 is: " << i1 << std::endl; 
+    Integer copyi1(i1);
+    std::cout << "copyi1 is: " << i1 << std::endl; 
 
     // Test the string constuctor
-    Integer i2("-10");
+    Integer i2("+33");
     std::cout << "i2 is: " << i2 << std::endl; 
 
     Integer i3("-20");
     std::cout << "i3 is: " << i3 << std::endl;
     Integer i4("-15");
     std::cout << "i4 is: " << i3 << std::endl;
-  
-/*
+    
+    /*
+
     // Test the assignment operator =
     i1 = i2;
     std::cout << "i1 now = i2. i1: " << i1 << std::endl;
@@ -50,21 +51,43 @@ int main() {
 
     bool t2 = (i2 == i3);
     std::cout << i2 << " == " << i3 << " gives: " << t2 << std::endl;  
-
+    
+   
     // Test the comparison operator !=
     bool t3 = (i1 != copyi1);
     std::cout << i1 << " != " << copyi1 << " gives: " << t3 << std::endl;
 
     bool t4 = (i2 != i3);
     std::cout << i2 << " != " << i3 << " gives: " << t4 << std::endl; 
-*/
+
+    // Test <= operator
     bool t1 = (i1 <= i2);
     std::cout << i1 << " <= " << i2 << " gives: " << t1 << std::endl;
 
     bool t2 = (i3 <= i4);
     std::cout << i3 << " <= " << i4 << " gives: " << t2 << std::endl;  
     
- 
+    // Test < operator
+    t1 = (i1 < i2);
+    std::cout << i1 << " < " << i2 << " gives: " << t1 << std::endl;
+
+    t2 = (i3 < i4);
+    std::cout << i3 << " < " << i4 << " gives: " << t2 << std::endl; 
+
+    // Test >= operator
+    t1 = (i1 >= i2);
+    std::cout << i1 << " >= " << i2 << " gives: " << t1 << std::endl;
+
+    t2 = (i3 >= i4);
+    std::cout << i3 << " >= " << i4 << " gives: " << t2 << std::endl;  
+    
+    // Test > operator
+    t1 = (i1 > i2);
+    std::cout << i1 << " > " << i2 << " gives: " << t1 << std::endl;
+
+    t2 = (i3 > i4);
+    std::cout << i3 << " > " << i4 << " gives: " << t2 << std::endl;
+    */
     // Addition
 	Integer s = (i1 + i2);
     std::cout << "The sum of " << i1 << " + " << i2 << " = " << s << std::endl;

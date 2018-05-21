@@ -57,7 +57,7 @@ namespace cosc326 {
         Integer& operator*=(const Integer& integ);
         Integer& operator/=(const Integer& integ);
         Integer& operator%=(const Integer& integ);
-
+/*
         // The comparison operators: ==, !=,<,<=,>, and >=
         bool operator==(const Integer& integ);
         bool operator!=(const Integer& integ);
@@ -65,11 +65,9 @@ namespace cosc326 {
         bool operator<=(const Integer& integ);
         bool operator>(const Integer& integ);
         bool operator>=(const Integer& integ);
-
+*/
     };
 
-    // Returns greatest common divisor of two Integers
-    Integer gcd(const Integer&, const Integer&);
 
     // The binary arithmetic operators: 
     Integer operator+(const Integer& i1, const Integer& i2);
@@ -78,10 +76,21 @@ namespace cosc326 {
     Integer operator/(const Integer& i1, const Integer& i2);
     Integer operator%(const Integer& i1, const Integer& i2);
 
+    
+    // The comparion operators:
+    bool operator<(const Integer& lhs, const Integer& rhs);
+    bool operator>(const Integer& lhs, const Integer& rhs);
+	bool operator<=(const Integer& lhs, const Integer& rhs);
+	bool operator>=(const Integer& lhs, const Integer& rhs);
+	bool operator==(const Integer& lhs, const Integer& rhs);
+	bool operator!=(const Integer& lhs, const Integer& rhs);
+    
     // The streaming insertion and extraction operators: << and >>
     std::ostream& operator<<(std::ostream& ostr, const Integer& integ);
 	std::istream& operator>>(std::istream& istr, Integer& integ);
     
+    // Returns greatest common divisor of two Integers
+    Integer gcd(const Integer&, const Integer&);
 }
 
 #endif

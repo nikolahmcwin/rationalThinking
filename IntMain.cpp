@@ -23,11 +23,15 @@ int main() {
     Integer i2("+33");
     std::cout << "i2 is: " << i2 << std::endl; 
 
-    Integer i3("-20");
+    Integer i3("15");
     std::cout << "i3 is: " << i3 << std::endl;
-    Integer i4("-15");
-    std::cout << "i4 is: " << i3 << std::endl;
+    Integer i4("20");
+    std::cout << "i4 is: " << i4 << std::endl;
     
+    Integer i5("-20");
+    std::cout << "i3 is: " << i5 << std::endl;
+    Integer i6("-15");
+    std::cout << "i4 is: " << i6 << std::endl;
     /*
 
     // Test the assignment operator =
@@ -93,10 +97,11 @@ int main() {
     std::cout << "The sum of " << i1 << " + " << i2 << " = " << s << std::endl;
     
     // Subtraction
-    std::cout << "i3 is " << i3 << " i4 is " << i4 << std::endl;
-
     Integer s2 = (i3 - i4);
     std::cout << "The sum of "<< i3 << " - " << i4 << " = " << s2 << std::endl;
+
+    s2 = (i5 - i6);
+    std::cout << "The sum of "<< i5 << " - " << i6 << " = " << s2 << std::endl;
 /*
     //Multiplication
 	std::cout << "The product i1 * i2 = " << i1 * i2 << std::endl;

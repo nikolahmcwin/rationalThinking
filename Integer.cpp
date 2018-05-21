@@ -134,10 +134,7 @@ namespace cosc326 {
 
     // Compound assignment operator +=
     Integer& Integer::operator+=(const Integer& integ) {
-
-        std::cout << " i1 is: " << *this << std::endl;
-        std::cout << " i2 is: " << integ << std::endl;
-
+        
         // Test if we are adding 0!
         if (isZero(integ)) {
             return *this;
@@ -203,10 +200,7 @@ namespace cosc326 {
                 Integer a(*this);
                 a.setPositive(true);
                 Integer b(integ);
-                std::cout << " += a is: " << a << std::endl;
-                std::cout << " += b is: " << b << std::endl;
                 b -= a;
-                std::cout << " += after setting b is: " << b << std::endl;
                 std::vector<int> vec = b.getNum();
                 setAllFields(b.getSize(), vec, b.isPositive());
             } else {
@@ -272,12 +266,16 @@ namespace cosc326 {
                     if (sum < 0) {
                         // Take the carry out of the next digit
                         carry = 1;
+                        sum = 0;
+                        int tmp;
+                        
                         if ((i+1) < larger.size()) {
                             larger[i+1] = larger[i+1] - carry;
+                            tmp = 10 + larger[i];
+                            sum = tmp - smaller[i];
+                        } else {
+                            sum = smaller[i] - larger[i] - 1;
                         }
-                        sum = 0;
-                        int tmp = 10 + larger[i];
-                        sum = tmp - smaller[i];
                     } else {
                         carry = 0;
                     }                  
@@ -316,30 +314,13 @@ namespace cosc326 {
                 setAllFields(a.getSize(), vec, false);
             } else {
                 // Both are neg 
-                // -a - -b = -a + b = +b - +a
-                
+                // -a - -b = -a + +b = +b - +a
                 Integer a(*this);
                 Integer b(integ);
                 b.setPositive(true);
-                std::cout << " a is: " << a << std::endl;
-                std::cout << " b is: " << b << std::endl;
                 a += b;
-
-                std::cout << " a is: " << a << std::endl;
                 std::vector<int> vec = a.getNum();
                 setAllFields(a.getSize(), vec, a.isPositive());
-                /*
-                Integer a(*this);
-                a.setPositive(true);
-
-                Integer b(integ);
-                b.setPositive(true);
-
-                b -= a;
-                std::vector<int> vec = b.getNum();
-                setAllFields(b.getSize(), vec, b.isPositive());
-                */
-
             }
         }
         return *this;

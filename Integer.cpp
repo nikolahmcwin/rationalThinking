@@ -1,4 +1,3 @@
-
 #include "Integer.h"
 
 /**
@@ -134,7 +133,7 @@ namespace cosc326 {
 
     // Compound assignment operator +=
     Integer& Integer::operator+=(const Integer& integ) {
-        
+
         // Test if we are adding 0!
         if (isZero(integ)) {
             return *this;
@@ -238,12 +237,20 @@ namespace cosc326 {
         std::vector<int> answer;
         bool answerIsPositive;
 
-         if (num.size() >= integ.getSize()) {
+         if (num.size() > integ.getSize()) {
             smaller = integ.getNum();
             larger = num;
-        } else {
+        } else if (num.size() < integ.getSize()){
             smaller = num;
             larger = integ.getNum();
+        } else {
+            if (*this >= integ) {
+                smaller = integ.getNum();
+                larger = num;
+            } else {
+                smaller = num;
+                larger = integ.getNum();
+            }
         }
 
         // If a > b, a - b is positive
@@ -266,16 +273,19 @@ namespace cosc326 {
                     if (sum < 0) {
                         // Take the carry out of the next digit
                         carry = 1;
-                        sum = 0;
-                        int tmp;
-                        
                         if ((i+1) < larger.size()) {
-                            larger[i+1] = larger[i+1] - carry;
-                            tmp = 10 + larger[i];
-                            sum = tmp - smaller[i];
-                        } else {
-                            sum = smaller[i] - larger[i] - 1;
-                        }
+                            
+                            if (larger[i+1 == 0]) {
+                                larger[i+1] = larger[i+1] - carry;
+                            } else {
+                                larger[i+1] = larger[i+1] - carry;
+                            }
+
+                            //larger[i+1] = larger[i+1] - carry;
+                        } 
+                        sum = 0;
+                        int tmp = 10 + larger[i];
+                        sum = tmp - smaller[i];
                     } else {
                         carry = 0;
                     }                  

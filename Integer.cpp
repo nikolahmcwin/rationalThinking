@@ -386,6 +386,7 @@ namespace cosc326 {
         For each digit i, from left to right
             sum = num * integ[i] + carry
             carry = sum / 10;
+            TEST BRANCH
             ChangeDigit(i, sum%10)      ---> if (0 <= i && i < num.size()){
                                                 digits[i] = char('0' + (sum%10))
                                              else{
@@ -420,6 +421,8 @@ namespace cosc326 {
         a suprising number of library subtract and keep going.
              But super inefficient for big intS
         something about a range of 0-9 to search (efficiently)
+
+        Same referenced code in *= provides a good answer, using 
         */
         return *this;
     }

@@ -339,7 +339,13 @@ namespace cosc326 {
     
     // Compound assignment operator *=
     Integer& Integer::operator*=(const Integer& integ) {
-        
+        // Inefficent solution is to add repeatadly
+
+        // If integ == 0, return 0
+        // If integ == 1, return integ
+
+        // http://people.sabanciuniv.edu/levi/cs201/bigint.cpp
+        // Doesnt use Vector of ints, but has very simple *= operator
         return *this;
     }
 

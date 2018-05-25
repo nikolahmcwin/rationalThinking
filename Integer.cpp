@@ -373,20 +373,21 @@ namespace cosc326 {
            return *this;
         }
 
-        // If integ == 1, return integ
-
+        /* If integ == 1, return integ
         if (integ.getNum() == 1){
             return *this;
-        }
+        }*/
 
         // http://people.sabanciuniv.edu/levi/cs201/bigint.cpp
-        // Doesnt use Vector of ints, but has very simple *= operator
+        
+        // Printing out somehows sets return to 0 and prints 15??
+        for(int i = 0; i < integ.getSize(); i++){
+            std::cout << i << std::endl;
+        }
         /* Essentially says
-
         For each digit i, from left to right
             sum = num * integ[i] + carry
             carry = sum / 10;
-            TEST BRANCH
             ChangeDigit(i, sum%10)      ---> if (0 <= i && i < num.size()){
                                                 digits[i] = char('0' + (sum%10))
                                              else{
@@ -402,7 +403,7 @@ namespace cosc326 {
                                              integ[num] = char('0' + carry);
                                              num++;          
             carry /= 10
-        }
+        }*/
                     
         return *this;
     }

@@ -43,12 +43,12 @@ int main() {
     std::cout << "i6 is: " << i6 << std::endl;
 
 
-     Integer i51("10");
+    Integer i51("10");
     std::cout << "i5 is: " << i51 << std::endl;
     Integer i61("25");
     std::cout << "i6 is: " << i61 << std::endl;
 
-     Integer i52("-10");
+    Integer i52("-10");
     std::cout << "i5 is: " << i52 << std::endl;
     Integer i62("-32");
     std::cout << "i6 is: " << i62 << std::endl;
@@ -62,6 +62,9 @@ int main() {
     std::cout << "i9 is: " << i9 << std::endl;
     Integer i10("2222");
     std::cout << "i10 is: " << i10 << std::endl;
+
+    Integer i15("15");
+    Integer i16("5");
     /*
 
     // Test the assignment operator =
@@ -149,10 +152,10 @@ int main() {
     s2 = (i9 - i10);
     std::cout << "The sum of "<< i9 << " - " << i10 << " = " << s2 << std::endl;
 
-/*
-    //Multiplication
-	std::cout << "The product i1 * i2 = " << i1 * i2 << std::endl;
 
+    //Multiplication
+	std::cout << "The product of "<< i15 << " * " << i16 << " = " << i15 * i16 << std::endl;
+/*
 	std::cout << "Please enter new values for i1 and i2." << std::endl;
 	std::cin >> i1 >> i2;
     std::cout << "Now, i1 = " << i1 << " and i2 = " << i2 << std::endl;

@@ -106,6 +106,20 @@ namespace cosc326 {
         }
     }
 
+    // Method to handle carry in subtraction
+    std::vector<int> Integer::handleCarry(int index, const std::vector<int>& v) {
+        std::vector<int> vec = v;
+        int i = index;
+
+        if (i+1 < vec.size()) {
+            vec[i+1] = (vec[i+1] - 1);
+            vec[i] = vec[i] + 10;
+        } else {
+        }
+        
+        return vec;
+    }
+
     // Assignment operator =
     Integer& Integer::operator=(const Integer& integ) {
         if (this != &integ) {
@@ -229,6 +243,11 @@ namespace cosc326 {
            std::vector<int> vec = integ.getNum();
            setAllFields(integ.getSize(), vec, !(integ.isPositive()));
            return *this;
+        } else if (*this == integ) {
+            // Or the number is itself, return 0
+            Integer zero;
+            *this = zero;
+            return *this;
         }
 
         int carry = 0;
@@ -271,30 +290,26 @@ namespace cosc326 {
                     int sum;
                     sum = larger[i] - smaller[i];
                     if (sum < 0) {
-                        // Take the carry out of the next digit
-                        carry = 1;
-                        if ((i+1) < larger.size()) {
-                            
-                            if (larger[i+1 == 0]) {
-                                larger[i+1] = larger[i+1] - carry;
-                            } else {
-                                larger[i+1] = larger[i+1] - carry;
-                            }
+                        larger = handleCarry(i, larger);
 
-                            //larger[i+1] = larger[i+1] - carry;
-                        } 
-                        sum = 0;
-                        int tmp = 10 + larger[i];
-                        sum = tmp - smaller[i];
-                    } else {
-                        carry = 0;
-                    }                  
+                        //std::cout << "larger i is: " << larger[i] << std::endl;
+                        sum = larger[i] - smaller[i];
+                        //std::cout << "sum is: " << sum << std::endl;
+
+                    }        
                     answer.push_back(sum);
                     i++;
                 } 
                 // Keep going with the other vector
                 while (i < larger.size()) {
-                    answer.push_back(larger[i]);
+                    if (larger[i] == -1) {
+                        int ans;
+                        larger = handleCarry(i, larger);
+                        answer.push_back(larger[i]);
+                    } else {
+                        answer.push_back(larger[i]);
+                    }
+                    
                     i++;
                 }
                 // Remove any extra 0's that were appened e.g. 1000 - 999 = 0001
@@ -305,7 +320,8 @@ namespace cosc326 {
                         answer.erase(answer.begin() + i);
                     }
                 } 
-                setAllFields(answer.size(), answer, answerIsPositive);   
+                setAllFields(answer.size(), answer, answerIsPositive);  
+
             } else {
                 // This pos but second number is neg 
                 // +a - -b = a + b
@@ -337,11 +353,24 @@ namespace cosc326 {
     }
     
     
+
+
+
+
+
+
     // Compound assignment operator *=
     Integer& Integer::operator*=(const Integer& integ) {
         
         return *this;
     }
+
+
+
+
+
+
+
 
     // Compound assignment operator /=
     Integer& Integer::operator/=(const Integer& integ) {
@@ -354,11 +383,24 @@ namespace cosc326 {
         return *this;
     }
     
+
+
+
+
+
+
     // Compound assignment operator %=
     Integer& Integer::operator%=(const Integer& integ)  {
         
         return *this;
     }
+
+
+
+
+
+
+
 
     /**
      *  These operators below are NOT part of the class itself.
@@ -536,7 +578,7 @@ namespace cosc326 {
         Integer tmp;
         while (b != zero) {
             tmp = b;
-            b = a % b;
+            b = (a % b);
             a = tmp;
         }
         return a;

@@ -34,7 +34,7 @@ int main() {
 
     Integer i3("1000");
     std::cout << "i3 is: " << i3 << std::endl;
-    Integer i4("3");
+    Integer i4("333");
     std::cout << "i4 is: " << i4 << std::endl;
     
     Integer i5("-20");
@@ -58,9 +58,9 @@ int main() {
     Integer i8("10");
     std::cout << "i8 is: " << i8 << std::endl;
 
-    Integer i9("-45");
+    Integer i9("10000");
     std::cout << "i9 is: " << i9 << std::endl;
-    Integer i10("22");
+    Integer i10("2222");
     std::cout << "i10 is: " << i10 << std::endl;
     /*
 

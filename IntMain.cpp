@@ -11,7 +11,7 @@ using namespace cosc326;
 int main() {
 
     // Test default constructor
-    Integer i1("-3");
+    Integer i1("0875807236408611277849349374");
     std::cout << "i1 is: " << i1 << std::endl; 
     
     // Test the integer constructor
@@ -29,7 +29,7 @@ int main() {
     Integer i211("27");
     std::cout << "i1 is: " << i1 << std::endl; 
 
-    Integer i2("+4");
+    Integer i2("+23456788765234564");
     std::cout << "i2 is: " << i2 << std::endl; 
 
     Integer i3("1000");

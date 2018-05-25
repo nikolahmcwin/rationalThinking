@@ -23,9 +23,12 @@ namespace cosc326 {
 
 
     // Constructor that takes a std::String of digits (possibility starts with a + or -)
-    Integer::Integer(const std::string& str) {
+    Integer::Integer(const std::string& str1) {
         std::string tempStr;
         int temp, i, len;
+
+        std::string str = str1;
+        str.erase(0, std::min(str.find_first_not_of('0'), str.size()-1));
 
         // Find and ignore any trailing -'s or +'s
         if (str.find('-') != std::string::npos) {

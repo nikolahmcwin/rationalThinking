@@ -20,6 +20,15 @@ int main() {
     std::cout << "i151 is: " << i151 << std::endl;
     std::cout << "i161 is: " << i161 << std::endl;
 
+    Integer i17("5675678765765867586785678567856758675865");
+    Integer i18("9999999999999999999999999999999999999999");
+
+    Integer i19("100703089");
+    Integer i20("90301");
+
+    Integer i21("10002030300209000202030004040580092010109200029302030209320039200029302002930202092039200");
+    Integer i22("299302030003920390343040340003043032030401024012030230040234020503060700803506030602304034013040103");
+    
    /* // Test the vector constructor works
     std::vector<int> s;
     s.push_back(0);
@@ -34,7 +43,16 @@ int main() {
 
     s1 = i151 * i161;
     std::cout << "The product of "<< i151 << " * " << i161 << " = " << s1 << std::endl;
-/*
+
+    s1 = i17 * i18;
+    std::cout << "The product of " << i17 << " * " << i18 << " = " << s1 << std::endl;
+
+    s1 = i19 * i20;
+    std::cout << "The product of " << i19 << " * " << i20 << " = " << s1 << std::endl;
+
+    s1 = i21 * i22;
+    std::cout << "The product of " << i21 << " * " << i22 << " = " << s1 << std::endl;
+    /*
     // Test default constructor
     Integer i1("0456");
     std::cout << "i1 is: " << i1 << std::endl; 

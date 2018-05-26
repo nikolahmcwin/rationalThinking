@@ -247,7 +247,6 @@ namespace cosc326 {
                 setAllFields(b.getSize(), vec, b.isPositive());
             } else {
                 // Both are neg 
-                // - 10 - 10 = -20 or -(a + b) ---> NEGATIVE
                 // -a + -b = -a - b
                 Integer a(*this);
                 a.setPositive(true);
@@ -320,11 +319,7 @@ namespace cosc326 {
                     sum = larger[i] - smaller[i];
                     if (sum < 0) {
                         larger = handleCarry(i, larger);
-
-                        //std::cout << "larger i is: " << larger[i] << std::endl;
                         sum = larger[i] - smaller[i];
-                        //std::cout << "sum is: " << sum << std::endl;
-
                     }        
                     answer.push_back(sum);
                     i++;
@@ -338,7 +333,6 @@ namespace cosc326 {
                     } else {
                         answer.push_back(larger[i]);
                     }
-                    
                     i++;
                 }
                 // Remove any extra 0's that were appened e.g. 1000 - 999 = 0001
@@ -393,6 +387,7 @@ namespace cosc326 {
         int carry = 0;
         int index;
 
+        // Check the input signs, to calculate sum sign
         if ((isPositive()) && (integ.isPositive())) {
             sumIsPositive = true;
         } else if ((!isPositive()) && (!integ.isPositive())) {
@@ -400,28 +395,19 @@ namespace cosc326 {
         } else {
             sumIsPositive = false;
         }
-
         // If either number is 0, return 0
         Integer zero;
         if ((isZero(integ)) || (isZero(*this))) {
-            std::vector<int> z = zero.getNum();
-            //std::cout << "zero vector: " << z[0] << std::endl;
-            setAllFields(1, z, sumIsPositive);
+            Integer zero;
+            *this = zero;
             return *this;
         }
-
         // If either number is 1, return the other number
         if (isOne(integ)) {
             return *this;
         } else if (isOne(*this)) {
             std::vector<int> z = integ.getNum();
             setAllFields(z.size(), z, sumIsPositive);
-            /*
-            for (int i = 0; i < z.size(); i++) {
-                 std::cout << "Z is: " << z[i] << std::endl;
-            
-            } */
-           
             return *this;
         }
 
@@ -432,21 +418,15 @@ namespace cosc326 {
             smaller = num;
             larger = integ.getNum();
         } 
-
         // For each digit in number 2 (smaller), do long multiplication
-        // Add the answer figure to an Integer
-        // Add this integer into Answer vector of Integers.
-        
         for (int i = 0; i < smaller.size(); i++) {
-            
             tmp.clear();
             for (int k = 0; k < i; k++) {
                 tmp.push_back(0);
             }
-
+            // If the digit to multiply is zero, ignore
             if (smaller[i] == 0) {
                 tmp.push_back(0);
-
             } else {
                 for (int j = 0; j < larger.size(); j++) {
                     int prod = (smaller[i] * larger[j]) + carry;
@@ -457,26 +437,21 @@ namespace cosc326 {
                     } else {
                         carry = 0;
                     }
-                    //std::cout << "prod after: " << prod << std::endl;
                     tmp.push_back(prod);
                 }
+                // Handle the remaining carry, if any
                 if ((carry != 0)) {
                     tmp.push_back(carry);
                 }
                 carry = 0;
             }
-            /*for (int i = 0; i < tmp.size(); i++) {
-                std::cout << "tmp: "  << tmp[i];
-            } */
-            
+            // Add the answer found for this index to an Integer
             Integer tmpInteger(tmp);
+            // Push that integer into our vector of all Integers
             answer.push_back(tmpInteger);
         }
-        
-
-        // Loop through every integer in answer, add them together.
+        // Loop through every integer in answer, adding them together.
         for (int i = 0; i < answer.size(); i++) {
-            //std::cout << "answer[" << i << "]: " << answer[i] << std::endl;
             sum += answer[i];
         }
 
@@ -485,34 +460,9 @@ namespace cosc326 {
         return *this;
     }
 
-
-    // http://people.sabanciuniv.edu/levi/cs201/bigint.cpp
+    
         
-    // integ.getSize() if i16("16") is 16
-
-    /* Essentially says
-       Make LHS most digits
-
-       For each digit i, from left to right
-       sum = num * integ[i] + carry
-       carry = sum / 10;
-       ChangeDigit(i, sum%10)      ---> if (0 <= i && i < num.size()){
-       digits[i] = char('0' + (sum%10))
-       else{
-       error message for changeDigit
-       }
-        
-       After thats all done, add whats in the carry back into the sum
-
-       while (carry != 0){
-       AddSigDigit(carry % 10)     ---> if(num.size >= integ.size){
-       increase size of integ
-       }
-       integ[num] = char('0' + carry);
-       num++;          
-       carry /= 10
-       }*/
-
+  
     // Compound assignment operator /=
     Integer& Integer::operator/=(const Integer& integ) {
         /*
@@ -521,6 +471,9 @@ namespace cosc326 {
              But super inefficient for big intS
         something about a range of 0-9 to search (efficiently)
         */
+
+       // http://people.sabanciuniv.edu/levi/cs201/bigint.cpp
+
         return *this;
     }
     
@@ -532,16 +485,11 @@ namespace cosc326 {
 
     // Compound assignment operator %=
     Integer& Integer::operator%=(const Integer& integ)  {
-        
+        Integer tmp(*this / integ);
+        Integer max(tmp * integ);
+        *this -= max;
         return *this;
     }
-
-
-
-
-
-
-
 
     /**
      *  These operators below are NOT part of the class itself.

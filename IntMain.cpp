@@ -10,10 +10,27 @@ using namespace cosc326;
 
 int main() {
 
-    // Test default constructor
-    Integer i1("-3");
-    std::cout << "i1 is: " << i1 << std::endl; 
+    Integer i15("15");
+    Integer i16("1");
+    std::cout << "i15 is: " << i15 << std::endl;
+    std::cout << "i16 is: " << i16 << std::endl;
 
+    Integer i151("1");
+    Integer i161("1341");
+    std::cout << "i151 is: " << i151 << std::endl;
+    std::cout << "i161 is: " << i161 << std::endl;
+
+    //Multiplication
+    Integer s1 = i15 * i16;
+	std::cout << "The product of "<< i15 << " * " << i16 << " = " << s1 << std::endl;
+
+    s1 = i151 * i161;
+    std::cout << "The product of "<< i151 << " * " << i161 << " = " << s1 * i161 << std::endl;
+/*
+    // Test default constructor
+    Integer i1("0456");
+    std::cout << "i1 is: " << i1 << std::endl; 
+    
     // Test the integer constructor
     Integer copyi1(i1);
     std::cout << "copyi1 is: " << i1 << std::endl; 
@@ -29,7 +46,7 @@ int main() {
     Integer i211("27");
     std::cout << "i1 is: " << i1 << std::endl; 
 
-    Integer i2("+4");
+    Integer i2("+23456788765234564");
     std::cout << "i2 is: " << i2 << std::endl; 
 
     Integer i3("1000");
@@ -63,9 +80,7 @@ int main() {
     Integer i10("2222");
     std::cout << "i10 is: " << i10 << std::endl;
 
-    Integer i15("0");
-    Integer i16("0");
-    /*
+    
 
     // Test the assignment operator =
     i1 = i2;
@@ -124,7 +139,7 @@ int main() {
 
     t2 = (i3 > i4);
     std::cout << i3 << " > " << i4 << " gives: " << t2 << std::endl;
-    */
+    
     // Addition
 	Integer s = (i1 + i2);
     std::cout << "The sum of " << i1 << " + " << i2 << " = " << s << std::endl;
@@ -151,11 +166,8 @@ int main() {
 
     s2 = (i9 - i10);
     std::cout << "The sum of "<< i9 << " - " << i10 << " = " << s2 << std::endl;
+    */
 
-
-    //Multiplication
-    std::cout << "The product of "<< i15 << " * " << i16 << " = " << i15 * i16 << std::endl;
-    std::cout << "Times test! : " << 5 * 0 << std::endl;
 /*
 	std::cout << "Please enter new values for i1 and i2." << std::endl;
 	std::cin >> i1 >> i2;

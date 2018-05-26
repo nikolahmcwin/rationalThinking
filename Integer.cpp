@@ -23,9 +23,12 @@ namespace cosc326 {
 
 
     // Constructor that takes a std::String of digits (possibility starts with a + or -)
-    Integer::Integer(const std::string& str) {
+    Integer::Integer(const std::string& str1) {
         std::string tempStr;
         int temp, i, len;
+
+        std::string str = str1;
+        str.erase(0, std::min(str.find_first_not_of('0'), str.size()-1));
 
         // Find and ignore any trailing -'s or +'s
         if (str.find('-') != std::string::npos) {
@@ -106,21 +109,6 @@ namespace cosc326 {
         }
     }
 
-    // Method to check if an Integer is 1 e.g. num = [0];
-    bool Integer::isOne(const Integer& integ) {
-        std::vector<int> vec = integ.getNum();
-        if (vec.size() > 1) {
-            return false;
-        } else {
-            if (vec[0] == 1) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
-           
-    
     // Method to handle carry in subtraction
     std::vector<int> Integer::handleCarry(int index, const std::vector<int>& v) {
         std::vector<int> vec = v;
@@ -367,47 +355,36 @@ namespace cosc326 {
         return *this;
     }
     
+    
+
+
+
+
+
+
     // Compound assignment operator *=
     Integer& Integer::operator*=(const Integer& integ) {
-        // Inefficent solution is to add repeatadly
+       // Inefficent solution is to add repeatadly
 
-        // If integ
-                
-        if (isZero(integ)) {
+        // If integ == 0, return 0
+        Integer zero;
+        if ((isZero(integ)) || (isZero(*this))) {
+            std::vector<int> z = zero.getNum();
+            //std::cout << "zero vector: " << z[0] << std::endl;
+            setAllFields(1, z, true);
             return *this;
-        } else if (isZero(*this)) {
-           std::vector<int> vec = integ.getNum();
-           setAllFields(integ.getSize(), vec, integ.isPositive());
-           return *this;
         }
-        
-        // http://people.sabanciuniv.edu/levi/cs201/bigint.cpp
-        
-        // integ.getSize() if i16("16") is 16
 
-        /* Essentially says
-           Make LHS most digits
+        // If integ == 1, return integ
+        Integer one("1");
+        if (integ == one){
+            return *this;
+        } else if (*this == one) {
+            std::vector<int> z = integ.getNum();
+            setAllFields(integ.getSize(), z, integ.isPositive());
+            return *this;
+        }
 
-        For each digit i, from left to right
-            sum = num * integ[i] + carry
-            carry = sum / 10;
-            ChangeDigit(i, sum%10)      ---> if (0 <= i && i < num.size()){
-                                                digits[i] = char('0' + (sum%10))
-                                             else{
-                                                 error message for changeDigit
-                                             }
-        
-        After thats all done, add whats in the carry back into the sum
-
-        while (carry != 0){
-            AddSigDigit(carry % 10)     ---> if(num.size >= integ.size){
-                                                increase size of integ
-                                             }
-                                             integ[num] = char('0' + carry);
-                                             num++;          
-            carry /= 10
-        }*/
-        
         return *this;
     }
 
@@ -425,8 +402,6 @@ namespace cosc326 {
         a suprising number of library subtract and keep going.
              But super inefficient for big intS
         something about a range of 0-9 to search (efficiently)
-
-        Same referenced code in *= provides a good answer, using 
         */
         return *this;
     }

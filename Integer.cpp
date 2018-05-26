@@ -364,48 +364,27 @@ namespace cosc326 {
 
     // Compound assignment operator *=
     Integer& Integer::operator*=(const Integer& integ) {
-        // Inefficent solution is to add repeatadly
+       // Inefficent solution is to add repeatadly
 
         // If integ == 0, return 0
-
-        if (isZero(integ)) {
+        Integer zero;
+        if ((isZero(integ)) || (isZero(*this))) {
+            std::vector<int> z = zero.getNum();
+            //std::cout << "zero vector: " << z[0] << std::endl;
+            setAllFields(1, z, true);
             return *this;
-        } else if (isZero(*this)) {
-           std::vector<int> vec = integ.getNum();
-           setAllFields(integ.getSize(), vec, integ.isPositive());
-           return *this;
         }
 
         // If integ == 1, return integ
-
-        if (integ.getNum() == 1){
+        Integer one("1");
+        if (integ == one){
+            return *this;
+        } else if (*this == one) {
+            std::vector<int> z = integ.getNum();
+            setAllFields(integ.getSize(), z, integ.isPositive());
             return *this;
         }
 
-        // http://people.sabanciuniv.edu/levi/cs201/bigint.cpp
-        // Doesnt use Vector of ints, but has very simple *= operator
-        /* Essentially says
-
-        For each digit i, from left to right
-            sum = num * integ[i] + carry
-            carry = sum / 10;
-            ChangeDigit(i, sum%10)      ---> if (0 <= i && i < num.size()){
-                                                digits[i] = char('0' + (sum%10))
-                                             else{
-                                                 error message for changeDigit
-                                             }
-        
-        After thats all done, add whats in the carry back into the sum
-
-        while (carry != 0){
-            AddSigDigit(carry % 10)     ---> if(num.size >= integ.size){
-                                                increase size of integ
-                                             }
-                                             integ[num] = char('0' + carry);
-                                             num++;          
-            carry /= 10
-        }
-                    
         return *this;
     }
 

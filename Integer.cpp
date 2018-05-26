@@ -427,7 +427,32 @@ namespace cosc326 {
     }
 
 
+    // http://people.sabanciuniv.edu/levi/cs201/bigint.cpp
+        
+    // integ.getSize() if i16("16") is 16
 
+    /* Essentially says
+       Make LHS most digits
+
+       For each digit i, from left to right
+       sum = num * integ[i] + carry
+       carry = sum / 10;
+       ChangeDigit(i, sum%10)      ---> if (0 <= i && i < num.size()){
+       digits[i] = char('0' + (sum%10))
+       else{
+       error message for changeDigit
+       }
+        
+       After thats all done, add whats in the carry back into the sum
+
+       while (carry != 0){
+       AddSigDigit(carry % 10)     ---> if(num.size >= integ.size){
+       increase size of integ
+       }
+       integ[num] = char('0' + carry);
+       num++;          
+       carry /= 10
+       }*/
 
 
 

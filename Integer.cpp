@@ -380,13 +380,6 @@ namespace cosc326 {
         }
         return *this;
     }
-    
-    
-
-
-
-
-
 
     // Compound assignment operator *=
     Integer& Integer::operator*=(const Integer& integ) {
@@ -519,10 +512,6 @@ namespace cosc326 {
        num++;          
        carry /= 10
        }*/
-
-
-
-
 
     // Compound assignment operator /=
     Integer& Integer::operator/=(const Integer& integ) {

@@ -259,7 +259,7 @@ namespace cosc326 {
         std::vector<int> answer;
         bool answerIsPositive;
 
-         if (num.size() > integ.getSize()) {
+        if (num.size() > integ.getSize()) {
             smaller = integ.getNum();
             larger = num;
         } else if (num.size() < integ.getSize()){
@@ -383,6 +383,44 @@ namespace cosc326 {
             std::vector<int> z = integ.getNum();
             setAllFields(integ.getSize(), z, integ.isPositive());
             return *this;
+        }
+
+        std::vector<int> smaller;
+        std::vector<int> larger;
+        std::vector<int>
+        std::vector<Integer> answers;
+        Integer sum;
+        bool sumIsPositive;
+        int carry;
+        int index;
+
+        if (num.size() > integ.getSize()) {
+            smaller = integ.getNum();
+            larger = num;
+        } else (num.size() < integ.getSize()){
+            smaller = num;
+            larger = integ.getNum();
+        } 
+
+        if ((isPositive()) && (integ.isPositive())) {
+            sumIsPositive = true;
+        } else if ((!isPositive()) && (!integ.isPositive())) {
+            sumIsPositive = true;
+        } else {
+            sumIsPositive = false;
+        }
+
+
+        // For each digit in number 2 (smaller), do long multiplication
+        // Add the answer figure to an Integer
+        // Add this integer into Answer vector of Integers.
+        for (int i = 0; i < smaller.size(); i++) {
+
+        }
+
+        // Loop through every integer in answer, add them together.
+        for (int i = 0; i < answer.size(); i++) {
+            sum += answer[i];
         }
 
         return *this;

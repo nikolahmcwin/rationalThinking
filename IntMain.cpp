@@ -10,7 +10,7 @@ using namespace cosc326;
 
 int main() {
 
-    Integer i15("-0");
+    Integer i15("99");
     Integer i16("99");
     std::cout << "i15 is: " << i15 << std::endl;
     std::cout << "i16 is: " << i16 << std::endl;
@@ -184,6 +184,8 @@ int main() {
 	std::cout << "New, i1 + i2 = " << i1 + i2 << std::endl;
 	std::cout << "New, i1 * i2 = " << i1 * i2 << std::endl;
     */
+   
     return 0;
+
 }
 

@@ -10,22 +10,30 @@ using namespace cosc326;
 
 int main() {
 
-    Integer i15("15");
-    Integer i16("1");
+    Integer i15("-0");
+    Integer i16("99");
     std::cout << "i15 is: " << i15 << std::endl;
     std::cout << "i16 is: " << i16 << std::endl;
 
-    Integer i151("1");
-    Integer i161("1341");
+    Integer i151("-2222");
+    Integer i161("-4444");
     std::cout << "i151 is: " << i151 << std::endl;
     std::cout << "i161 is: " << i161 << std::endl;
 
+   /* // Test the vector constructor works
+    std::vector<int> s;
+    s.push_back(0);
+    s.push_back(9);
+    s.push_back(1);
+    Integer vecConstrucor(s);
+    std::cout << "vecConstrucor is: " << vecConstrucor << std::endl;
+*/
     //Multiplication
     Integer s1 = i15 * i16;
 	std::cout << "The product of "<< i15 << " * " << i16 << " = " << s1 << std::endl;
 
     s1 = i151 * i161;
-    std::cout << "The product of "<< i151 << " * " << i161 << " = " << s1 * i161 << std::endl;
+    std::cout << "The product of "<< i151 << " * " << i161 << " = " << s1 << std::endl;
 /*
     // Test default constructor
     Integer i1("0456");

@@ -28,7 +28,13 @@ namespace cosc326 {
         int temp, i, len;
 
         std::string str = str1;
-        str.erase(0, std::min(str.find_first_not_of('0'), str.size()-1));
+        if (str1.compare("-0") == 0) {
+            str.erase(0, 1);
+        }
+        //std::string str = str2;
+        if (str1.length() != 1) {
+            str.erase(0, std::min(str.find_first_not_of('0'), str.size()-1));
+        }
 
         // Find and ignore any trailing -'s or +'s
         if (str.find('-') != std::string::npos) {
@@ -51,6 +57,13 @@ namespace cosc326 {
             i++;
         }
         size = num.size();
+    }
+
+    // Helper constructor takes in vector of ints
+    Integer::Integer(const std::vector<int>& vec) {
+        num = vec;
+        size = vec.size();
+        positive = true;
     }
 
     // Destructor
@@ -102,6 +115,19 @@ namespace cosc326 {
             return false;
         } else {
             if (vec[0] ==  0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+    // Method to check if an Integer is 1 e.g. num = [1];
+    bool Integer::isOne(const Integer& integ) {
+        std::vector<int> vec = integ.getNum();
+        if (vec.size() > 1) {
+            return false;
+        } else {
+            if (vec[0] ==  1) {
                 return true;
             } else {
                 return false;
@@ -364,43 +390,15 @@ namespace cosc326 {
 
     // Compound assignment operator *=
     Integer& Integer::operator*=(const Integer& integ) {
-       // Inefficent solution is to add repeatadly
-
-        // If integ == 0, return 0
-        Integer zero;
-        if ((isZero(integ)) || (isZero(*this))) {
-            std::vector<int> z = zero.getNum();
-            //std::cout << "zero vector: " << z[0] << std::endl;
-            setAllFields(1, z, true);
-            return *this;
-        }
-
-        // If integ == 1, return integ
-        Integer one("1");
-        if (integ == one){
-            return *this;
-        } else if (*this == one) {
-            std::vector<int> z = integ.getNum();
-            setAllFields(integ.getSize(), z, integ.isPositive());
-            return *this;
-        }
-
+       
         std::vector<int> smaller;
         std::vector<int> larger;
-        std::vector<int>
-        std::vector<Integer> answers;
+        std::vector<int> tmp;
+        std::vector<Integer> answer;
         Integer sum;
         bool sumIsPositive;
-        int carry;
+        int carry = 0;
         int index;
-
-        if (num.size() > integ.getSize()) {
-            smaller = integ.getNum();
-            larger = num;
-        } else (num.size() < integ.getSize()){
-            smaller = num;
-            larger = integ.getNum();
-        } 
 
         if ((isPositive()) && (integ.isPositive())) {
             sumIsPositive = true;
@@ -410,19 +408,87 @@ namespace cosc326 {
             sumIsPositive = false;
         }
 
+        // If either number is 0, return 0
+        Integer zero;
+        if ((isZero(integ)) || (isZero(*this))) {
+            std::vector<int> z = zero.getNum();
+            //std::cout << "zero vector: " << z[0] << std::endl;
+            setAllFields(1, z, sumIsPositive);
+            return *this;
+        }
+
+        // If either number is 1, return the other number
+        if (isOne(integ)) {
+            return *this;
+        } else if (isOne(*this)) {
+            std::vector<int> z = integ.getNum();
+            setAllFields(z.size(), z, sumIsPositive);
+            /*
+            for (int i = 0; i < z.size(); i++) {
+                 std::cout << "Z is: " << z[i] << std::endl;
+            
+            } */
+           
+            return *this;
+        }
+
+        if (num.size() > integ.getSize()) {
+            smaller = integ.getNum();
+            larger = num;
+        } else { 
+            smaller = num;
+            larger = integ.getNum();
+        } 
 
         // For each digit in number 2 (smaller), do long multiplication
         // Add the answer figure to an Integer
         // Add this integer into Answer vector of Integers.
+        
         for (int i = 0; i < smaller.size(); i++) {
+            
+            tmp.clear();
+            for (int k = 0; k < i; k++) {
+                tmp.push_back(0);
+            }
 
+            if (smaller[i] == 0) {
+                tmp.push_back(0);
+
+            } else {
+                for (int j = 0; j < larger.size(); j++) {
+                    int prod = (smaller[i] * larger[j]) + carry;
+                    if (prod > 9) {
+                        int newProd = (prod % 10);
+                        carry = ((prod - newProd) / 10);
+                        prod = newProd; 
+                    } else {
+                        carry = 0;
+                    }
+                    //std::cout << "prod after: " << prod << std::endl;
+                    tmp.push_back(prod);
+                }
+                if ((carry != 0)) {
+                    tmp.push_back(carry);
+                }
+                carry = 0;
+            }
+            /*for (int i = 0; i < tmp.size(); i++) {
+                std::cout << "tmp: "  << tmp[i];
+            } */
+            
+            Integer tmpInteger(tmp);
+            answer.push_back(tmpInteger);
         }
+        
 
         // Loop through every integer in answer, add them together.
         for (int i = 0; i < answer.size(); i++) {
+            //std::cout << "answer[" << i << "]: " << answer[i] << std::endl;
             sum += answer[i];
         }
 
+        std::vector<int> s = sum.getNum();
+        setAllFields(sum.getSize(), s, sumIsPositive);
         return *this;
     }
 

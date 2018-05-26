@@ -27,6 +27,9 @@ namespace cosc326 {
         Integer(const Integer&);
         Integer(const std::string&);
 
+        // Helper constructor taking a vector of ints
+        Integer(const std::vector<int>&);
+
         // Destructor
         ~Integer();
         
@@ -43,6 +46,9 @@ namespace cosc326 {
     
         // Method to check if an Integer is 0 e.g. num = [0];
         bool isZero(const Integer&);
+
+        // Method to check if an Integer is 1 e.g. num = [1];
+        bool isOne(const Integer&);
 
         // Method to handle carry in subtraction
         std::vector<int> handleCarry(int index, const std::vector<int>& vec);

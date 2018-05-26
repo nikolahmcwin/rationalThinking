@@ -41,8 +41,9 @@ namespace cosc326 {
         void setNum(const std::vector<int>& vec);
         void setPositive(bool pos);
     
-        // Method to check if an Integer is 0 e.g. num = [0];
+        // Methods to check if an Integer is 0 or 1 e.g. num == [0] or num == [1];
         bool isZero(const Integer&);
+        bool isOne(const Integer&);
 
         // Method to handle carry in subtraction
         std::vector<int> handleCarry(int index, const std::vector<int>& vec);

@@ -13,7 +13,7 @@ int main() {
     // Test default constructor
     Integer i1("-3");
     std::cout << "i1 is: " << i1 << std::endl; 
-    
+
     // Test the integer constructor
     Integer copyi1(i1);
     std::cout << "copyi1 is: " << i1 << std::endl; 
@@ -63,8 +63,8 @@ int main() {
     Integer i10("2222");
     std::cout << "i10 is: " << i10 << std::endl;
 
-    Integer i15("15");
-    Integer i16("5");
+    Integer i15("0");
+    Integer i16("0");
     /*
 
     // Test the assignment operator =
@@ -154,7 +154,8 @@ int main() {
 
 
     //Multiplication
-	std::cout << "The product of "<< i15 << " * " << i16 << " = " << i15 * i16 << std::endl;
+    std::cout << "The product of "<< i15 << " * " << i16 << " = " << i15 * i16 << std::endl;
+    std::cout << "Times test! : " << 5 * 0 << std::endl;
 /*
 	std::cout << "Please enter new values for i1 and i2." << std::endl;
 	std::cin >> i1 >> i2;

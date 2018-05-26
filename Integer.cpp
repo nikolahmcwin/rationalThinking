@@ -106,6 +106,21 @@ namespace cosc326 {
         }
     }
 
+    // Method to check if an Integer is 1 e.g. num = [0];
+    bool Integer::isOne(const Integer& integ) {
+        std::vector<int> vec = integ.getNum();
+        if (vec.size() > 1) {
+            return false;
+        } else {
+            if (vec[0] == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+           
+    
     // Method to handle carry in subtraction
     std::vector<int> Integer::handleCarry(int index, const std::vector<int>& v) {
         std::vector<int> vec = v;
@@ -352,19 +367,12 @@ namespace cosc326 {
         return *this;
     }
     
-    
-
-
-
-
-
-
     // Compound assignment operator *=
     Integer& Integer::operator*=(const Integer& integ) {
         // Inefficent solution is to add repeatadly
 
-        // If integ == 0, return 0
-
+        // If integ
+                
         if (isZero(integ)) {
             return *this;
         } else if (isZero(*this)) {
@@ -372,19 +380,14 @@ namespace cosc326 {
            setAllFields(integ.getSize(), vec, integ.isPositive());
            return *this;
         }
-
-        /* If integ == 1, return integ
-        if (integ.getNum() == 1){
-            return *this;
-        }*/
-
+        
         // http://people.sabanciuniv.edu/levi/cs201/bigint.cpp
         
-        // Printing out somehows sets return to 0 and prints 15??
-        for(int i = 0; i < integ.getSize(); i++){
-            std::cout << i << std::endl;
-        }
+        // integ.getSize() if i16("16") is 16
+
         /* Essentially says
+           Make LHS most digits
+
         For each digit i, from left to right
             sum = num * integ[i] + carry
             carry = sum / 10;
@@ -404,7 +407,7 @@ namespace cosc326 {
                                              num++;          
             carry /= 10
         }*/
-                    
+        
         return *this;
     }
 

@@ -108,33 +108,6 @@ namespace cosc326 {
         positive = pos;
     }
 
-    // Method to check if an Integer is 0 e.g. num = [0];
-    bool Integer::isZero(const Integer& integ) {
-        std::vector<int> vec = integ.getNum();
-        if (vec.size() > 1) {
-            return false;
-        } else {
-            if (vec[0] ==  0) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
-    // Method to check if an Integer is 1 e.g. num = [1];
-    bool Integer::isOne(const Integer& integ) {
-        std::vector<int> vec = integ.getNum();
-        if (vec.size() > 1) {
-            return false;
-        } else {
-            if (vec[0] ==  1) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
-
     // Method to handle carry in subtraction
     std::vector<int> Integer::handleCarry(int index, const std::vector<int>& v) {
         std::vector<int> vec = v;
@@ -496,6 +469,33 @@ namespace cosc326 {
      *  METHODS BELOW HERE ARE NOT PART OF THE CLASS
      */
 
+
+    // Method to check if an Integer is 0 e.g. num = [0];
+    bool isZero(const Integer& integ) {
+        std::vector<int> vec = integ.getNum();
+        if (vec.size() > 1) {
+            return false;
+        } else {
+            if (vec[0] ==  0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+    // Method to check if an Integer is 1 e.g. num = [1];
+    bool isOne(const Integer& integ) {
+        std::vector<int> vec = integ.getNum();
+        if (vec.size() > 1) {
+            return false;
+        } else {
+            if (vec[0] ==  1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
 
     // Binary arithmetic operator +
     Integer operator+(const Integer& i1, const Integer& i2) {

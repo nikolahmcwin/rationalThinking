@@ -11,12 +11,12 @@ using namespace cosc326;
 int main() {
 
     Integer i15("99");
-    Integer i16("99");
+    Integer i16("1");
     std::cout << "i15 is: " << i15 << std::endl;
     std::cout << "i16 is: " << i16 << std::endl;
 
-    Integer i151("-2222");
-    Integer i161("-4444");
+    Integer i151("-0");
+    Integer i161("-2222");
     std::cout << "i151 is: " << i151 << std::endl;
     std::cout << "i161 is: " << i161 << std::endl;
 
@@ -76,11 +76,11 @@ int main() {
 
     // Test the string constuctor
 
-    Integer i11("100");
+    Integer i11("0");
     std::cout << "i1 is: " << i1 << std::endl; 
     Integer i21("99");
     std::cout << "i1 is: " << i1 << std::endl; 
-    Integer i111("-50");
+    Integer i111("-0");
     std::cout << "i1 is: " << i1 << std::endl; 
     Integer i211("27");
     std::cout << "i1 is: " << i1 << std::endl; 

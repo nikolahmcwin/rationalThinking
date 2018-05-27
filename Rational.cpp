@@ -31,6 +31,7 @@ namespace cosc326 {
         Integer one("1");
         Integer zero;
         num = a;
+        num.setPositive(true);
         den = one;
         whole = zero;
         pos = a.isPositive();
@@ -40,7 +41,9 @@ namespace cosc326 {
     Rational::Rational(const Integer& a, const Integer& b) {
         Integer zero;
         num = a;
+        num.setPositive(true);
         den = b;
+        den.setPositive(true);
         whole = zero;
         if ((a.isPositive()) && (b.isPositive())) {
             pos = true;
@@ -55,8 +58,11 @@ namespace cosc326 {
     // Takes in three Integers to create a Rational (a + b/c)
     Rational::Rational(const Integer& a, const Integer& b, const Integer& c) {
         whole = a;
+        whole.setPositive(true);
         num = b;
+        num.setPositive(true);
         den = c;
+        den.setPositive(true);
         if (a.isPositive()) {
             pos = true;
         } else {
@@ -137,28 +143,6 @@ namespace cosc326 {
         pos = p;
     }
 
-    // Helper method to simplify
-    Rational& Rational::simplify() {
-        // Utilise GCD 
-        // Adjust
-
-        return *this;
-    }
-
-    // Helper method to UNsimplify
-    Rational& Rational::unsimplify() {
-        // Add the whole part back in
-        // w.n/d ---> b/a ... where b = (w*d+n)
-        return *this;
-    }
-
-    // Helper method to check if simplified
-    bool Rational::isSimplified() {
-
-        // if GCD == 1 return true
-        return false;
-    }
-
     // The assignment operator =
 	Rational& Rational::operator=(const Rational& r) {
 		if (*this != r) {
@@ -210,6 +194,38 @@ namespace cosc326 {
      *  METHODS BELOW HERE ARE NOT PART OF THE CLASS
      */
 
+
+    // Helper method to simplify
+    Rational simplify(const Rational& r) {
+        Rational r2;
+        r2 = r;
+        //Integer nines("999999");
+        //r2.setNum(nines);
+        
+        // Utilise GCD 
+        // Adjust
+
+        return r2;
+    } 
+
+    // Helper method to UNsimplify
+    Rational unsimplify(const Rational& r) {
+        Rational r2;
+        r2 = r;
+        
+        // Add the whole part back in
+        // w.n/d ---> b/a ... where b = (w*d+n)
+        return r2;
+    }
+
+    // Helper method to check if simplified
+    bool isSimplified(const Rational& r) {
+         // if GCD == 1 return true
+        return false;
+    }
+
+
+
     // The binary arithmetic operator +
    	Rational operator+(const Rational& lhs, const Rational& rhs) {
 		return lhs;
@@ -231,16 +247,26 @@ namespace cosc326 {
 	}
 
     // The print stream operator <<
-	std::ostream& operator<<(std::ostream& ostr, const Rational& r) {
+	std::ostream& operator<<(std::ostream& ostr, const Rational& r1) {
 		std::string numString;
+        Rational r;
+        r = simplify(r1);
+        
         if (!r.isPos()) {
             ostr << '-';
         }
+
+        Integer w = r.getWhole();
+        if (!isZero(w)) {
+            ostr << w << ".";
+        }
+
         ostr << r.getNum();
-        ostr << "/";
-        ostr << r.getDen();
-        //numString +=  "test print";
-        //ostr << numString;
+
+        Integer d = r.getDen();
+        if (!isZero(d) && !isOne(d)) {
+            ostr << "/" << d;
+        }
         return ostr;
 	}
 
@@ -252,32 +278,32 @@ namespace cosc326 {
         return istr;
 	}
 
-    // The compairson operator <
+    // The comparison operator <
 	bool operator<(const Rational& lhs, const Rational& rhs) {
 		return true;
 	}
 
-    // The compairson operator >
+    // The comparison operator >
 	bool operator> (const Rational& lhs, const Rational& rhs) {
 		return true;
 	}
 
-    // The compairson operator <=
+    // The comparison operator <=
 	bool operator<=(const Rational& lhs, const Rational& rhs) {
 		return true;
 	}
 
-    // The compairson operator >=
+    // The comparison operator >=
 	bool operator>=(const Rational& lhs, const Rational& rhs) {
 		return true;
 	}
 
-    // The compairson operator ==
+    // The comparison operator ==
 	bool operator==(const Rational& lhs, const Rational& rhs) {
 		return true;
 	}
 
-    // The compairson operator !=
+    // The comparison operator !=
 	bool operator!=(const Rational& lhs, const Rational& rhs) {
 		return true;
 	}

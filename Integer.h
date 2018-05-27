@@ -44,11 +44,6 @@ namespace cosc326 {
         void setNum(const std::vector<int>& vec);
         void setPositive(bool pos);
     
-        // Method to check if an Integer is 0 e.g. num = [0];
-        bool isZero(const Integer&);
-
-        // Method to check if an Integer is 1 e.g. num = [1];
-        bool isOne(const Integer&);
 
         // Method to handle carry in subtraction
         std::vector<int> handleCarry(int index, const std::vector<int>& vec);
@@ -69,6 +64,13 @@ namespace cosc326 {
 
     };
 
+
+    // Method to check if an Integer is 0 e.g. num = [0];
+    bool isZero(const Integer&);
+
+    // Method to check if an Integer is 1 e.g. num = [1];
+    bool isOne(const Integer&);
+    
     // The binary arithmetic operators: 
     Integer operator+(const Integer& i1, const Integer& i2);
     Integer operator-(const Integer& i1, const Integer& i2);

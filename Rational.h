@@ -47,13 +47,6 @@ namespace cosc326 {
         void setWhole(const Integer&);
         void setPos(bool p);
 
-        // Helper method to simplify
-        Rational& simplify(); 
-        // Helper method to UNsimplify
-        Rational& unsimplify();
-        // Helper method to check if simplified
-        bool isSimplified();
-        
         // The assignment operator =
         Rational& operator=(const Rational& r);
         
@@ -67,6 +60,13 @@ namespace cosc326 {
 		Rational& operator*=(const Rational& r);
 		Rational& operator/=(const Rational& r);
     };
+
+    // Helper method to simplify
+    Rational simplify(const Rational& r); 
+    // Helper method to UNsimplify
+    Rational unsimplify(const Rational& r);
+    // Helper method to check if simplified
+    bool isSimplified(const Rational& r);
 
 	// Binary operators
 	Rational operator+(const Rational& lhs, const Rational& rhs); // lhs + rhs;

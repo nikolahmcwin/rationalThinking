@@ -150,7 +150,10 @@ namespace cosc326 {
 
     // Mutator for setting all fields num, den, whole and pos
     void Rational::setAllFields(const Integer& n, const Integer& d, const Integer& w, bool p) {
-
+        num = n;
+        den = d;
+        whole = w;
+        pos = p;
     }
 
     // Mutator for setting num
@@ -202,16 +205,26 @@ namespace cosc326 {
 
     // Compound assignment operator +=
 	Rational& Rational::operator+=(const Rational& r) {
+        Rational r1 = unsimplify(r);
+        *this = unsimplify(*this);
+        Integer newDen;
+        newDen = (den * r.getDen());
+
+        // Rational newThis;
+        // newThis = simplify(*this);
+
 		return *this;
 	}
 
     // Compound assignment operator -=
 	Rational& Rational::operator-=(const Rational& r) {
+
 		return *this;
 	}
 
     // Compound assignment operator *=
 	Rational& Rational::operator*=(const Rational& r) {
+
 		return *this;
 	}
 
@@ -227,35 +240,34 @@ namespace cosc326 {
 
     // Helper method to simplify
     Rational simplify(const Rational& r) {
-        Rational r2;
-        r2 = r;
-
+        Rational r2 = r;
         Integer n = r.getNum();
         Integer d = r.getDen();
         Integer w = r.getWhole();
-        
+    
         // If a/b > 1, set the whole part
         if (n >= d) {
-            Integer tmp;
-            tmp = n;
-            //n = 
-
+            Integer tmp = n;
+            // w = (n/d);
+            // n = (n - (w*d));
         }
-        // Simplify remaining fraction
+        // Simplify remaining fraction part 
         //Integer g = gcd(n, d);
-        //n = n / g;
-        //d = d / g;
-
+        //n = (n / g);
+        //d = (d / g);
+        r2.setNum(n);
+        r2.setDen(d);
+        r2.setWhole(w);
         return r2;
     } 
 
     // Helper method to UNsimplify
     Rational unsimplify(const Rational& r) {
-        Rational r2;
-        r2 = r;
-        
-        // Add the whole part back in
-        // w.n/d ---> b/a ... where b = (w*d+n)
+        Rational r2 = r;
+        Integer zero;
+        r2.setWhole(zero);
+        Integer newNum = ((r.getWhole() * r.getDen()) + r.getNum());
+        r2.setNum(newNum);
         return r2;
     }
 
@@ -266,44 +278,47 @@ namespace cosc326 {
     }
 
 
-
     // The binary arithmetic operator +
    	Rational operator+(const Rational& lhs, const Rational& rhs) {
-		return lhs;
+        Rational sum(lhs);
+        sum += rhs;
+		return sum;
 	}
 
     // The binary arithmetic operator -
 	Rational operator-(const Rational& lhs, const Rational& rhs) {
-		return lhs;
+		Rational sum(lhs);
+        sum -= rhs;
+		return sum;
 	}
 
     // The binary arithmetic operator *
 	Rational operator*(const Rational& lhs, const Rational& rhs) {
-		return lhs;
+		Rational sum(lhs);
+        sum *= rhs;
+		return sum;
 	}
 
     // The binary arithmetic operator /
 	Rational operator/(const Rational& lhs, const Rational& rhs) {
-		return lhs;
+		Rational sum(lhs);
+        sum /= rhs;
+		return sum;
 	}
 
     // The print stream operator <<
 	std::ostream& operator<<(std::ostream& ostr, const Rational& r) {
 		std::string numString;
-        //Rational r;
-        //r = simplify(r1);
+        //Rational r = simplify(r1);
         
         if (!r.isPos()) {
             ostr << '-';
         }
-
         Integer w = r.getWhole();
         if (!isZero(w)) {
             ostr << w << ".";
         }
-
         ostr << r.getNum();
-
         Integer d = r.getDen();
         if (!isZero(d) && !isOne(d)) {
             ostr << "/" << d;

@@ -41,12 +41,12 @@ int main() {
     std::cout << "copyr3 is: " << copyr3 << std::endl;
 
     // Test the string constuctor
-    Rational r21("1");
+    Rational r21("5.1/3");
     std::cout << "r21 is: " << r21 << std::endl; 
-    Rational r31("-1/3");
+    Rational r31("1.2/3");
     std::cout << "r31 is: " << r31 << std::endl;
-    Rational r41("3.9");
-    std::cout << "r41 is: " << r41 << std::endl;
+    //Rational r41("3/9");
+    //std::cout << "r41 is: " << r41 << std::endl;
 
     /*
 

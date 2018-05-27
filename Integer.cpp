@@ -53,7 +53,6 @@ namespace cosc326 {
             tempStr = str.substr(i, 1);
             temp = std::atoi(tempStr.c_str());
             num.insert(num.begin(), temp);
-            
             i++;
         }
         size = num.size();
@@ -124,7 +123,7 @@ namespace cosc326 {
 
     // Assignment operator =
     Integer& Integer::operator=(const Integer& integ) {
-        if (this != &integ) {
+        if (*this != integ) {
             size = integ.size;
             num = integ.num;
             positive = integ.positive;     

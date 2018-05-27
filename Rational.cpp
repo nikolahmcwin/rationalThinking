@@ -31,19 +31,18 @@ namespace cosc326 {
         Integer one("1");
         Integer zero;
         num = a;
-        num.setPositive(true);
         den = one;
         whole = zero;
         pos = a.isPositive();
+        num.setPositive(true);
+        
     }
     
     // Takes in two Integers to create a Rational (a/b)
     Rational::Rational(const Integer& a, const Integer& b) {
         Integer zero;
         num = a;
-        num.setPositive(true);
         den = b;
-        den.setPositive(true);
         whole = zero;
         if ((a.isPositive()) && (b.isPositive())) {
             pos = true;
@@ -52,45 +51,76 @@ namespace cosc326 {
         } else {
             pos = false;
         }
-
+        num.setPositive(true);
+        den.setPositive(true);
     }
 
     // Takes in three Integers to create a Rational (a + b/c)
     Rational::Rational(const Integer& a, const Integer& b, const Integer& c) {
         whole = a;
-        whole.setPositive(true);
         num = b;
-        num.setPositive(true);
         den = c;
-        den.setPositive(true);
         if (a.isPositive()) {
             pos = true;
         } else {
             pos = false;
         }
+        whole.setPositive(true);
+        num.setPositive(true);
+        den.setPositive(true);
     }
 
     // Constructs with a string parameter
-    Rational::Rational(const std::string& str1){
-        Integer n;
-        Integer d;
-        Integer w;
-        int temp, i, len;
-
+    Rational::Rational(const std::string& str1) { 
         std::string str = str1;
+
         // Find and ignore any trailing -'s or +'s
         if (str.find('-') != std::string::npos) {
-            i = 1;
             pos = false;
-        } else if (str.find('+') != std::string::npos) {
-            i = 1;
+        } else {
             pos = true;
-        } else if (str.find('/') != std::string::npos) {
+        }
 
-        } else if (str.find('.') != std::string::npos) {
+        size_t posSlash = str.find('/');
+        size_t posDot = str.find('.');
+        Integer zero;
+        Integer one("1");
 
-        } 
-
+        if (posDot == std::string::npos) {
+            // If there is no decimal place
+            whole = zero;
+            if (posSlash == std::string::npos) {
+                // If there is no fraction
+                Integer n(str.substr(0));
+                num = n;
+                den = one;                                
+            } else {
+                // If there is a fraction
+                Integer n(str.substr(0, (posSlash)));
+                num = n;
+                Integer d(str.substr((posSlash+1)));
+                den = d;
+            }
+        } else {
+            // If there is a decimal place
+            Integer w(str.substr(0, (posDot)));
+            whole = w;
+            if (posSlash == std::string::npos) {
+                // If there is no fraction
+                Integer n(str.substr((posDot+1)));
+                num = n;
+                den = one;
+            } else {
+                // If there is a fraction
+                Integer n(str.substr((posDot+1), (posSlash-posDot-1)));
+                num = n;
+                Integer d(str.substr((posSlash+1)));
+                den = d;
+            }
+        }
+        whole.setPositive(true);
+        num.setPositive(true);
+        den.setPositive(true);
     }
     
     // Deconstructor
@@ -199,11 +229,22 @@ namespace cosc326 {
     Rational simplify(const Rational& r) {
         Rational r2;
         r2 = r;
-        //Integer nines("999999");
-        //r2.setNum(nines);
+
+        Integer n = r.getNum();
+        Integer d = r.getDen();
+        Integer w = r.getWhole();
         
-        // Utilise GCD 
-        // Adjust
+        // If a/b > 1, set the whole part
+        if (n >= d) {
+            Integer tmp;
+            tmp = n;
+            //n = 
+
+        }
+        // Simplify remaining fraction
+        //Integer g = gcd(n, d);
+        //n = n / g;
+        //d = d / g;
 
         return r2;
     } 
@@ -247,10 +288,10 @@ namespace cosc326 {
 	}
 
     // The print stream operator <<
-	std::ostream& operator<<(std::ostream& ostr, const Rational& r1) {
+	std::ostream& operator<<(std::ostream& ostr, const Rational& r) {
 		std::string numString;
-        Rational r;
-        r = simplify(r1);
+        //Rational r;
+        //r = simplify(r1);
         
         if (!r.isPos()) {
             ostr << '-';

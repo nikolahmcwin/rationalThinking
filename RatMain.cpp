@@ -21,35 +21,34 @@ int main() {
     std::cout << "copyr1 is: " << r1 << std::endl;
 
     //Test the Integer constructors
-    Integer a("-2");
-    Integer b("-45");
+    Integer a("2");
+    Integer b("4");
     Integer c("11");
+    std::cout << "a is: " << a << std::endl;
+    std::cout << "b is: " << b << std::endl;
+    std::cout << "c is: " << c << std::endl;
 
     Rational r2(a);
-    std::cout << "r2 is: " << r2 << std::endl;
+    std::cout << "r2 is: " << r2 << std::endl;    
     Rational r3(a, b);
     std::cout << "r3 is: " << r3 << std::endl;
     Rational r4(a, b, c);
     std::cout << "r4 is: " << r4 << std::endl;
+    
 
     // Test the Rational copy constructor
     Rational copyr3(r3);
     std::cout << "copyr3 is: " << copyr3 << std::endl;
 
-    
- 
-
-    /*
-
     // Test the string constuctor
-    Rational r21("+6/12");
+    Rational r21("1");
     std::cout << "r21 is: " << r21 << std::endl; 
-
     Rational r31("-1/3");
     std::cout << "r31 is: " << r31 << std::endl;
-    Rational r41("-1.4/5");
+    Rational r41("3.9");
     std::cout << "r41 is: " << r41 << std::endl;
 
+    /*
 
     // Test the assignment operator =
     i1 = i2;

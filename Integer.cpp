@@ -160,18 +160,19 @@ namespace cosc326 {
     }
 
     // Unary Operator +
-    Integer& Integer::operator+() {
-        return *this;
+    Integer Integer::operator+() const{
+        return Integer(*this);
     }
         
     // Unary Operator -
-    Integer& Integer::operator-() {
+    Integer Integer::operator-() const {
+        Integer n = (*this);
         if (positive) {
-            positive = false;
+            n.setPositive(false);
         } else if (!positive) {
-            positive = true;
+            n.setPositive(true);
         }
-        return *this;
+        return n;
     }
 
     // Compound assignment operator +=
@@ -492,7 +493,7 @@ namespace cosc326 {
     }
 
     /**
-     *  These operators below are NOT part of the class itself.
+     *  METHODS BELOW HERE ARE NOT PART OF THE CLASS
      */
 
 

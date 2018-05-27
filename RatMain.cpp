@@ -15,7 +15,7 @@ int main() {
     // Test default constructor
     Rational r1;
     std::cout << "r1 is: " << r1 << std::endl; 
-    
+    /*
     //Test the rational constructor
     Integer i5("100");
     std::cout << "i5 Integer is: " << i5 << std::endl;
@@ -24,7 +24,7 @@ int main() {
     Rational r2(i5);
     std::cout << "r2 Rational is: " << r2 << std::endl;
     
-    /*
+    
     // Test the Rational constructor
     //Rational copyr1(r1);
     //std::cout << "copyr1 is: " << r1 << std::endl; 

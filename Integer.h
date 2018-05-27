@@ -57,8 +57,8 @@ namespace cosc326 {
         Integer& operator=(const Integer&);
 
         // The unary operators: + and -
-        Integer& operator+();
-        Integer& operator-();
+        Integer operator+() const;
+        Integer operator-() const;
 
         // The compound assignment operators: +=, -=, *=, /=, and %=
         Integer& operator+=(const Integer& integ);
@@ -66,17 +66,8 @@ namespace cosc326 {
         Integer& operator*=(const Integer& integ);
         Integer& operator/=(const Integer& integ);
         Integer& operator%=(const Integer& integ);
-/*
-        // The comparison operators: ==, !=,<,<=,>, and >=
-        bool operator==(const Integer& integ);
-        bool operator!=(const Integer& integ);
-        bool operator<(const Integer& integ);
-        bool operator<=(const Integer& integ);
-        bool operator>(const Integer& integ);
-        bool operator>=(const Integer& integ);
-*/
-    };
 
+    };
 
     // The binary arithmetic operators: 
     Integer operator+(const Integer& i1, const Integer& i2);

@@ -17,71 +17,71 @@ namespace cosc326 {
     class Rational {
 
     private:
-        bool positive;
-        Integer numerator;
-        Integer denominator;
+        bool pos;
+        Integer num;
+        Integer den;
+        Integer whole;
         
     public: 
         // Constructors
-        // Creates rational with value of 0
-        Rational();
-        // Creates rational that duplicates the provided rational
-        Rational(const Rational& rat);
-        // Takes in Integer with result r1 = a
-        Rational(const Integer&);
-        // Takes in Integers with result r2 = a/b
-        Rational(const Integer&, const Integer&);
-        // Takes in Integers with result r3 = a + b/c
-        Rational(const Integer&, const Integer&, const Integer&);
-        // Constructs with a string parameter
+ 		Rational();
         Rational(const std::string& str);
+        Rational(const Rational& r);
+        Rational(const Integer& a); 
+        Rational(const Integer& a, const Integer& b);
+        Rational(const Integer& a, const Integer& b, const Integer& c);
 
         // Deconstructor
         ~Rational();
 
-        // Getters
-        const Integer& getNumerator() const;
-        const Integer& getDenominator() const;
-        bool getRatSign() const;
+        // Accessors
+        const Integer& getNum() const;
+        const Integer& getDen() const;
+        const Integer& getWhole() const;
+        bool isPos() const;
 
-/*
-        // Assignment operator =
-        Rational& operator=(const Rational& rat);
+        // Mutators
+        void setAllFields(const Integer&, const Integer&, const Integer&, bool p);
+        void setNum(const Integer&);
+        void setDen(const Integer&);
+        void setWhole(const Integer&);
+        void setPos(bool p);
 
-        // The unary operators: + and -
-        Rational& operator+();
-        Rational& operator-();
-
-        // The inequal binary arithmetic operators /, and %
-        Rational& operator/(const Rational& rat);
-        Rational& operator%(const Rational& rat);
-
-        // The compound assignment operators: +=, -=, *=, /=, and %=
-        Rational& operator+=(const Rational& rat);
-        Rational& operator-=(const Rational& rat);
-        Rational& operator*=(const Rational& rat);
-        Rational& operator/=(const Rational& rat);
-        Rational& operator%=(const Rational& rat);
-
-        // The comparison operators: ==, !=,<,<=,>, and >=
-        bool operator==(const Rational& rat);
-        bool operator!=(const Rational& rat);
-        bool operator<(const Rational& rat);
-        bool operator<=(const Rational& rat);
-        bool operator>(const Rational& rat);
-        bool operator>=(const Rational& rat);
-*/
+        // Helper method to simplify
+        Rational& simplify(); 
+        // Helper method to UNsimplify
+        Rational& unsimplify();
+        // Helper method to check if simplified
+        bool isSimplified();
+        
+        // The assignment operator =
+        Rational& operator=(const Rational& r);
+        
+		// Unary operators
+		Rational operator-() const;
+		Rational operator+() const;
+	   
+        // Arithmetic assignment operators
+		Rational& operator+=(const Rational& r);
+		Rational& operator-=(const Rational& r);
+		Rational& operator*=(const Rational& r);
+		Rational& operator/=(const Rational& r);
     };
 
-    // The equal-either-way binary arithmetic operators: +, -, *
-    Rational operator+(const Rational& rat1, const Rational& rat2);
-    Rational operator-(const Rational& rat1, const Rational& rat2);
-    Rational operator*(const Rational& rat1, const Rational& rat2);
+	// Binary operators
+	Rational operator+(const Rational& lhs, const Rational& rhs); // lhs + rhs;
+	Rational operator-(const Rational& lhs, const Rational& rhs); // lhs - rhs;
+	Rational operator*(const Rational& lhs, const Rational& rhs); // lhs * rhs;
+	Rational operator/(const Rational& lhs, const Rational& rhs); // lhs / rhs;
+	
+	std::ostream& operator<<(std::ostream& os, const Rational& i);  // std::cout << i << std::endl;
+	std::istream& operator>>(std::istream& is, Rational& i);        // std::cin >> i;
 
-
-    // The streaming insertion and extraction operators: << and >>
-    std::ostream& operator<<(std::ostream& ostr, const Rational& rat);
-	std::istream& operator>>(std::istream& istr, Rational& rat);
+	bool operator> (const Rational& lhs, const Rational& rhs); // lhs > rhs
+	bool operator<=(const Rational& lhs, const Rational& rhs); // lhs <= rhs
+	bool operator>=(const Rational& lhs, const Rational& rhs); // lhs >= rhs
+	bool operator==(const Rational& lhs, const Rational& rhs); // lhs == rhs
+	bool operator!=(const Rational& lhs, const Rational& rhs); // lhs != rhs
 
 }
 

@@ -26,7 +26,7 @@ int main() {
     Integer i19("100703089");
     Integer i20("90301");
 
-    Integer i21("10002030300209000202030004040580092010109200029302030209320039200029302002930202092039200");
+    Integer i2111("10002030300209000202030004040580092010109200029302030209320039200029302002930202092039200");
     Integer i22("299302030003920390343040340003043032030401024012030230040234020503060700803506030602304034013040103");
 
     Integer i23("-20210391293238");
@@ -56,8 +56,8 @@ int main() {
     s1 = i19 * i20;
     std::cout << "The product of " << i19 << " * " << i20 << " = " << s1 << std::endl;
 
-    s1 = i21 * i22;
-    std::cout << "The product of " << i21 << " * " << i22 << " = " << s1 << std::endl;
+    s1 = i2111 * i22;
+    std::cout << "The product of " << i2111 << " * " << i22 << " = " << s1 << std::endl;
 
     s1 = i23 - i24;
     std::cout << "The product of " << i23 << " - " << i24 << " = " << s1 << std::endl;
@@ -65,7 +65,7 @@ int main() {
     s1 = i25 - i26;
     std::cout << "The product of " << i25 << " - " << i26 << " = " << s1 << std::endl;
     
-    /*
+    
     // Test default constructor
     Integer i1("0456");
     std::cout << "i1 is: " << i1 << std::endl; 
@@ -85,7 +85,7 @@ int main() {
     Integer i211("27");
     std::cout << "i1 is: " << i1 << std::endl; 
 
-    Integer i2("+23456788765234564");
+    Integer i2("23456788765234564");
     std::cout << "i2 is: " << i2 << std::endl; 
 
     Integer i3("1000");
@@ -126,15 +126,16 @@ int main() {
     std::cout << "i1 now = i2. i1: " << i1 << std::endl;
 
     // Test the unary operators + and -
-    +i2;
-    std::cout << "positive i2: " << i2 << std::endl;
-    +i3;
-    std::cout << "positive i3: " << i3 << std::endl;
+    Integer ix;
+    ix = +i2;
+    std::cout << "positive i2: " << ix << std::endl;
+    ix = +i3;
+    std::cout << "positive i3: " << ix << std::endl;
 
-    -i2;
-    std::cout << "negated i2: " << i2  << std::endl;
-    -i3;
-    std::cout << "negated i3: " << i3 << std::endl;
+    ix = -i2;
+    std::cout << "negated i2: " << ix  << std::endl;
+    ix = -i3;
+    std::cout << "negated i3: " << ix << std::endl;
     
     // Test the comparison operator ==
     bool t1 = (i1 == copyi1);
@@ -152,10 +153,10 @@ int main() {
     std::cout << i2 << " != " << i3 << " gives: " << t4 << std::endl; 
 
     // Test <= operator
-    bool t1 = (i1 <= i2);
+    t1 = (i1 <= i2);
     std::cout << i1 << " <= " << i2 << " gives: " << t1 << std::endl;
 
-    bool t2 = (i3 <= i4);
+    t2 = (i3 <= i4);
     std::cout << i3 << " <= " << i4 << " gives: " << t2 << std::endl;  
     
     // Test < operator
@@ -205,7 +206,7 @@ int main() {
 
     s2 = (i9 - i10);
     std::cout << "The sum of "<< i9 << " - " << i10 << " = " << s2 << std::endl;
-    */
+    
 
 /*
 	std::cout << "Please enter new values for i1 and i2." << std::endl;

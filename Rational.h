@@ -65,8 +65,6 @@ namespace cosc326 {
     Rational simplify(const Rational& r); 
     // Helper method to UNsimplify
     Rational unsimplify(const Rational& r);
-    // Helper method to check if simplified
-    bool isSimplified(const Rational& r);
 
 	// Binary operators
 	Rational operator+(const Rational& lhs, const Rational& rhs); // lhs + rhs;

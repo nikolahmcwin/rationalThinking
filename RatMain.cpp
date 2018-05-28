@@ -13,7 +13,7 @@ using namespace cosc326;
 int main() {
         
     // Test default constructor
-    Rational r1;
+    Rational r1("13/2");
     std::cout << "r1 is: " << r1 << std::endl; 
     
     // Test the Rational copy constructor
@@ -43,7 +43,7 @@ int main() {
     // Test the string constuctor
     Rational r21("1/5");
     std::cout << "r21 is: " << r21 << std::endl; 
-    Rational r31("2/5");
+    Rational r31("-1/5");
     std::cout << "r31 is: " << r31 << std::endl;
     //Rational r41("3/9");
     //std::cout << "r41 is: " << r41 << std::endl;
@@ -51,6 +51,12 @@ int main() {
     //Addition
 	Rational s = (r21 + r31);
     std::cout << "The sum of " << r21 << " + " << r31 << " = " << s << std::endl;
+    
+     
+    // Subtraction
+    Rational s2 = r21 - r31;
+    std::cout << "The sum "<< r21 << " - " << r31 << " = " << s2 << std::endl;
+
     
     // Test the comparison operator ==
     bool t1 = (r1 == copyr1);
@@ -78,8 +84,7 @@ int main() {
     t2 = (r21 >= r31);
     std::cout << r21 << " >= " << r31 << " gives: " << t2 << std::endl; 
     
-    /*
-
+/*
     // Test the assignment operator =
     i1 = i2;
     std::cout << "i1 now = i2. i1: " << i1 << std::endl;
@@ -96,10 +101,7 @@ int main() {
     ix = -i3;
     std::cout << "negated i3: " << ix << std::endl; 
     
-    
-    // Subtraction
-    //Rational s2 = r1 - r2;
-    //std::cout << "The sum "<< r1 << " - " << r2 << " = " << s2 << std::endl;
+   
 
     //Multiplication
 	std::cout << "The product r1 * r2 = " << r1 * r2 << std::endl;

@@ -207,13 +207,39 @@ namespace cosc326 {
 	Rational& Rational::operator+=(const Rational& r1) {
         Rational r = unsimplify(r1);
         *this = unsimplify(*this);
-        Integer newNum;
-        newNum = (r.getNum() * den);
-        den *= r.getDen();
-        num *= r.getDen();
-        num += newNum;
-        //*this = simplify(*this);
 
+        // HANDLE POS NEG FUUUUCCCKKKKKK
+       
+        if (pos) {
+            if (r.isPos()) {
+                Integer newNum;
+                newNum = (r.getNum() * den);
+                den *= r.getDen();
+                num *= r.getDen();
+                num += newNum;
+            } else {
+                r.setPos(true);
+                *this -= r;
+            }
+        } else { 
+            if (r.isPos()) {
+                // -a + b = b - a
+                Rational tmp((*this));
+                *this = r;
+                r = tmp;
+                r.setPos(true);
+                *this -= r;
+            } else {
+                // -a + -b = -a - b = -(a+b);
+                pos = true;
+                Rational tmp(r);
+                tmp.setPos(true);
+                *this += r;
+                pos = false;     
+            }
+        }
+        
+        //*this = simplify(*this);
 		return *this;
 	}
 
@@ -221,11 +247,34 @@ namespace cosc326 {
 	Rational& Rational::operator-=(const Rational& r1) {
         Rational r = unsimplify(r1);
         *this = unsimplify(*this);
-        Integer newNum;
-        newNum = (r.getNum() * den);
-        den *= r.getDen();
-        num *= r.getDen();
-        num -= newNum;
+
+        if (pos) {
+            if (r.isPos()) {
+                Integer newNum;
+                newNum = (r.getNum() * den);
+                den *= r.getDen();
+                num *= r.getDen();
+                num -= newNum;
+            } else {
+                r.setPos(true);
+                *this += r;
+            }
+        } else { 
+            if (r.isPos()) {
+                // -a - b = -(a + b)
+                pos = true;
+                *this += r;
+                pos = false;   
+            } else {
+                // -a - -b = -a + b = b - a;
+                Rational tmp((*this));
+                *this = r;
+                r = tmp;
+                r.setPos(true);
+                *this -= r;
+            }
+        }
+        
         //*this = simplify(*this);
 		return *this;
 	}
@@ -234,8 +283,19 @@ namespace cosc326 {
 	Rational& Rational::operator*=(const Rational& r1) {
         Rational r = unsimplify(r1);
         *this = unsimplify(*this);
+
+
+        // HANDLE POS NEG FUUUUCCCKKKKKK
+        
         den *= r.getDen();
         num *= r.getNum();
+
+        if (((pos) && (r1.isPos())) || ((!pos) && (!r1.isPos()))) {
+            pos = true;
+        } else {
+            pos = false;
+        }
+
         //*this = simplify(*this);
 		return *this;
 	}
@@ -248,6 +308,13 @@ namespace cosc326 {
         swapped.setNum(r.getDen());
         swapped.setDen(r.getNum());
         *this *= swapped;
+
+        if (((pos) && (r1.isPos())) || ((!pos) && (!r1.isPos()))) {
+            pos = true;
+        } else {
+            pos = false;
+        }
+
         //*this = simplify(*this);
         return *this;
 	}
@@ -290,15 +357,6 @@ namespace cosc326 {
         return r2;
     }
 
-    // Helper method to check if simplified
-    bool isSimplified(const Rational& r) {
-        //if (gcd(r.getNum(), r.getDen()) == 1) {
-         //    return true
-       // } 
-        return false;
-    }
-
-
     // The binary arithmetic operator +
    	Rational operator+(const Rational& lhs, const Rational& rhs) {
         Rational sum(lhs);
@@ -339,7 +397,11 @@ namespace cosc326 {
         if (!isZero(w)) {
             ostr << w << ".";
         }
-        ostr << r.getNum();
+        Integer n = r.getNum();
+        ostr << n;
+        if (isZero(n)) {
+            return ostr;
+        }
         Integer d = r.getDen();
         if (!isZero(d) && !isOne(d)) {
             ostr << "/" << d;
@@ -359,14 +421,16 @@ namespace cosc326 {
 	bool operator<(const Rational& lhs, const Rational& rhs) {
         if (lhs == rhs) {
             return false;
-        }
-        Rational r1 = unsimplify(lhs);
-        Rational r2 = unsimplify(rhs);
+        } 
+        if (((lhs.isPos()) && (rhs.isPos())) || ((!lhs.isPos()) && (!rhs.isPos()))) {
+            Rational r1 = unsimplify(lhs);
+            Rational r2 = unsimplify(rhs);
 
-        Integer i1 = (r1.getNum() * r2.getDen());
-        Integer i2 = (r2.getNum() * r1.getDen());    
-        if (i1 < i2) {
-            return true;
+            Integer i1 = (r1.getNum() * r2.getDen());
+            Integer i2 = (r2.getNum() * r1.getDen());    
+            if (i1 < i2) {
+                return true;
+            }  
         }
 		return false;
 	}
@@ -397,12 +461,14 @@ namespace cosc326 {
 
     // The comparison operator ==
 	bool operator==(const Rational& lhs, const Rational& rhs) {
-		Rational r1 = unsimplify(lhs);
-        Rational r2 = unsimplify(rhs);
-        Integer i1 = (r1.getNum() * r2.getDen());
-        Integer i2 = (r2.getNum() * r1.getDen());    
-        if (i1 == i2) {
-            return true;
+        if (((lhs.isPos()) && (rhs.isPos())) || ((!lhs.isPos()) && (!rhs.isPos()))) {
+            Rational r1 = unsimplify(lhs);
+            Rational r2 = unsimplify(rhs);
+            Integer i1 = (r1.getNum() * r2.getDen());
+            Integer i2 = (r2.getNum() * r1.getDen());    
+            if (i1 == i2) {
+                return true;
+            }
         }
 		return false;
 	}

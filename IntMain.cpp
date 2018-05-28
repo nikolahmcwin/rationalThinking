@@ -43,31 +43,10 @@ int main() {
     Integer vecConstrucor(s);
     std::cout << "vecConstrucor is: " << vecConstrucor << std::endl;
 */
-    //Multiplication
-    Integer s1 = i15 * i16;
-	std::cout << "The product of "<< i15 << " * " << i16 << " = " << s1 << std::endl;
-
-    s1 = i151 * i161;
-    std::cout << "The product of "<< i151 << " * " << i161 << " = " << s1 << std::endl;
-
-    s1 = i17 * i18;
-    std::cout << "The product of " << i17 << " * " << i18 << " = " << s1 << std::endl;
-
-    s1 = i19 * i20;
-    std::cout << "The product of " << i19 << " * " << i20 << " = " << s1 << std::endl;
-
-    s1 = i2111 * i22;
-    std::cout << "The product of " << i2111 << " * " << i22 << " = " << s1 << std::endl;
-
-    s1 = i23 - i24;
-    std::cout << "The product of " << i23 << " - " << i24 << " = " << s1 << std::endl;
-    
-    s1 = i25 - i26;
-    std::cout << "The product of " << i25 << " - " << i26 << " = " << s1 << std::endl;
     
     
     // Test default constructor
-    Integer i1("0456");
+    Integer i1("+2");
     std::cout << "i1 is: " << i1 << std::endl; 
     
     // Test the integer constructor
@@ -76,16 +55,16 @@ int main() {
 
     // Test the string constuctor
 
-    Integer i11("0");
+    Integer i11("99");
     std::cout << "i1 is: " << i1 << std::endl; 
-    Integer i21("99");
+    Integer i21("0");
     std::cout << "i1 is: " << i1 << std::endl; 
-    Integer i111("-0");
+    Integer i111("-120");
     std::cout << "i1 is: " << i1 << std::endl; 
-    Integer i211("27");
+    Integer i211("1");
     std::cout << "i1 is: " << i1 << std::endl; 
 
-    Integer i2("23456788765234564");
+    Integer i2("-100");
     std::cout << "i2 is: " << i2 << std::endl; 
 
     Integer i3("1000");
@@ -97,6 +76,16 @@ int main() {
     std::cout << "i5 is: " << i5 << std::endl;
     Integer i6("-15");
     std::cout << "i6 is: " << i6 << std::endl;
+
+ // Addition
+	Integer s = (i1 + i2);
+    std::cout << "The sum of " << i1 << " + " << i2 << " = " << s << std::endl;
+
+    s = (i11 + i21);
+    std::cout << "The sum of " << i11 << " + " << i21 << " = " << s << std::endl;
+
+    s = (i111 + i211);
+    std::cout << "The sum of " << i111 << " + " << i211 << " = " << s << std::endl;
 
 
     Integer i51("10");
@@ -119,7 +108,31 @@ int main() {
     Integer i10("2222");
     std::cout << "i10 is: " << i10 << std::endl;
 
+    //Multiplication
+    Integer s1 = i1 * i2;
+	std::cout << "The product of "<< i1<< " * " << i2 << " = " << s1 << std::endl;
+
+    s1 = i21 * i11;
+    std::cout << "The product of "<< i21<< " * " << i11 << " = " << s1 << std::endl;
+
+
+    s1 = i211 * i111;
+    std::cout << "The product of " << i211 << " * " << i111 << " = " << s1 << std::endl;
+
+    /*
+    s1 = i23 - i24;
+    std::cout << "The product of " << i23 << " - " << i24 << " = " << s1 << std::endl;
     
+    s1 = i25 - i26;
+    std::cout << "The product of " << i25 << " - " << i26 << " = " << s1 << std::endl;
+
+
+    s1 = i17 * i18;
+    std::cout << "The product of " << i17 << " * " << i18 << " = " << s1 << std::endl;
+
+    s1 = i19 * i20;
+    std::cout << "The product of " << i19 << " * " << i20 << " = " << s1 << std::endl;
+    */
 
     // Test the assignment operator =
     i1 = i2;
@@ -180,15 +193,7 @@ int main() {
     t2 = (i3 > i4);
     std::cout << i3 << " > " << i4 << " gives: " << t2 << std::endl;
     
-    // Addition
-	Integer s = (i1 + i2);
-    std::cout << "The sum of " << i1 << " + " << i2 << " = " << s << std::endl;
-
-    s = (i11 + i21);
-    std::cout << "The sum of " << i11 << " + " << i21 << " = " << s << std::endl;
-
-    s = (i111 + i211);
-    std::cout << "The sum of " << i111 << " + " << i211 << " = " << s << std::endl;
+   
     
     // Subtraction
     Integer s2 = (i3 - i4);

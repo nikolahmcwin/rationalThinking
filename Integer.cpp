@@ -85,33 +85,10 @@ namespace cosc326 {
         return positive;
     }
 
-    // Mutator for everything
-    void Integer::setAllFields(unsigned int s, std::vector<int>& vec, bool pos) {
-        size = s;
-        num = vec;
-        positive = pos;
-    }
-
-     // Mutator for size
-    void Integer::setSize(unsigned int s) {
-        size = s;
-    }
-
-     // Mutator for num
-    void Integer::setNum(const std::vector<int>& vec) {
-        num = vec;
-    }
-
-     // Mutator for positive
-    void Integer::setPositive(bool pos) {
-        positive = pos;
-    }
-
     // Method to handle carry in subtraction
     std::vector<int> Integer::handleCarry(int index, const std::vector<int>& v) {
         std::vector<int> vec = v;
         int i = index;
-
         if (i+1 < vec.size()) {
             vec[i+1] = (vec[i+1] - 1);
             vec[i] = vec[i] + 10;
@@ -123,6 +100,7 @@ namespace cosc326 {
 
     // Assignment operator =
     Integer& Integer::operator=(const Integer& integ) {
+        
         if (*this != integ) {
             size = integ.size;
             num = integ.num;
@@ -140,9 +118,9 @@ namespace cosc326 {
     Integer Integer::operator-() const {
         Integer n = (*this);
         if (positive) {
-            n.setPositive(false);
+            n.positive = false;
         } else if (!positive) {
-            n.setPositive(true);
+            n.positive = true;
         }
         return n;
     }
@@ -154,8 +132,7 @@ namespace cosc326 {
         if (isZero(integ)) {
             return *this;
         } else if (isZero(*this)) {
-           std::vector<int> vec = integ.getNum();
-           setAllFields(integ.getSize(), vec, integ.isPositive());
+           *this = Integer(integ);
            return *this;
         }
 
@@ -178,7 +155,6 @@ namespace cosc326 {
 
         if (positive) {
             if (integ.isPositive()) {
-                // Both pos
                 // a + b
                 int i = 0;
                 while (i < larger.size()) {
@@ -200,35 +176,25 @@ namespace cosc326 {
                 if ((i == larger.size()) && (carry == 1)) {
                     answer.push_back(carry);
                 }
-                setAllFields(answer.size(), answer, true);
+                *this = Integer(answer);
             } else {
-                // This pos but second number is neg 
                 // +a + -b = a - b
                 Integer b(integ);
-                b.setPositive(true);
+                b.positive = true;
                 *this -= b;
             }
         } else {
             if (integ.isPositive()) {
-                // This is neg but Integ is pos
                 // -a + +b = -a + b =  b - a
-                Integer a(*this);
-                a.setPositive(true);
-                Integer b(integ);
-                b -= a;
-                std::vector<int> vec = b.getNum();
-                setAllFields(b.getSize(), vec, b.isPositive());
+                Integer tmp(*this);
+                *this = integ;
+                tmp.positive = true;
+                *this -= tmp;
             } else {
-                // Both are neg 
                 // -a + -b = -a - b
-                Integer a(*this);
-                a.setPositive(true);
-                Integer b(integ);
-                b.setPositive(true);
-                a += b;
-                a.setPositive(false);
-                std::vector<int> vec = a.getNum();
-                setAllFields(a.getSize(), vec, a.isPositive());
+                Integer tmp(integ);
+                tmp.positive = true;
+                *this -= tmp;
             }
         }
         return *this;
@@ -241,8 +207,7 @@ namespace cosc326 {
         if (isZero(integ)) {
             return *this;
         } else if (isZero(*this)) {
-           std::vector<int> vec = integ.getNum();
-           setAllFields(integ.getSize(), vec, !(integ.isPositive()));
+           *this = integ;
            return *this;
         } else if (*this == integ) {
             // Or the number is itself, return 0
@@ -284,7 +249,6 @@ namespace cosc326 {
         int i = 0;
         if (positive) {
             if (integ.isPositive()) {
-                // Both pos
                 // +a - +b = a - b
                 int i = 0;
                 while (i < smaller.size()) {
@@ -316,33 +280,30 @@ namespace cosc326 {
                         answer.erase(answer.begin() + i);
                     }
                 } 
-                setAllFields(answer.size(), answer, answerIsPositive);  
+                *this = Integer(answer);
+                positive = answerIsPositive;
 
             } else {
-                // This pos but second number is neg 
                 // +a - -b = a + b
-                Integer b(integ);
-                b.setPositive(true);
-                *this += b;
+                Integer tmp(integ);
+                tmp.positive = true;
+                *this += tmp;
             }
         } else {
             if (integ.isPositive()) {
-                // This is neg but Integ is pos
                 // -a - +b = -a - b =  -a - b // -a - b = -(a+b)
-                Integer a(*this);
-                a.setPositive(true);
-                a += integ;
-                std::vector<int> vec = a.getNum();
-                setAllFields(a.getSize(), vec, false);
+                Integer tmp(integ);
+                tmp.positive = true;
+                positive = true;
+                *this += tmp;
+                positive = false;
             } else {
-                // Both are neg 
                 // -a - -b = -a + +b = +b - +a
-                Integer a(*this);
-                Integer b(integ);
-                b.setPositive(true);
-                a += b;
-                std::vector<int> vec = a.getNum();
-                setAllFields(a.getSize(), vec, a.isPositive());
+                Integer tmp(*this);
+                *this = integ;
+                tmp.positive = true;
+                positive = true;
+                *this -= tmp;
             }
         }
         return *this;
@@ -379,8 +340,7 @@ namespace cosc326 {
         if (isOne(integ)) {
             return *this;
         } else if (isOne(*this)) {
-            std::vector<int> z = integ.getNum();
-            setAllFields(z.size(), z, sumIsPositive);
+            *this = integ;
             return *this;
         }
 
@@ -427,9 +387,8 @@ namespace cosc326 {
         for (int i = 0; i < answer.size(); i++) {
             sum += answer[i];
         }
-
-        std::vector<int> s = sum.getNum();
-        setAllFields(sum.getSize(), s, sumIsPositive);
+        *this = sum;
+        positive = sumIsPositive;
         return *this;
     }
 
@@ -444,6 +403,9 @@ namespace cosc326 {
              But super inefficient for big intS
         something about a range of 0-9 to search (efficiently)
         */
+
+
+       
 
        // http://people.sabanciuniv.edu/levi/cs201/bigint.cpp
 
@@ -470,6 +432,7 @@ namespace cosc326 {
 
 
     // Method to check if an Integer is 0 e.g. num = [0];
+    // Ignore sign, just check if the vector is 0
     bool isZero(const Integer& integ) {
         std::vector<int> vec = integ.getNum();
         if (vec.size() > 1) {
@@ -483,6 +446,7 @@ namespace cosc326 {
         }
     }
     // Method to check if an Integer is 1 e.g. num = [1];
+    // Ignore sign, just check if the vector is 1
     bool isOne(const Integer& integ) {
         std::vector<int> vec = integ.getNum();
         if (vec.size() > 1) {

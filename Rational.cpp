@@ -212,12 +212,14 @@ namespace cosc326 {
        
         if (pos) {
             if (r.isPos()) {
+                // a + b
                 Integer newNum;
                 newNum = (r.getNum() * den);
                 den *= r.getDen();
                 num *= r.getDen();
                 num += newNum;
             } else {
+                // a + -b = a -b
                 r.setPos(true);
                 *this -= r;
             }
@@ -250,12 +252,14 @@ namespace cosc326 {
 
         if (pos) {
             if (r.isPos()) {
+                // a - b
                 Integer newNum;
                 newNum = (r.getNum() * den);
                 den *= r.getDen();
                 num *= r.getDen();
                 num -= newNum;
             } else {
+                // a - -b = a + b
                 r.setPos(true);
                 *this += r;
             }
@@ -284,12 +288,8 @@ namespace cosc326 {
         Rational r = unsimplify(r1);
         *this = unsimplify(*this);
 
-
-        // HANDLE POS NEG FUUUUCCCKKKKKK
-        
         den *= r.getDen();
         num *= r.getNum();
-
         if (((pos) && (r1.isPos())) || ((!pos) && (!r1.isPos()))) {
             pos = true;
         } else {
@@ -308,12 +308,6 @@ namespace cosc326 {
         swapped.setNum(r.getDen());
         swapped.setDen(r.getNum());
         *this *= swapped;
-
-        if (((pos) && (r1.isPos())) || ((!pos) && (!r1.isPos()))) {
-            pos = true;
-        } else {
-            pos = false;
-        }
 
         //*this = simplify(*this);
         return *this;

@@ -36,14 +36,7 @@ namespace cosc326 {
         // Accessors
         unsigned int getSize() const;
         const std::vector<int>& getNum() const;
-        bool isPositive() const;
-
-        // Mutators
-        void setAllFields(unsigned int s, std::vector<int>& vec, bool pos);
-        void setSize(unsigned int s);
-        void setNum(const std::vector<int>& vec);
-        void setPositive(bool pos);
-    
+        bool isPositive() const;   
 
         // Method to handle carry in subtraction
         std::vector<int> handleCarry(int index, const std::vector<int>& vec);

@@ -531,7 +531,7 @@ namespace cosc326 {
 		return sum;
     }
     
-    // The comparison operators 
+    // The comparison operator <
     bool operator<(const Integer& lhs, const Integer& rhs) {
         bool check;
         int lhsSize = lhs.getSize();
@@ -567,7 +567,6 @@ namespace cosc326 {
             }
         }
         // Otherwise numbers are the same size/length. loops through!
-        //std::vector<int> lhsV = rhs.getNum();
         if (lhs.isPositive()) {
              for (int i = lhs.getSize() - 1; i >= 0; i--) {
                 // work with largest digit first for efficiency
@@ -591,6 +590,7 @@ namespace cosc326 {
         return false;
 	}
 
+    // The comparison operator >
 	bool operator>(const Integer& lhs, const Integer& rhs) {
         if ((lhs == rhs)) {
             return false;
@@ -599,6 +599,7 @@ namespace cosc326 {
         } 
 	}
 
+    // The comparison operator <=
 	bool operator<=(const Integer& lhs, const Integer& rhs) {
 		if ((lhs == rhs) || (lhs < rhs)) {
             return true;
@@ -607,6 +608,7 @@ namespace cosc326 {
         }
 	}
 
+    // The comparison operator >=
 	bool operator>=(const Integer& lhs, const Integer& rhs) {
 		bool smaller = (lhs < rhs);
         if ((lhs == rhs) || (!(lhs < rhs))) {
@@ -616,6 +618,7 @@ namespace cosc326 {
         }
 	}
 
+    // The comparison operator ==
 	bool operator==(const Integer& lhs, const Integer& rhs) {
 		bool check = true;
         if ((lhs.isPositive() == rhs.isPositive()) && (lhs.getSize() == rhs.getSize())) {
@@ -631,6 +634,7 @@ namespace cosc326 {
         return check;
 	}
 
+    // The comparison operator !=
 	bool operator!=(const Integer& lhs, const Integer& rhs) {
 		return !(lhs == rhs);
 	}

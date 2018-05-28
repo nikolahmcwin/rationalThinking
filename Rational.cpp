@@ -204,33 +204,52 @@ namespace cosc326 {
 	}
 
     // Compound assignment operator +=
-	Rational& Rational::operator+=(const Rational& r) {
-        Rational r1 = unsimplify(r);
+	Rational& Rational::operator+=(const Rational& r1) {
+        Rational r = unsimplify(r1);
         *this = unsimplify(*this);
-        Integer newDen;
-        newDen = (den * r.getDen());
-
-        // Rational newThis;
-        // newThis = simplify(*this);
+        Integer newNum;
+        newNum = (r.getNum() * den);
+        den *= r.getDen();
+        num *= r.getDen();
+        num += newNum;
+        //*this = simplify(*this);
 
 		return *this;
 	}
 
     // Compound assignment operator -=
-	Rational& Rational::operator-=(const Rational& r) {
-
+	Rational& Rational::operator-=(const Rational& r1) {
+        Rational r = unsimplify(r1);
+        *this = unsimplify(*this);
+        Integer newNum;
+        newNum = (r.getNum() * den);
+        den *= r.getDen();
+        num *= r.getDen();
+        num -= newNum;
+        //*this = simplify(*this);
 		return *this;
 	}
 
     // Compound assignment operator *=
-	Rational& Rational::operator*=(const Rational& r) {
-
+	Rational& Rational::operator*=(const Rational& r1) {
+        Rational r = unsimplify(r1);
+        *this = unsimplify(*this);
+        den *= r.getDen();
+        num *= r.getNum();
+        //*this = simplify(*this);
 		return *this;
 	}
 
     // Compound assignment operator /=
-	Rational& Rational::operator/=(const Rational& r) {
-		return *this;
+	Rational& Rational::operator/=(const Rational& r1) {
+		Rational r = unsimplify(r1);
+        *this = unsimplify(*this);
+        Rational swapped(r);
+        swapped.setNum(r.getDen());
+        swapped.setDen(r.getNum());
+        *this *= swapped;
+        //*this = simplify(*this);
+        return *this;
 	}
 
     /**
@@ -273,7 +292,9 @@ namespace cosc326 {
 
     // Helper method to check if simplified
     bool isSimplified(const Rational& r) {
-         // if GCD == 1 return true
+        //if (gcd(r.getNum(), r.getDen()) == 1) {
+         //    return true
+       // } 
         return false;
     }
 
@@ -336,31 +357,61 @@ namespace cosc326 {
 
     // The comparison operator <
 	bool operator<(const Rational& lhs, const Rational& rhs) {
-		return true;
+        if (lhs == rhs) {
+            return false;
+        }
+        Rational r1 = unsimplify(lhs);
+        Rational r2 = unsimplify(rhs);
+
+        Integer i1 = (r1.getNum() * r2.getDen());
+        Integer i2 = (r2.getNum() * r1.getDen());    
+        if (i1 < i2) {
+            return true;
+        }
+		return false;
 	}
 
     // The comparison operator >
-	bool operator> (const Rational& lhs, const Rational& rhs) {
+	bool operator>(const Rational& lhs, const Rational& rhs) {
+		if ((lhs < rhs) || (lhs == rhs)) {
+            return false;
+        }
 		return true;
 	}
 
     // The comparison operator <=
 	bool operator<=(const Rational& lhs, const Rational& rhs) {
-		return true;
+        if ((lhs == rhs) || (lhs < rhs)) {
+            return true;
+        }
+		return false;
 	}
 
     // The comparison operator >=
 	bool operator>=(const Rational& lhs, const Rational& rhs) {
+		if (lhs < rhs) {
+            return false;
+        }
 		return true;
 	}
 
     // The comparison operator ==
 	bool operator==(const Rational& lhs, const Rational& rhs) {
-		return true;
+		Rational r1 = unsimplify(lhs);
+        Rational r2 = unsimplify(rhs);
+        Integer i1 = (r1.getNum() * r2.getDen());
+        Integer i2 = (r2.getNum() * r1.getDen());    
+        if (i1 == i2) {
+            return true;
+        }
+		return false;
 	}
 
     // The comparison operator !=
 	bool operator!=(const Rational& lhs, const Rational& rhs) {
+        if (lhs == rhs) {
+            return false;
+        }
 		return true;
 	}
 

@@ -85,17 +85,9 @@ namespace cosc326 {
         return positive;
     }
 
-    // Method to handle carry in subtraction
-    std::vector<int> Integer::handleCarry(int index, const std::vector<int>& v) {
-        std::vector<int> vec = v;
-        int i = index;
-        if (i+1 < vec.size()) {
-            vec[i+1] = (vec[i+1] - 1);
-            vec[i] = vec[i] + 10;
-        } else {
-        }
-        
-        return vec;
+    // Mutator for Rationals to access the sign of each Integer.
+    void Integer::setPositive(bool pos) {
+        positive = pos;
     }
 
     // Assignment operator =
@@ -202,7 +194,6 @@ namespace cosc326 {
     
     // Compound assignment operator -=
     Integer& Integer::operator-=(const Integer& integ) {
-
         // Test if either numbers is 0!
         if (isZero(integ)) {
             return *this;
@@ -392,32 +383,86 @@ namespace cosc326 {
         return *this;
     }
 
-    
-        
-  
     // Compound assignment operator /=
     Integer& Integer::operator/=(const Integer& integ) {
-        /*
-        if he wants to divide 1614814601 / 1390
-        a suprising number of library subtract and keep going.
-             But super inefficient for big intS
-        something about a range of 0-9 to search (efficiently)
-        */
+        bool sumIsPositive;
 
+        // Check the input signs, to calculate sum sign
+        if ((isPositive()) && (integ.isPositive())) {
+            sumIsPositive = true;
+        } else if ((!isPositive()) && (!integ.isPositive())) {
+            sumIsPositive = true;
+        } else {
+            sumIsPositive = false;
+        }
 
-       
+        // If either number is 0, deal with it
+        Integer zero;
+        if (isZero(integ)) {
+            std::cout << "You may not divide by zero" << std::endl;
+            *this = Integer("-4999999888954");
+            return *this;
+        } else if (isZero(*this)) {
+            *this = zero;
+            return *this;
+        }
+        // If either number is 1, return special answers
+        if (isOne(integ)) {
+            return *this;
+        } else if (isOne(*this)) {
+            *this = zero;
+            return *this;
+        }
 
-       // http://people.sabanciuniv.edu/levi/cs201/bigint.cpp
-
+        Integer numberDivides;
+        Integer one("1");
+        if (sumIsPositive) {
+            if (positive) {
+                while ((*this > zero)) {
+                    *this -= integ;
+                    if (*this < zero) {
+                        break;
+                    }
+                    numberDivides += one;
+                }
+            } else {
+                while ((*this < zero)) {
+                    *this -= integ;
+                    if (*this > zero) {
+                        break;
+                    }
+                    numberDivides += one;
+                }
+            }
+        } else {
+            if (positive) {
+                while ((*this > zero)) {
+                    *this += integ;
+                    if (*this < zero) {
+                        break;
+                    }
+                    numberDivides += one;
+                }
+            } else {
+                while ((*this < zero)) {
+                    *this += integ;
+                    if (*this > zero) {
+                        break;
+                    }
+                    numberDivides += one;
+                }
+            }
+            
+        }        
+        *this = numberDivides;
+        if (numberDivides == zero) {
+            positive = true;
+        } else {
+            positive = sumIsPositive;
+        }
         return *this;
     }
     
-
-
-
-
-
-
     // Compound assignment operator %=
     Integer& Integer::operator%=(const Integer& integ)  {
         Integer tmp(*this / integ);
@@ -434,6 +479,7 @@ namespace cosc326 {
     // Method to check if an Integer is 0 e.g. num = [0];
     // Ignore sign, just check if the vector is 0
     bool isZero(const Integer& integ) {
+        
         std::vector<int> vec = integ.getNum();
         if (vec.size() > 1) {
             return false;
@@ -458,6 +504,17 @@ namespace cosc326 {
                 return false;
             }
         }
+    }
+
+    // Method to handle carry in subtraction
+    std::vector<int> handleCarry(int index, const std::vector<int>& v) {
+        std::vector<int> vec = v;
+        int i = index;
+        if (i+1 < vec.size()) {
+            vec[i+1] = (vec[i+1] - 1);
+            vec[i] = vec[i] + 10;
+        }
+        return vec;
     }
 
     // Binary arithmetic operator +
@@ -550,7 +607,6 @@ namespace cosc326 {
                 }
             }
         }
-       
         return false;
 	}
 
@@ -588,14 +644,13 @@ namespace cosc326 {
         if ((lhs.isPositive() == rhs.isPositive()) && (lhs.getSize() == rhs.getSize())) {
             for (unsigned int i = 0; i < lhs.getSize(); i++) {
                 if (lhs.getNum()[i] != rhs.getNum()[i]) {
-                    check = false;
-                    break;
+                    return false;
                 }
             }
         } else {
-            check = false;
+            return false;
         }
-        return check;
+        return true;
 	}
 
     // The comparison operator !=

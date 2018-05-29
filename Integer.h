@@ -37,9 +37,7 @@ namespace cosc326 {
         unsigned int getSize() const;
         const std::vector<int>& getNum() const;
         bool isPositive() const;   
-
-        // Method to handle carry in subtraction
-        std::vector<int> handleCarry(int index, const std::vector<int>& vec);
+        void setPositive(bool);
 
         // Assignment operator =
         Integer& operator=(const Integer&);
@@ -63,6 +61,9 @@ namespace cosc326 {
 
     // Method to check if an Integer is 1 e.g. num = [1];
     bool isOne(const Integer&);
+
+     // Method to handle carry in subtraction
+    std::vector<int> handleCarry(int index, const std::vector<int>& vec);
     
     // The binary arithmetic operators: 
     Integer operator+(const Integer& i1, const Integer& i2);

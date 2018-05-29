@@ -41,7 +41,6 @@ namespace cosc326 {
         bool isPos() const;
 
         // Mutators
-        void setAllFields(const Integer&, const Integer&, const Integer&, bool p);
         void setNum(const Integer&);
         void setDen(const Integer&);
         void setWhole(const Integer&);

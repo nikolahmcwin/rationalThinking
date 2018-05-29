@@ -97,7 +97,12 @@ namespace cosc326 {
     }
 
      // Mutator for size
-	/* PSC -- is this needed? Isn't the size a property of the vector you're using to store the digits? */
+	/* PSC -- is this needed? Isn't the size a property of the vector you're using to store the digits? 
+
+
+    DONEEEEEE
+    
+    */
     void Integer::setSize(unsigned int s) {
         size = s;
 
@@ -105,7 +110,13 @@ namespace cosc326 {
     }
 
      // Mutator for num
-	/* PSC -- again, not sure why you don't just use one of the constructors */
+	/* PSC -- again, not sure why you don't just use one of the constructors 
+    
+    
+    DONEEEEEE
+    
+    
+    */
     void Integer::setNum(const std::vector<int>& vec) {
         num = vec;
         size = vec.size();
@@ -113,7 +124,13 @@ namespace cosc326 {
 
      // Mutator for positive
      //
-     /* PSC -- this is duplicating the functionality of the unary + */
+     /* PSC -- this is duplicating the functionality of the unary + 
+     
+     
+     DONEEEEEE
+     
+     
+     */
     void Integer::setPositive(bool pos) {
         positive = pos;
     }
@@ -127,6 +144,7 @@ namespace cosc326 {
      *  if(i == zero){
      *     std::cout << "this is the end of the world!!!" << std::endl;
      * 
+     * DONEEEEEE
      * 
      * DONE can't do that what if zero is pos or neg??/
      * 
@@ -229,6 +247,19 @@ namespace cosc326 {
 	 * addition (e.g. 9 + 9 = 18), then in the next phase you handle the
 	 * carry (e.g. value[i] = 18 % 10, value[i+1] += 18/10) and ripple that
 	 * up through the array of values.
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * DONEEEEEE
+     * 
+     * 
+     * 
+     * DONEEEEEE
+     * 
+     * DONEEEEEE
 	 */
 
 

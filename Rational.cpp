@@ -30,19 +30,18 @@ namespace cosc326 {
     Rational::Rational(const Integer& a) {
         Integer one("1");
         Integer zero;
-        num = a;
+        num = Integer(a);
         den = one;
         whole = zero;
         pos = a.isPositive();
-        num.setPositive(true);
-        
+        num.setPositive(true);        
     }
     
     // Takes in two Integers to create a Rational (a/b)
     Rational::Rational(const Integer& a, const Integer& b) {
         Integer zero;
-        num = a;
-        den = b;
+        num = Integer(a);
+        den = Integer(b);
         whole = zero;
         if ((a.isPositive()) && (b.isPositive())) {
             pos = true;
@@ -148,14 +147,6 @@ namespace cosc326 {
         return pos;
     }
 
-    // Mutator for setting all fields num, den, whole and pos
-    void Rational::setAllFields(const Integer& n, const Integer& d, const Integer& w, bool p) {
-        num = n;
-        den = d;
-        whole = w;
-        pos = p;
-    }
-
     // Mutator for setting num
     void Rational::setNum(const Integer& in) {
         num = in;
@@ -208,7 +199,8 @@ namespace cosc326 {
         Rational r = unsimplify(r1);
         *this = unsimplify(*this);
 
-        // HANDLE POS NEG FUUUUCCCKKKKKK
+        //std::cout << "UNSimplified this is: " << *this <<std::endl;
+        //std::cout << "UNSimplified    r is:" << r <<std::endl;
        
         if (pos) {
             if (r.isPos()) {
@@ -228,36 +220,57 @@ namespace cosc326 {
                 // -a + b = b - a
                 Rational tmp((*this));
                 *this = r;
-                r = tmp;
-                r.setPos(true);
-                *this -= r;
+                tmp.setPos(true);
+                *this -= tmp;
             } else {
                 // -a + -b = -a - b = -(a+b);
                 pos = true;
                 Rational tmp(r);
                 tmp.setPos(true);
-                *this += r;
+                *this += tmp;
                 pos = false;     
             }
         }
-        
-        //*this = simplify(*this);
+        *this = simplify(*this);
 		return *this;
 	}
 
     // Compound assignment operator -=
 	Rational& Rational::operator-=(const Rational& r1) {
         Rational r = unsimplify(r1);
-        *this = unsimplify(*this);
+        Rational test(*this);
+        test = unsimplify(test);
+        std::cout << "*******THIS : " << *this << std::endl;
+        std::cout << "*******THIS TEST : " << test << std::endl;
+       // std::cout << "THIS TESTED>?? : " << unsimplify(*this) << std::endl;
+        bool answerIsPositive;
+        // If a > b, a - b is positive
+        if (*this >= r1) {
+            answerIsPositive = true;
+        } else {
+            // If a < b, a - b is negative
+            answerIsPositive = false;
+        }
 
         if (pos) {
             if (r.isPos()) {
                 // a - b
                 Integer newNum;
                 newNum = (r.getNum() * den);
+                std::cout << "newNum is: " << newNum << std::endl;
+                std::cout << "den is: " << den << std::endl;
                 den *= r.getDen();
+                std::cout << "den AFTER is: " << den << std::endl;
+
+                std::cout << "r.den is: " << r.getDen() << std::endl;
+                std::cout << "num is: " << num << std::endl;
                 num *= r.getDen();
+                std::cout << "num AFTER is: " << num << std::endl;
                 num -= newNum;
+                if (num.isPositive() == false) {
+                    num.setPositive(true);
+                    answerIsPositive = false;
+                }
             } else {
                 // a - -b = a + b
                 r.setPos(true);
@@ -268,18 +281,18 @@ namespace cosc326 {
                 // -a - b = -(a + b)
                 pos = true;
                 *this += r;
-                pos = false;   
+                //pos = false;   
             } else {
                 // -a - -b = -a + b = b - a;
                 Rational tmp((*this));
                 *this = r;
-                r = tmp;
-                r.setPos(true);
-                *this -= r;
+                tmp.setPos(true);
+                pos = true;
+                *this -= tmp;
             }
         }
-        
-        //*this = simplify(*this);
+        pos = answerIsPositive;
+        *this = simplify(*this);
 		return *this;
 	}
 
@@ -295,8 +308,7 @@ namespace cosc326 {
         } else {
             pos = false;
         }
-
-        //*this = simplify(*this);
+        *this = simplify(*this);
 		return *this;
 	}
 
@@ -308,8 +320,7 @@ namespace cosc326 {
         swapped.setNum(r.getDen());
         swapped.setDen(r.getNum());
         *this *= swapped;
-
-        //*this = simplify(*this);
+        *this = simplify(*this);
         return *this;
 	}
 
@@ -321,20 +332,28 @@ namespace cosc326 {
     // Helper method to simplify
     Rational simplify(const Rational& r) {
         Rational r2 = r;
-        Integer n = r.getNum();
-        Integer d = r.getDen();
-        Integer w = r.getWhole();
+        Integer n = r2.getNum();
+        Integer d = r2.getDen();
+        Integer w = r2.getWhole();
+        /*std::cout << "n: " << n <<std::endl;
+        std::cout << "d: " << d <<std::endl;
+        std::cout << "w: " << w <<std::endl;
+        std::cout << "RAT pos: " << r.isPos() <<std::endl;
+        */
+        
+        //n.setPositive(true);
+        //d.setPositive(true);
+        //w.setPositive(true);
     
-        // If a/b > 1, set the whole part
+        /// If a/b > 1, set the whole part
         if (n >= d) {
-            Integer tmp = n;
-            // w = (n/d);
-            // n = (n - (w*d));
+            w = (n/d);
+            n = (n - (w*d));
         }
         // Simplify remaining fraction part 
-        //Integer g = gcd(n, d);
-        //n = (n / g);
-        //d = (d / g);
+        Integer g = gcd(n, d);
+        n = (n / g);
+        d = (d / g);
         r2.setNum(n);
         r2.setDen(d);
         r2.setWhole(w);
@@ -343,11 +362,18 @@ namespace cosc326 {
 
     // Helper method to UNsimplify
     Rational unsimplify(const Rational& r) {
-        Rational r2 = r;
+        Rational r2 = Rational(r);
+        std::cout << "AS STANDS: " << r <<std::endl;
         Integer zero;
-        r2.setWhole(zero);
-        Integer newNum = ((r.getWhole() * r.getDen()) + r.getNum());
-        r2.setNum(newNum);
+        Integer newNum;
+
+        if (r.getWhole() != zero) {
+            newNum = ((r2.getWhole() * r2.getDen()) + r2.getNum());
+            r2.setNum(newNum);
+            r2.setWhole(zero);
+        } 
+
+        std::cout << "after undoing: " << r2 <<std::endl;
         return r2;
     }
 
@@ -380,9 +406,10 @@ namespace cosc326 {
 	}
 
     // The print stream operator <<
-	std::ostream& operator<<(std::ostream& ostr, const Rational& r) {
+	std::ostream& operator<<(std::ostream& ostr, const Rational& r1) {
 		std::string numString;
         //Rational r = simplify(r1);
+        Rational r(r1);
         
         if (!r.isPos()) {
             ostr << '-';
@@ -416,15 +443,14 @@ namespace cosc326 {
         if (lhs == rhs) {
             return false;
         } 
-        if (((lhs.isPos()) && (rhs.isPos())) || ((!lhs.isPos()) && (!rhs.isPos()))) {
-            Rational r1 = unsimplify(lhs);
-            Rational r2 = unsimplify(rhs);
-
-            Integer i1 = (r1.getNum() * r2.getDen());
-            Integer i2 = (r2.getNum() * r1.getDen());    
-            if (i1 < i2) {
-                return true;
-            }  
+        Rational r1 = unsimplify(lhs);
+        Rational r2 = unsimplify(rhs);
+        Integer i1 = (r1.getNum() * r2.getDen());
+        Integer i2 = (r2.getNum() * r1.getDen());
+        i1.setPositive(lhs.isPos());
+        i2.setPositive(rhs.isPos());     
+        if (i1 < i2) {
+            return true;
         }
 		return false;
 	}
@@ -455,7 +481,7 @@ namespace cosc326 {
 
     // The comparison operator ==
 	bool operator==(const Rational& lhs, const Rational& rhs) {
-        if (((lhs.isPos()) && (rhs.isPos())) || ((!lhs.isPos()) && (!rhs.isPos()))) {
+        if (lhs.isPos() == rhs.isPos()) {
             Rational r1 = unsimplify(lhs);
             Rational r2 = unsimplify(rhs);
             Integer i1 = (r1.getNum() * r2.getDen());

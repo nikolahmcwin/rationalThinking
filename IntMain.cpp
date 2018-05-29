@@ -46,26 +46,52 @@ int main() {
     
     
     // Test default constructor
-    Integer i1("+2");
-    std::cout << "i1 is: " << i1 << std::endl; 
+    Integer i1("123456789");
+    std::cout << "i1 is: " << i1 << std::endl;
+    Integer i2("555444333");
+    std::cout << "i2 is: " << i2 << std::endl;  
     
-    // Test the integer constructor
+    // Test the string constuctor
+    Integer i11("-99");
+    std::cout << "i1 is: " << i11 << std::endl; 
+    Integer i21("33");
+    std::cout << "i21 is: " << i21 << std::endl; 
+    Integer i111("-120");
+    std::cout << "i111 is: " << i111 << std::endl; 
+    Integer i211("-12");
+    std::cout << "i211 is: " << i211 << std::endl; 
+
+
+     int t = (1/10);
+    std::cout << "The t is ------> "<< t << std::endl;
+
+    // DIVISION LOL 
+    Integer s1 = i1 / i2;
+	std::cout << "The product of "<< i1 << " / " << i2 << " = " << s1 << std::endl;
+
+    s1 = i1 % i2;
+	std::cout << "The mod remainded  of "<< i1 << " % " << i2 << " = " << s1 << std::endl;
+    s1 = gcd(i1, i2);
+	std::cout << "The gcd of "<< i1 << " & " << i2 << " = " << s1 << std::endl;
+
+
+    s1 = i11 / i21;
+	std::cout << "The product of "<< i11 << " / " << i21 << " = " << s1 << std::endl;
+
+    s1 = i111 / i211;
+	std::cout << "The product of "<< i111 << " / " << i211 << " = " << s1 << std::endl;
+
+    s1 = i21 / i11;
+	std::cout << "The product of "<< i21 << " / " << i11 << " = " << s1 << std::endl;
+    s1 = i211 / i111;
+	std::cout << "The product of "<< i211 << " / " << i111 << " = " << s1 << std::endl;
+    s1 = i2 / i1;
+	std::cout << "The product of "<< i2 << " / " << i1 << " = " << s1 << std::endl;
+   
+/*
+      // Test the integer constructor
     Integer copyi1(i1);
     std::cout << "copyi1 is: " << i1 << std::endl; 
-
-    // Test the string constuctor
-
-    Integer i11("99");
-    std::cout << "i1 is: " << i1 << std::endl; 
-    Integer i21("0");
-    std::cout << "i1 is: " << i1 << std::endl; 
-    Integer i111("-120");
-    std::cout << "i1 is: " << i1 << std::endl; 
-    Integer i211("1");
-    std::cout << "i1 is: " << i1 << std::endl; 
-
-    Integer i2("-100");
-    std::cout << "i2 is: " << i2 << std::endl; 
 
     Integer i3("1000");
     std::cout << "i3 is: " << i3 << std::endl;
@@ -119,7 +145,7 @@ int main() {
     s1 = i211 * i111;
     std::cout << "The product of " << i211 << " * " << i111 << " = " << s1 << std::endl;
 
-    /*
+    
     s1 = i23 - i24;
     std::cout << "The product of " << i23 << " - " << i24 << " = " << s1 << std::endl;
     
@@ -132,7 +158,7 @@ int main() {
 
     s1 = i19 * i20;
     std::cout << "The product of " << i19 << " * " << i20 << " = " << s1 << std::endl;
-    */
+    
 
     // Test the assignment operator =
     i1 = i2;
@@ -213,7 +239,7 @@ int main() {
     std::cout << "The sum of "<< i9 << " - " << i10 << " = " << s2 << std::endl;
     
 
-/*
+
 	std::cout << "Please enter new values for i1 and i2." << std::endl;
 	std::cin >> i1 >> i2;
     std::cout << "Now, i1 = " << i1 << " and i2 = " << i2 << std::endl;

@@ -11,12 +11,12 @@ using namespace cosc326;
 int main() {
 
     Integer i15("99");
-    Integer i16("99");
+    Integer i16("1");
     std::cout << "i15 is: " << i15 << std::endl;
     std::cout << "i16 is: " << i16 << std::endl;
 
-    Integer i151("-2222");
-    Integer i161("-4444");
+    Integer i151("-0");
+    Integer i161("-2222");
     std::cout << "i151 is: " << i151 << std::endl;
     std::cout << "i161 is: " << i161 << std::endl;
 
@@ -26,7 +26,7 @@ int main() {
     Integer i19("100703089");
     Integer i20("90301");
 
-    Integer i21("10002030300209000202030004040580092010109200029302030209320039200029302002930202092039200");
+    Integer i2111("10002030300209000202030004040580092010109200029302030209320039200029302002930202092039200");
     Integer i22("299302030003920390343040340003043032030401024012030230040234020503060700803506030602304034013040103");
 
     Integer i23("-20210391293238");
@@ -43,50 +43,55 @@ int main() {
     Integer vecConstrucor(s);
     std::cout << "vecConstrucor is: " << vecConstrucor << std::endl;
 */
-    //Multiplication
-    Integer s1 = i15 * i16;
-	std::cout << "The product of "<< i15 << " * " << i16 << " = " << s1 << std::endl;
-
-    s1 = i151 * i161;
-    std::cout << "The product of "<< i151 << " * " << i161 << " = " << s1 << std::endl;
-
-    s1 = i17 * i18;
-    std::cout << "The product of " << i17 << " * " << i18 << " = " << s1 << std::endl;
-
-    s1 = i19 * i20;
-    std::cout << "The product of " << i19 << " * " << i20 << " = " << s1 << std::endl;
-
-    s1 = i21 * i22;
-    std::cout << "The product of " << i21 << " * " << i22 << " = " << s1 << std::endl;
-
-    s1 = i23 - i24;
-    std::cout << "The product of " << i23 << " - " << i24 << " = " << s1 << std::endl;
     
-    s1 = i25 - i26;
-    std::cout << "The product of " << i25 << " - " << i26 << " = " << s1 << std::endl;
     
-    /*
     // Test default constructor
-    Integer i1("0456");
-    std::cout << "i1 is: " << i1 << std::endl; 
+    Integer i1("123456789");
+    std::cout << "i1 is: " << i1 << std::endl;
+    Integer i2("555444333");
+    std::cout << "i2 is: " << i2 << std::endl;  
     
-    // Test the integer constructor
+    // Test the string constuctor
+    Integer i11("-99");
+    std::cout << "i1 is: " << i11 << std::endl; 
+    Integer i21("33");
+    std::cout << "i21 is: " << i21 << std::endl; 
+    Integer i111("-120");
+    std::cout << "i111 is: " << i111 << std::endl; 
+    Integer i211("-12");
+    std::cout << "i211 is: " << i211 << std::endl; 
+
+
+     int t = (1/10);
+    std::cout << "The t is ------> "<< t << std::endl;
+
+    // DIVISION LOL 
+    Integer s1 = i1 / i2;
+	std::cout << "The product of "<< i1 << " / " << i2 << " = " << s1 << std::endl;
+
+    s1 = i1 % i2;
+	std::cout << "The mod remainded  of "<< i1 << " % " << i2 << " = " << s1 << std::endl;
+    s1 = gcd(i1, i2);
+	std::cout << "The gcd of "<< i1 << " & " << i2 << " = " << s1 << std::endl;
+
+
+    s1 = i11 / i21;
+	std::cout << "The product of "<< i11 << " / " << i21 << " = " << s1 << std::endl;
+
+    s1 = i111 / i211;
+	std::cout << "The product of "<< i111 << " / " << i211 << " = " << s1 << std::endl;
+
+    s1 = i21 / i11;
+	std::cout << "The product of "<< i21 << " / " << i11 << " = " << s1 << std::endl;
+    s1 = i211 / i111;
+	std::cout << "The product of "<< i211 << " / " << i111 << " = " << s1 << std::endl;
+    s1 = i2 / i1;
+	std::cout << "The product of "<< i2 << " / " << i1 << " = " << s1 << std::endl;
+   
+/*
+      // Test the integer constructor
     Integer copyi1(i1);
     std::cout << "copyi1 is: " << i1 << std::endl; 
-
-    // Test the string constuctor
-
-    Integer i11("100");
-    std::cout << "i1 is: " << i1 << std::endl; 
-    Integer i21("99");
-    std::cout << "i1 is: " << i1 << std::endl; 
-    Integer i111("-50");
-    std::cout << "i1 is: " << i1 << std::endl; 
-    Integer i211("27");
-    std::cout << "i1 is: " << i1 << std::endl; 
-
-    Integer i2("+23456788765234564");
-    std::cout << "i2 is: " << i2 << std::endl; 
 
     Integer i3("1000");
     std::cout << "i3 is: " << i3 << std::endl;
@@ -97,6 +102,16 @@ int main() {
     std::cout << "i5 is: " << i5 << std::endl;
     Integer i6("-15");
     std::cout << "i6 is: " << i6 << std::endl;
+
+ // Addition
+	Integer s = (i1 + i2);
+    std::cout << "The sum of " << i1 << " + " << i2 << " = " << s << std::endl;
+
+    s = (i11 + i21);
+    std::cout << "The sum of " << i11 << " + " << i21 << " = " << s << std::endl;
+
+    s = (i111 + i211);
+    std::cout << "The sum of " << i111 << " + " << i211 << " = " << s << std::endl;
 
 
     Integer i51("10");
@@ -119,6 +134,30 @@ int main() {
     Integer i10("2222");
     std::cout << "i10 is: " << i10 << std::endl;
 
+    //Multiplication
+    Integer s1 = i1 * i2;
+	std::cout << "The product of "<< i1<< " * " << i2 << " = " << s1 << std::endl;
+
+    s1 = i21 * i11;
+    std::cout << "The product of "<< i21<< " * " << i11 << " = " << s1 << std::endl;
+
+
+    s1 = i211 * i111;
+    std::cout << "The product of " << i211 << " * " << i111 << " = " << s1 << std::endl;
+
+    
+    s1 = i23 - i24;
+    std::cout << "The product of " << i23 << " - " << i24 << " = " << s1 << std::endl;
+    
+    s1 = i25 - i26;
+    std::cout << "The product of " << i25 << " - " << i26 << " = " << s1 << std::endl;
+
+
+    s1 = i17 * i18;
+    std::cout << "The product of " << i17 << " * " << i18 << " = " << s1 << std::endl;
+
+    s1 = i19 * i20;
+    std::cout << "The product of " << i19 << " * " << i20 << " = " << s1 << std::endl;
     
 
     // Test the assignment operator =
@@ -126,15 +165,16 @@ int main() {
     std::cout << "i1 now = i2. i1: " << i1 << std::endl;
 
     // Test the unary operators + and -
-    +i2;
-    std::cout << "positive i2: " << i2 << std::endl;
-    +i3;
-    std::cout << "positive i3: " << i3 << std::endl;
+    Integer ix;
+    ix = +i2;
+    std::cout << "positive i2: " << ix << std::endl;
+    ix = +i3;
+    std::cout << "positive i3: " << ix << std::endl;
 
-    -i2;
-    std::cout << "negated i2: " << i2  << std::endl;
-    -i3;
-    std::cout << "negated i3: " << i3 << std::endl;
+    ix = -i2;
+    std::cout << "negated i2: " << ix  << std::endl;
+    ix = -i3;
+    std::cout << "negated i3: " << ix << std::endl;
     
     // Test the comparison operator ==
     bool t1 = (i1 == copyi1);
@@ -152,10 +192,10 @@ int main() {
     std::cout << i2 << " != " << i3 << " gives: " << t4 << std::endl; 
 
     // Test <= operator
-    bool t1 = (i1 <= i2);
+    t1 = (i1 <= i2);
     std::cout << i1 << " <= " << i2 << " gives: " << t1 << std::endl;
 
-    bool t2 = (i3 <= i4);
+    t2 = (i3 <= i4);
     std::cout << i3 << " <= " << i4 << " gives: " << t2 << std::endl;  
     
     // Test < operator
@@ -179,15 +219,7 @@ int main() {
     t2 = (i3 > i4);
     std::cout << i3 << " > " << i4 << " gives: " << t2 << std::endl;
     
-    // Addition
-	Integer s = (i1 + i2);
-    std::cout << "The sum of " << i1 << " + " << i2 << " = " << s << std::endl;
-
-    s = (i11 + i21);
-    std::cout << "The sum of " << i11 << " + " << i21 << " = " << s << std::endl;
-
-    s = (i111 + i211);
-    std::cout << "The sum of " << i111 << " + " << i211 << " = " << s << std::endl;
+   
     
     // Subtraction
     Integer s2 = (i3 - i4);
@@ -205,9 +237,9 @@ int main() {
 
     s2 = (i9 - i10);
     std::cout << "The sum of "<< i9 << " - " << i10 << " = " << s2 << std::endl;
-    */
+    
 
-/*
+
 	std::cout << "Please enter new values for i1 and i2." << std::endl;
 	std::cin >> i1 >> i2;
     std::cout << "Now, i1 = " << i1 << " and i2 = " << i2 << std::endl;

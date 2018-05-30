@@ -195,7 +195,7 @@ namespace cosc326 {
         std::vector<int> larger;
         std::vector<int> answer;
 
-         if (size1 > size2) {
+        if (size1 > size2) {
             smaller = integ.getNum();
             larger = num;
         } else {
@@ -477,8 +477,26 @@ namespace cosc326 {
         return *this;
     }
     
-
-
+    /* 
+    Integer quotient,remainder;
+    bool resultNegative = (IsNegative() != rhs.IsNegative());
+    mySign = positive;      // force myself positive
+    
+    // DivideHelp does all the work
+    
+    if (rhs.IsNegative())
+    {
+        DivideHelp(*this,-1*rhs,quotient,remainder);
+    }
+    else
+    {
+        DivideHelp(*this,rhs,quotient,remainder);       
+    }
+    *this = quotient;
+    mySign = resultNegative ? negative : positive;
+    Normalize();
+    return *this;
+    */
 
 
 

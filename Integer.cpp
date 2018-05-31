@@ -399,8 +399,8 @@ namespace cosc326 {
         // If either number is 0, deal with it
         Integer zero;
         if (isZero(integ)) {
-            std::cout << "You may not divide by zero" << std::endl;
-            *this = Integer("-4999999888954");
+            //std::cout << "You may not divide by zero" << std::endl;
+            //*this = Integer("-4999999888954");
             return *this;
         } else if (isZero(*this)) {
             *this = zero;

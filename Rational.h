@@ -23,6 +23,9 @@ namespace cosc326 {
         Integer whole;
         
     public: 
+        //Rational& unsim();
+        //Rational& sim();
+
         // Constructors
  		Rational();
         Rational(const std::string& str);

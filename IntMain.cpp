@@ -21,13 +21,26 @@ int main() {
     std::cout << "i161 is: " << i161 << std::endl;
 
     Integer i17("5675678765765867586785678567856758675865");
-    Integer i18("9999999999999999999999999999999999999999");
+    std::cout << "i17 is: " << i17 << std::endl;
+    Integer i18("99999999999999999999999999999999999999");
+    std::cout << "i18 is: " << i18 << std::endl;
+    Integer answerD = i17 / i18;
+    std::cout << "answer D FIRST is: " << answerD << std::endl;
 
     Integer i19("100703089");
-    Integer i20("90301");
+    std::cout << "i19 is: " << i19 << std::endl;
+    Integer i20("9");
+    std::cout << "i20 is: " << i20 << std::endl;
+    answerD = i19 / i20;
+    std::cout << "answer D SECOND is: " << answerD << std::endl;
 
-    Integer i2111("10002030300209000202030004040580092010109200029302030209320039200029302002930202092039200");
-    Integer i22("299302030003920390343040340003043032030401024012030230040234020503060700803506030602304034013040103");
+    Integer i2111("1000203030020900020203000404058009201010");
+    std::cout << "i2111 is: " << i2111 << std::endl;
+    Integer i22("29930203000");
+    std::cout << "i22 is: " << i22 << std::endl;
+    answerD = i2111 / i22;
+    std::cout << "answer D THIRD is: " << answerD << std::endl;
+
 
     Integer i23("-20210391293238");
     Integer i24("1002932384293923823");
